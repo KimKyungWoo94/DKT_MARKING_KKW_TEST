@@ -1,0 +1,178 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<IOItems>
+  <!--IO Type    : DI , DO , AI , AO-->
+  <!--EContact   : A or B -->
+  <!--Device(IO)-->
+  <!--AXT-->
+  <!--IO Board           :   EzIna.IO.AXT.BoardTypeDIO-->
+  <!--[AddrInfo          :   Addr00 - Module No , Addr01 - Channel No]-->
+  <!--IO Board           :   EzIna.IO.AXT.BoardTypeAIO-->
+  <!--[AddrInfo          :   Addr00 - ChannelNo , Addr01 - MinVoltage , Addr02 - MaxVoltage]-->
+  <!--IO in MotionBoard  :   EzIna.IO.AXT.MotionAXT_DIO-->
+  <!--[AddrInfo          :   Addr00 - AxisNo , Addr01 - Channel No ]-->
+  <!--Aerotech-->
+  <!--IO in MotionBoard  :   EzIna.IO.AEROTECH.MotionA3200_IO-->
+  <!--[AddrInfo DIO      :   Addr00 - AxisNo , Addr01 - Channel No ]-->
+  <!--[AddrInfo AIO      :   Addr00 - AxisNo , Addr01 - Channel No , Addr02 - MinVoltage , Addr03 - MaxVoltgae]-->
+  <!--ScanLab-->
+  <!--[AddrInfo DIO      :   Addr00 - CardNo , Addr01 - Channel No(0~15)]-->
+  <!--IO Example-->
+  <!--IO IOType="DI" EContact="A" ID="1" Desrc="1" Device="1" Addr00="1" Addr01="1" Addr02="1" Addr03="1" Addr04="1"-->
+  <IOList>
+    <IO IOType="DI" EContact="B" ID="DI00" Desrc="EMERGENCY" Device="EzIna.IO.AXT.BoardTypeDIO" Addr00="0" Addr01="00" Addr02="" Addr03="" Addr04="" />
+    <IO IOType="DI" EContact="A" ID="DI01" Desrc="X01" Device="EzIna.IO.AXT.BoardTypeDIO" Addr00="0" Addr01="01" Addr02="" Addr03="" Addr04="" />
+    <IO IOType="DI" EContact="A" ID="DI02" Desrc="X02" Device="EzIna.IO.AXT.BoardTypeDIO" Addr00="0" Addr01="02" Addr02="" Addr03="" Addr04="" />
+    <IO IOType="DI" EContact="A" ID="DI03" Desrc="X03" Device="EzIna.IO.AXT.BoardTypeDIO" Addr00="0" Addr01="03" Addr02="" Addr03="" Addr04="" />
+    <IO IOType="DI" EContact="B" ID="DI04" Desrc="RAIL_MOUTH_L" Device="EzIna.IO.AXT.BoardTypeDIO" Addr00="0" Addr01="04" Addr02="" Addr03="" Addr04="" />
+    <IO IOType="DI" EContact="B" ID="DI05" Desrc="RAIL_MOUTH_R" Device="EzIna.IO.AXT.BoardTypeDIO" Addr00="0" Addr01="05" Addr02="" Addr03="" Addr04="" />
+    <IO IOType="DI" EContact="B" ID="DI06" Desrc="JIG_POS_DETECTED_L" Device="EzIna.IO.AXT.BoardTypeDIO" Addr00="0" Addr01="06" Addr02="" Addr03="" Addr04="" />
+    <IO IOType="DI" EContact="B" ID="DI07" Desrc="JIG_POS_DETECTED_M" Device="EzIna.IO.AXT.BoardTypeDIO" Addr00="0" Addr01="07" Addr02="" Addr03="" Addr04="" />
+    <IO IOType="DI" EContact="B" ID="DI08" Desrc="JIG_POS_DETECTED_R" Device="EzIna.IO.AXT.BoardTypeDIO" Addr00="0" Addr01="08" Addr02="" Addr03="" Addr04="" />
+    <IO IOType="DI" EContact="B" ID="DI09" Desrc="X09" Device="EzIna.IO.AXT.BoardTypeDIO" Addr00="0" Addr01="09" Addr02="" Addr03="" Addr04="" />
+    <IO IOType="DI" EContact="A" ID="DI10" Desrc="JIG_FEEDER_CLAMP_L_CY_FWD" Device="EzIna.IO.AXT.BoardTypeDIO" Addr00="0" Addr01="10" Addr02="" Addr03="" Addr04="" />
+    <IO IOType="DI" EContact="A" ID="DI11" Desrc="JIG_FEEDER_CLAMP_L_CY_BWD" Device="EzIna.IO.AXT.BoardTypeDIO" Addr00="0" Addr01="11" Addr02="" Addr03="" Addr04="" />
+    <IO IOType="DI" EContact="A" ID="DI12" Desrc="JIG_FEEDER_CLAMP_R_CY_FWD" Device="EzIna.IO.AXT.BoardTypeDIO" Addr00="0" Addr01="12" Addr02="" Addr03="" Addr04="" />
+    <IO IOType="DI" EContact="A" ID="DI13" Desrc="JIG_FEEDER_CLAMP_R_CY_BWD" Device="EzIna.IO.AXT.BoardTypeDIO" Addr00="0" Addr01="13" Addr02="" Addr03="" Addr04="" />
+    <IO IOType="DI" EContact="A" ID="DI14" Desrc="PUSHER_L_OVERLOAD_DETECTED" Device="EzIna.IO.AXT.BoardTypeDIO" Addr00="0" Addr01="14" Addr02="" Addr03="" Addr04="" />
+    <IO IOType="DI" EContact="A" ID="DI15" Desrc="PUSHER_R_OVERLOAD_DETECTED" Device="EzIna.IO.AXT.BoardTypeDIO" Addr00="0" Addr01="15" Addr02="" Addr03="" Addr04="" />
+    <IO IOType="DI" EContact="A" ID="DI16" Desrc="JIG_FEEDER_JIG_EXIST" Device="EzIna.IO.AXT.BoardTypeDIO" Addr00="0" Addr01="16" Addr02="" Addr03="" Addr04="" />
+    <IO IOType="DI" EContact="A" ID="DI17" Desrc="X17" Device="EzIna.IO.AXT.BoardTypeDIO" Addr00="0" Addr01="17" Addr02="" Addr03="" Addr04="" />
+    <IO IOType="DI" EContact="A" ID="DI18" Desrc="X18" Device="EzIna.IO.AXT.BoardTypeDIO" Addr00="0" Addr01="18" Addr02="" Addr03="" Addr04="" />
+    <IO IOType="DI" EContact="A" ID="DI19" Desrc="X19" Device="EzIna.IO.AXT.BoardTypeDIO" Addr00="0" Addr01="19" Addr02="" Addr03="" Addr04="" />
+    <IO IOType="DI" EContact="A" ID="DI20" Desrc="X20" Device="EzIna.IO.AXT.BoardTypeDIO" Addr00="0" Addr01="20" Addr02="" Addr03="" Addr04="" />
+    <IO IOType="DI" EContact="A" ID="DI21" Desrc="X21" Device="EzIna.IO.AXT.BoardTypeDIO" Addr00="0" Addr01="21" Addr02="" Addr03="" Addr04="" />
+    <IO IOType="DI" EContact="A" ID="DI22" Desrc="JIG_ACC_UPPER_DOWN" Device="EzIna.IO.AXT.BoardTypeDIO" Addr00="0" Addr01="22" Addr02="" Addr03="" Addr04="" />
+    <IO IOType="DI" EContact="A" ID="DI23" Desrc="JIG_ACC_LOWER_DOWN" Device="EzIna.IO.AXT.BoardTypeDIO" Addr00="0" Addr01="23" Addr02="" Addr03="" Addr04="" />
+    <IO IOType="DI" EContact="A" ID="DI24" Desrc="JIG_LEFT_STOPPER_UP" Device="EzIna.IO.AXT.BoardTypeDIO" Addr00="0" Addr01="24" Addr02="" Addr03="" Addr04="" />
+    <IO IOType="DI" EContact="A" ID="DI25" Desrc="JIG_LEFT_STOPPER_DOWN" Device="EzIna.IO.AXT.BoardTypeDIO" Addr00="0" Addr01="25" Addr02="" Addr03="" Addr04="" />
+    <IO IOType="DI" EContact="A" ID="DI26" Desrc="JIG_RIGHT_STOPPER_UP" Device="EzIna.IO.AXT.BoardTypeDIO" Addr00="0" Addr01="26" Addr02="" Addr03="" Addr04="" />
+    <IO IOType="DI" EContact="A" ID="DI27" Desrc="JIG_RIGHT_STOPPER_DOWN" Device="EzIna.IO.AXT.BoardTypeDIO" Addr00="0" Addr01="27" Addr02="" Addr03="" Addr04="" />
+    <IO IOType="DI" EContact="A" ID="DI28" Desrc="JIG_CENTER_STOPPER_UP" Device="EzIna.IO.AXT.BoardTypeDIO" Addr00="0" Addr01="28" Addr02="" Addr03="" Addr04="" />
+    <IO IOType="DI" EContact="A" ID="DI29" Desrc="JIG_CENTER_STOPPER_DOWN" Device="EzIna.IO.AXT.BoardTypeDIO" Addr00="0" Addr01="29" Addr02="" Addr03="" Addr04="" />
+    <IO IOType="DI" EContact="A" ID="DI30" Desrc="JIG_STOP_POS_CHK" Device="EzIna.IO.AXT.BoardTypeDIO" Addr00="0" Addr01="30" Addr02="" Addr03="" Addr04="" />
+    <IO IOType="DI" EContact="A" ID="DI31" Desrc="X31" Device="EzIna.IO.AXT.BoardTypeDIO" Addr00="0" Addr01="31" Addr02="" Addr03="" Addr04="" />
+    <IO IOType="DI" EContact="A" ID="DI32" Desrc="START_SW" Device="EzIna.IO.AXT.BoardTypeDIO" Addr00="1" Addr01="00" Addr02="" Addr03="" Addr04="" />
+    <IO IOType="DI" EContact="A" ID="DI33" Desrc="STOP_SW" Device="EzIna.IO.AXT.BoardTypeDIO" Addr00="1" Addr01="01" Addr02="" Addr03="" Addr04="" />
+    <IO IOType="DI" EContact="A" ID="DI34" Desrc="RESET_SW" Device="EzIna.IO.AXT.BoardTypeDIO" Addr00="1" Addr01="02" Addr02="" Addr03="" Addr04="" />
+    <IO IOType="DI" EContact="A" ID="DI35" Desrc="KEY_SW" Device="EzIna.IO.AXT.BoardTypeDIO" Addr00="1" Addr01="03" Addr02="" Addr03="" Addr04="" />
+    <IO IOType="DI" EContact="A" ID="DI36" Desrc="X36" Device="EzIna.IO.AXT.BoardTypeDIO" Addr00="1" Addr01="04" Addr02="" Addr03="" Addr04="" />
+    <IO IOType="DI" EContact="A" ID="DI37" Desrc="X37" Device="EzIna.IO.AXT.BoardTypeDIO" Addr00="1" Addr01="05" Addr02="" Addr03="" Addr04="" />
+    <IO IOType="DI" EContact="A" ID="DI38" Desrc="MAIN_PRESSURE_CHECK" Device="EzIna.IO.AXT.BoardTypeDIO" Addr00="1" Addr01="06" Addr02="" Addr03="" Addr04="" />
+    <IO IOType="DI" EContact="A" ID="DI39" Desrc="X39" Device="EzIna.IO.AXT.BoardTypeDIO" Addr00="1" Addr01="07" Addr02="" Addr03="" Addr04="" />
+    <IO IOType="DI" EContact="B" ID="DI40" Desrc="FRONT_DOOR_OPENED" Device="EzIna.IO.AXT.BoardTypeDIO" Addr00="1" Addr01="08" Addr02="" Addr03="" Addr04="" />
+    <IO IOType="DI" EContact="B" ID="DI41" Desrc="REAR_DOOR_OPENED" Device="EzIna.IO.AXT.BoardTypeDIO" Addr00="1" Addr01="09" Addr02="" Addr03="" Addr04="" />
+    <IO IOType="DI" EContact="B" ID="DI42" Desrc="STEP_DRIVER_PWR_MC" Device="EzIna.IO.AXT.BoardTypeDIO" Addr00="1" Addr01="10" Addr02="" Addr03="" Addr04="" />
+    <IO IOType="DI" EContact="B" ID="DI43" Desrc="XYZ_MOTOR_PWR_MC" Device="EzIna.IO.AXT.BoardTypeDIO" Addr00="1" Addr01="11" Addr02="" Addr03="" Addr04="" />
+    <IO IOType="DI" EContact="A" ID="DI44" Desrc="X44" Device="EzIna.IO.AXT.BoardTypeDIO" Addr00="1" Addr01="12" Addr02="" Addr03="" Addr04="" />
+    <IO IOType="DI" EContact="A" ID="DI45" Desrc="X45" Device="EzIna.IO.AXT.BoardTypeDIO" Addr00="1" Addr01="13" Addr02="" Addr03="" Addr04="" />
+    <IO IOType="DI" EContact="A" ID="DI46" Desrc="X46" Device="EzIna.IO.AXT.BoardTypeDIO" Addr00="1" Addr01="14" Addr02="" Addr03="" Addr04="" />
+    <IO IOType="DI" EContact="A" ID="DI47" Desrc="X47" Device="EzIna.IO.AXT.BoardTypeDIO" Addr00="1" Addr01="15" Addr02="" Addr03="" Addr04="" />
+    <IO IOType="DI" EContact="A" ID="DI48" Desrc="X48" Device="EzIna.IO.AXT.BoardTypeDIO" Addr00="1" Addr01="16" Addr02="" Addr03="" Addr04="" />
+    <IO IOType="DI" EContact="A" ID="DI49" Desrc="X49" Device="EzIna.IO.AXT.BoardTypeDIO" Addr00="1" Addr01="17" Addr02="" Addr03="" Addr04="" />
+    <IO IOType="DI" EContact="A" ID="DI50" Desrc="X50" Device="EzIna.IO.AXT.BoardTypeDIO" Addr00="1" Addr01="18" Addr02="" Addr03="" Addr04="" />
+    <IO IOType="DI" EContact="A" ID="DI51" Desrc="X51" Device="EzIna.IO.AXT.BoardTypeDIO" Addr00="1" Addr01="19" Addr02="" Addr03="" Addr04="" />
+    <IO IOType="DI" EContact="A" ID="DI52" Desrc="X52" Device="EzIna.IO.AXT.BoardTypeDIO" Addr00="1" Addr01="20" Addr02="" Addr03="" Addr04="" />
+    <IO IOType="DI" EContact="A" ID="DI53" Desrc="X53" Device="EzIna.IO.AXT.BoardTypeDIO" Addr00="1" Addr01="21" Addr02="" Addr03="" Addr04="" />
+    <IO IOType="DI" EContact="A" ID="DI54" Desrc="X54" Device="EzIna.IO.AXT.BoardTypeDIO" Addr00="1" Addr01="22" Addr02="" Addr03="" Addr04="" />
+    <IO IOType="DI" EContact="A" ID="DI55" Desrc="X55" Device="EzIna.IO.AXT.BoardTypeDIO" Addr00="1" Addr01="23" Addr02="" Addr03="" Addr04="" />
+    <IO IOType="DI" EContact="A" ID="DI56" Desrc="X56" Device="EzIna.IO.AXT.BoardTypeDIO" Addr00="1" Addr01="24" Addr02="" Addr03="" Addr04="" />
+    <IO IOType="DI" EContact="A" ID="DI57" Desrc="X57" Device="EzIna.IO.AXT.BoardTypeDIO" Addr00="1" Addr01="25" Addr02="" Addr03="" Addr04="" />
+    <IO IOType="DI" EContact="A" ID="DI58" Desrc="X58" Device="EzIna.IO.AXT.BoardTypeDIO" Addr00="1" Addr01="26" Addr02="" Addr03="" Addr04="" />
+    <IO IOType="DI" EContact="A" ID="DI59" Desrc="X59" Device="EzIna.IO.AXT.BoardTypeDIO" Addr00="1" Addr01="27" Addr02="" Addr03="" Addr04="" />
+    <IO IOType="DI" EContact="A" ID="DI60" Desrc="LOADER_SMEMA_IF_S1" Device="EzIna.IO.AXT.BoardTypeDIO" Addr00="1" Addr01="28" Addr02="" Addr03="" Addr04="" />
+    <IO IOType="DI" EContact="A" ID="DI61" Desrc="LOADER_SMEMA_IF_S2" Device="EzIna.IO.AXT.BoardTypeDIO" Addr00="1" Addr01="29" Addr02="" Addr03="" Addr04="" />
+    <IO IOType="DI" EContact="A" ID="DI62" Desrc="UNLOADER_SMEMA_IF_S1" Device="EzIna.IO.AXT.BoardTypeDIO" Addr00="1" Addr01="30" Addr02="" Addr03="" Addr04="" />
+    <IO IOType="DI" EContact="A" ID="DI63" Desrc="UNLOADER_SMEMA_IF_S2" Device="EzIna.IO.AXT.BoardTypeDIO" Addr00="1" Addr01="31" Addr02="" Addr03="" Addr04="" />
+    <IO IOType="DO" EContact="A" ID="DO00" Desrc="LIGHT_CH1_L_SW" Device="EzIna.IO.AXT.BoardTypeDIO" Addr00="2" Addr01="00" Addr02="" Addr03="" Addr04="" />
+    <IO IOType="DO" EContact="A" ID="DO01" Desrc="LIGHT_CH2_R_SW" Device="EzIna.IO.AXT.BoardTypeDIO" Addr00="2" Addr01="01" Addr02="" Addr03="" Addr04="" />
+    <IO IOType="DO" EContact="A" ID="DO02" Desrc="LIGHT_CH3_U_SW" Device="EzIna.IO.AXT.BoardTypeDIO" Addr00="2" Addr01="02" Addr02="" Addr03="" Addr04="" />
+    <IO IOType="DO" EContact="A" ID="DO03" Desrc="LIGHT_CH3_B_SW" Device="EzIna.IO.AXT.BoardTypeDIO" Addr00="2" Addr01="03" Addr02="" Addr03="" Addr04="" />
+    <IO IOType="DO" EContact="A" ID="DO04" Desrc="Y04" Device="EzIna.IO.AXT.BoardTypeDIO" Addr00="2" Addr01="04" Addr02="" Addr03="" Addr04="" />
+    <IO IOType="DO" EContact="A" ID="DO05" Desrc="Y05" Device="EzIna.IO.AXT.BoardTypeDIO" Addr00="2" Addr01="05" Addr02="" Addr03="" Addr04="" />
+    <IO IOType="DO" EContact="A" ID="DO06" Desrc="PINCH_ROLLER_L_U_DOWN" Device="EzIna.IO.AXT.BoardTypeDIO" Addr00="2" Addr01="06" Addr02="" Addr03="" Addr04="" />
+    <IO IOType="DO" EContact="A" ID="DO07" Desrc="PINCH_ROLLER_L_B_DOWN" Device="EzIna.IO.AXT.BoardTypeDIO" Addr00="2" Addr01="07" Addr02="" Addr03="" Addr04="" />
+    <IO IOType="DO" EContact="A" ID="DO08" Desrc="PINCH_ROLLER_R_U_DOWN" Device="EzIna.IO.AXT.BoardTypeDIO" Addr00="2" Addr01="08" Addr02="" Addr03="" Addr04="" />
+    <IO IOType="DO" EContact="A" ID="DO09" Desrc="PINCH_ROLLER_R_B_DOWN" Device="EzIna.IO.AXT.BoardTypeDIO" Addr00="2" Addr01="09" Addr02="" Addr03="" Addr04="" />
+    <IO IOType="DO" EContact="A" ID="DO10" Desrc="JIG_FEEDER_CLAMP_L_FWD" Device="EzIna.IO.AXT.BoardTypeDIO" Addr00="2" Addr01="10" Addr02="" Addr03="" Addr04="" />
+    <IO IOType="DO" EContact="A" ID="DO11" Desrc="JIG_FEEDER_CLAMP_L_BWD" Device="EzIna.IO.AXT.BoardTypeDIO" Addr00="2" Addr01="11" Addr02="" Addr03="" Addr04="" />
+    <IO IOType="DO" EContact="A" ID="DO12" Desrc="JIG_FEEDER_CLAMP_R_FWD" Device="EzIna.IO.AXT.BoardTypeDIO" Addr00="2" Addr01="12" Addr02="" Addr03="" Addr04="" />
+    <IO IOType="DO" EContact="A" ID="DO13" Desrc="JIG_FEEDER_CLAMP_R_BWD" Device="EzIna.IO.AXT.BoardTypeDIO" Addr00="2" Addr01="13" Addr02="" Addr03="" Addr04="" />
+    <IO IOType="DO" EContact="A" ID="DO14" Desrc="Y14" Device="EzIna.IO.AXT.BoardTypeDIO" Addr00="2" Addr01="14" Addr02="" Addr03="" Addr04="" />
+    <IO IOType="DO" EContact="A" ID="DO15" Desrc="Y15" Device="EzIna.IO.AXT.BoardTypeDIO" Addr00="2" Addr01="15" Addr02="" Addr03="" Addr04="" />
+    <IO IOType="DO" EContact="A" ID="DO16" Desrc="Y16" Device="EzIna.IO.AXT.BoardTypeDIO" Addr00="2" Addr01="16" Addr02="" Addr03="" Addr04="" />
+    <IO IOType="DO" EContact="A" ID="DO17" Desrc="Y17" Device="EzIna.IO.AXT.BoardTypeDIO" Addr00="2" Addr01="17" Addr02="" Addr03="" Addr04="" />
+    <IO IOType="DO" EContact="A" ID="DO18" Desrc="Y18" Device="EzIna.IO.AXT.BoardTypeDIO" Addr00="2" Addr01="18" Addr02="" Addr03="" Addr04="" />
+    <IO IOType="DO" EContact="A" ID="DO19" Desrc="JIG_ACC_UPPER_UP" Device="EzIna.IO.AXT.BoardTypeDIO" Addr00="2" Addr01="19" Addr02="" Addr03="" Addr04="" />
+    <IO IOType="DO" EContact="A" ID="DO20" Desrc="JIG_ACC_LOWER_UP" Device="EzIna.IO.AXT.BoardTypeDIO" Addr00="2" Addr01="20" Addr02="" Addr03="" Addr04="" />
+    <IO IOType="DO" EContact="A" ID="DO21" Desrc="Y21" Device="EzIna.IO.AXT.BoardTypeDIO" Addr00="2" Addr01="21" Addr02="" Addr03="" Addr04="" />
+    <IO IOType="DO" EContact="A" ID="DO22" Desrc="Y22" Device="EzIna.IO.AXT.BoardTypeDIO" Addr00="2" Addr01="22" Addr02="" Addr03="" Addr04="" />
+    <IO IOType="DO" EContact="A" ID="DO23" Desrc="Y23" Device="EzIna.IO.AXT.BoardTypeDIO" Addr00="2" Addr01="23" Addr02="" Addr03="" Addr04="" />
+    <IO IOType="DO" EContact="A" ID="DO24" Desrc="JIG_LEFT_STOPPER_UP" Device="EzIna.IO.AXT.BoardTypeDIO" Addr00="2" Addr01="24" Addr02="" Addr03="" Addr04="" />
+    <IO IOType="DO" EContact="A" ID="DO25" Desrc="JIG_LEFT_STOPPER_DOWN" Device="EzIna.IO.AXT.BoardTypeDIO" Addr00="2" Addr01="25" Addr02="" Addr03="" Addr04="" />
+    <IO IOType="DO" EContact="A" ID="DO26" Desrc="JIG_RIGHT_STOPPER_UP" Device="EzIna.IO.AXT.BoardTypeDIO" Addr00="2" Addr01="26" Addr02="" Addr03="" Addr04="" />
+    <IO IOType="DO" EContact="A" ID="DO27" Desrc="JIG_RIGHT_STOPPER_DOWN" Device="EzIna.IO.AXT.BoardTypeDIO" Addr00="2" Addr01="27" Addr02="" Addr03="" Addr04="" />
+    <IO IOType="DO" EContact="A" ID="DO28" Desrc="JIG_CENTER_STOPPER_UP" Device="EzIna.IO.AXT.BoardTypeDIO" Addr00="2" Addr01="28" Addr02="" Addr03="" Addr04="" />
+    <IO IOType="DO" EContact="A" ID="DO29" Desrc="JIG_CENTER_STOPPER_DOWN" Device="EzIna.IO.AXT.BoardTypeDIO" Addr00="2" Addr01="29" Addr02="" Addr03="" Addr04="" />
+    <IO IOType="DO" EContact="A" ID="DO30" Desrc="Y30" Device="EzIna.IO.AXT.BoardTypeDIO" Addr00="2" Addr01="30" Addr02="" Addr03="" Addr04="" />
+    <IO IOType="DO" EContact="A" ID="DO31" Desrc="Y31" Device="EzIna.IO.AXT.BoardTypeDIO" Addr00="2" Addr01="31" Addr02="" Addr03="" Addr04="" />
+    <IO IOType="DO" EContact="A" ID="DO32" Desrc="START_SW_LAMP" Device="EzIna.IO.AXT.BoardTypeDIO" Addr00="3" Addr01="00" Addr02="" Addr03="" Addr04="" />
+    <IO IOType="DO" EContact="A" ID="DO33" Desrc="STOP_SW_LAMP" Device="EzIna.IO.AXT.BoardTypeDIO" Addr00="3" Addr01="01" Addr02="" Addr03="" Addr04="" />
+    <IO IOType="DO" EContact="A" ID="DO34" Desrc="RESET_SW_LAMP" Device="EzIna.IO.AXT.BoardTypeDIO" Addr00="3" Addr01="02" Addr02="" Addr03="" Addr04="" />
+    <IO IOType="DO" EContact="A" ID="DO35" Desrc="Y35" Device="EzIna.IO.AXT.BoardTypeDIO" Addr00="3" Addr01="03" Addr02="" Addr03="" Addr04="" />
+    <IO IOType="DO" EContact="A" ID="DO36" Desrc="Y36" Device="EzIna.IO.AXT.BoardTypeDIO" Addr00="3" Addr01="04" Addr02="" Addr03="" Addr04="" />
+    <IO IOType="DO" EContact="A" ID="DO37" Desrc="Y37" Device="EzIna.IO.AXT.BoardTypeDIO" Addr00="3" Addr01="05" Addr02="" Addr03="" Addr04="" />
+    <IO IOType="DO" EContact="A" ID="DO38" Desrc="TOWER_LAMP_R" Device="EzIna.IO.AXT.BoardTypeDIO" Addr00="3" Addr01="06" Addr02="" Addr03="" Addr04="" />
+    <IO IOType="DO" EContact="A" ID="DO39" Desrc="TOWER_LAMP_Y" Device="EzIna.IO.AXT.BoardTypeDIO" Addr00="3" Addr01="07" Addr02="" Addr03="" Addr04="" />
+    <IO IOType="DO" EContact="A" ID="DO40" Desrc="TOWER_LAMP_G" Device="EzIna.IO.AXT.BoardTypeDIO" Addr00="3" Addr01="08" Addr02="" Addr03="" Addr04="" />
+    <IO IOType="DO" EContact="A" ID="DO41" Desrc="TOWER_LAMP_BUZ" Device="EzIna.IO.AXT.BoardTypeDIO" Addr00="3" Addr01="09" Addr02="" Addr03="" Addr04="" />
+    <IO IOType="DO" EContact="A" ID="DO42" Desrc="Y42" Device="EzIna.IO.AXT.BoardTypeDIO" Addr00="3" Addr01="10" Addr02="" Addr03="" Addr04="" />
+    <IO IOType="DO" EContact="A" ID="DO43" Desrc="Y43" Device="EzIna.IO.AXT.BoardTypeDIO" Addr00="3" Addr01="11" Addr02="" Addr03="" Addr04="" />
+    <IO IOType="DO" EContact="A" ID="DO44" Desrc="Y44" Device="EzIna.IO.AXT.BoardTypeDIO" Addr00="3" Addr01="12" Addr02="" Addr03="" Addr04="" />
+    <IO IOType="DO" EContact="A" ID="DO45" Desrc="Y45" Device="EzIna.IO.AXT.BoardTypeDIO" Addr00="3" Addr01="13" Addr02="" Addr03="" Addr04="" />
+    <IO IOType="DO" EContact="A" ID="DO46" Desrc="Y46" Device="EzIna.IO.AXT.BoardTypeDIO" Addr00="3" Addr01="14" Addr02="" Addr03="" Addr04="" />
+    <IO IOType="DO" EContact="A" ID="DO47" Desrc="DEBRIS_SOL" Device="EzIna.IO.AXT.BoardTypeDIO" Addr00="3" Addr01="15" Addr02="" Addr03="" Addr04="" />
+    <IO IOType="DO" EContact="A" ID="DO48" Desrc="DUST_COLLECTOR_REMOTE" Device="EzIna.IO.AXT.BoardTypeDIO" Addr00="3" Addr01="16" Addr02="" Addr03="" Addr04="" />
+    <IO IOType="DO" EContact="A" ID="DO49" Desrc="SCANNER_POWER_OFF" Device="EzIna.IO.AXT.BoardTypeDIO" Addr00="3" Addr01="17" Addr02="" Addr03="" Addr04="" />
+    <IO IOType="DO" EContact="A" ID="DO50" Desrc="Y50" Device="EzIna.IO.AXT.BoardTypeDIO" Addr00="3" Addr01="18" Addr02="" Addr03="" Addr04="" />
+    <IO IOType="DO" EContact="A" ID="DO51" Desrc="Y51" Device="EzIna.IO.AXT.BoardTypeDIO" Addr00="3" Addr01="19" Addr02="" Addr03="" Addr04="" />
+    <IO IOType="DO" EContact="A" ID="DO52" Desrc="Y52" Device="EzIna.IO.AXT.BoardTypeDIO" Addr00="3" Addr01="20" Addr02="" Addr03="" Addr04="" />
+    <IO IOType="DO" EContact="A" ID="DO53" Desrc="Y53" Device="EzIna.IO.AXT.BoardTypeDIO" Addr00="3" Addr01="21" Addr02="" Addr03="" Addr04="" />
+    <IO IOType="DO" EContact="A" ID="DO54" Desrc="Y54" Device="EzIna.IO.AXT.BoardTypeDIO" Addr00="3" Addr01="22" Addr02="" Addr03="" Addr04="" />
+    <IO IOType="DO" EContact="A" ID="DO55" Desrc="Y55" Device="EzIna.IO.AXT.BoardTypeDIO" Addr00="3" Addr01="23" Addr02="" Addr03="" Addr04="" />
+    <IO IOType="DO" EContact="A" ID="DO56" Desrc="Y56" Device="EzIna.IO.AXT.BoardTypeDIO" Addr00="3" Addr01="24" Addr02="" Addr03="" Addr04="" />
+    <IO IOType="DO" EContact="A" ID="DO57" Desrc="Y57" Device="EzIna.IO.AXT.BoardTypeDIO" Addr00="3" Addr01="25" Addr02="" Addr03="" Addr04="" />
+    <IO IOType="DO" EContact="A" ID="DO58" Desrc="Y58" Device="EzIna.IO.AXT.BoardTypeDIO" Addr00="3" Addr01="26" Addr02="" Addr03="" Addr04="" />
+    <IO IOType="DO" EContact="A" ID="DO59" Desrc="Y59" Device="EzIna.IO.AXT.BoardTypeDIO" Addr00="3" Addr01="27" Addr02="" Addr03="" Addr04="" />
+    <IO IOType="DO" EContact="A" ID="DO60" Desrc="LOADER_SMEMA_IF_S1" Device="EzIna.IO.AXT.BoardTypeDIO" Addr00="3" Addr01="28" Addr02="" Addr03="" Addr04="" />
+    <IO IOType="DO" EContact="A" ID="DO61" Desrc="LOADER_SMEMA_IF_S2" Device="EzIna.IO.AXT.BoardTypeDIO" Addr00="3" Addr01="29" Addr02="" Addr03="" Addr04="" />
+    <IO IOType="DO" EContact="A" ID="DO62" Desrc="UNLOADER_SMEMA_IF_S1" Device="EzIna.IO.AXT.BoardTypeDIO" Addr00="3" Addr01="30" Addr02="" Addr03="" Addr04="" />
+    <IO IOType="DO" EContact="A" ID="DO63" Desrc="UNLOADER_SMEMA_IF_S2" Device="EzIna.IO.AXT.BoardTypeDIO" Addr00="3" Addr01="31" Addr02="" Addr03="" Addr04="" />
+  </IOList>
+  <!--Cylinder Example-->
+  <!--SensorCheck = 0 or 1-->
+  <!--Type = Single or double-->
+  <!--Cylinder ID="1" Desrc="1" ForwardSensorCheck="1" BackwardSensorCheck="1" Type="1" SolCheckDelay="1"-->
+  <!--Cylinder SubElement-->
+  <!--Input Matching IO ID-->
+  <!--IOSet ForwardSensorID="" BackwardSensorID="" ForwardSolID="" BackwardSolID=""-->
+  <CylinderList>
+    <Cylinder ID="JIG_FEEDER_L" Desrc="Test" ForwardSensorCheck="1" BackwardSensorCheck="1" Type="DOUBLE" SolCheckDelay="300">
+      <IOSet ForwardSensorID="DI10" BackwardSensorID="DI11" ForwardSolID="DO10" BackwardSolID="DO11" />
+    </Cylinder>
+    <Cylinder ID="JIG_FEEDER_R" Desrc="Test" ForwardSensorCheck="1" BackwardSensorCheck="1" Type="DOUBLE" SolCheckDelay="300">
+      <IOSet ForwardSensorID="DI12" BackwardSensorID="DI13" ForwardSolID="DO12" BackwardSolID="DO13" />
+    </Cylinder>
+    <Cylinder ID="JIG_STOPPER_L" Desrc="Test" ForwardSensorCheck="1" BackwardSensorCheck="1" Type="DOUBLE" SolCheckDelay="300">
+      <IOSet ForwardSensorID="DI24" BackwardSensorID="DI25" ForwardSolID="DO24" BackwardSolID="DO25" />
+    </Cylinder>
+    <Cylinder ID="JIG_STOPPER_R" Desrc="Test" ForwardSensorCheck="1" BackwardSensorCheck="1" Type="DOUBLE" SolCheckDelay="300">
+      <IOSet ForwardSensorID="DI26" BackwardSensorID="DI27" ForwardSolID="DO26" BackwardSolID="DO27" />
+    </Cylinder>
+    <Cylinder ID="JIG_STOPPER_M" Desrc="Test" ForwardSensorCheck="1" BackwardSensorCheck="1" Type="DOUBLE" SolCheckDelay="300">
+      <IOSet ForwardSensorID="DI28" BackwardSensorID="DI29" ForwardSolID="DO28" BackwardSolID="DO29" />
+    </Cylinder>
+    <Cylinder ID="JIG_ACC_DOWN" Desrc="Test" ForwardSensorCheck="1" BackwardSensorCheck="1" Type="SINGLE" SolCheckDelay="300">
+      <IOSet ForwardSensorID="DI22" BackwardSensorID="DI22" ForwardSolID="DO19" BackwardSolID="DO20" />
+    </Cylinder>
+  </CylinderList>
+</IOItems>

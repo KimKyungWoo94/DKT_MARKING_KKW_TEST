@@ -1,0 +1,143 @@
+﻿-------------------------------------------------------------------------------------------
+# | KEY | CATEGORY | CAPTION | VALUE | UNIT | AXIS | ValueType
+-------------------------------------------------------------------------------------------
+Motion | 000 | M01_STAGE | Left Table X Pos | 0 | mm | 000 | System.Double
+Motion | 001 | M01_STAGE | Left Table Y Pos | 0 | mm | 001 | System.Double
+Motion | 002 | M01_STAGE | Right Table X Pos | 0 | mm | 000 | System.Double
+Motion | 003 | M01_STAGE | Right Table Y Pos | 0 | mm | 001 | System.Double
+Vision | 200 | M02_Fine_Matcher | Matcher Minimum Scale | 0.8 | percent | -001 | System.Double
+Vision | 201 | M02_Fine_Matcher | Matcher Maximum Scale | 1.2 | percent | -001 | System.Double
+Vision | 202 | M02_Fine_Matcher | Matcher Match Score | 85 | percent | -001 | System.Double
+Vision | 203 | M02_Fine_Matcher | Matcher Match Angle | 10 | deg | -001 | System.Double
+Vision | 204 | M02_Fine_Matcher | Matcher Match Max count | 10 | ea | -001 | System.Double
+Vision | 205 | M02_Fine_Matcher | Matcher Match Correlation Mode | 1 | idx | -001 | System.Int32
+Vision | 206 | M02_Fine_Matcher | Matcher Match ContrastMode | 1 | idx | -001 | System.Int32
+Vision | 210 | M02_Coarse_Matcher | Matcher Minimum Scale | 0.8 | percent | -001 | System.Double
+Vision | 211 | M02_Coarse_Matcher | Matcher Maximum Scale | 1.2 | percent | -001 | System.Double
+Vision | 212 | M02_Coarse_Matcher | Matcher Match Score | 85 | percent | -001 | System.Double
+Vision | 213 | M02_Coarse_Matcher | Matcher Match Angle | 10 | deg | -001 | System.Double
+Vision | 214 | M02_Coarse_Matcher | Matcher Match Max count | 10 | ea | -001 | System.Double
+Vision | 215 | M02_Coarse_Matcher | Matcher Match Correlation Mode | 1 | idx | -001 | System.Int32
+Vision | 216 | M02_Coarse_Matcher | Matcher Match ContrastMode | 1 | idx | -001 | System.Int32
+Vision | 220 | M02_Fine_Filter | Filters ThresHold Lvl | 100 | lvl | -001 | System.UInt32
+Vision | 221 | M02_Fine_Filter | Filters Open Disk | 5 | pxl | -001 | System.UInt32
+Vision | 222 | M02_Fine_Filter | Filters Close Disk | 5 | pxl | -001 | System.UInt32
+Vision | 223 | M02_Fine_Filter | Filters Erode Disk | 5 | pxl | -001 | System.UInt32
+Vision | 224 | M02_Fine_Filter | Filters Dilate Disk | 5 | pxl | -001 | System.UInt32
+Vision | 250 | M02_Coarse_Filter | Filters ThresHold Lvl | 100 | lvl | -001 | System.UInt32
+Vision | 251 | M02_Coarse_Filter | Filters Open Disk | 5 | pxl | -001 | System.UInt32
+Vision | 252 | M02_Coarse_Filter | Filters Close Disk | 5 | pxl | -001 | System.UInt32
+Vision | 253 | M02_Coarse_Filter | Filters Erode Disk | 5 | pxl | -001 | System.UInt32
+Vision | 254 | M02_Coarse_Filter | Filters Dilate Disk | 5 | pxl | -001 | System.UInt32
+Vision | 260 | M02_Fine_Blob | Blobs Method | 100 | lvl | -001 | System.Int32
+Vision | 261 | M02_Fine_Blob | Blobs Gray Min Value | 5 | pxl | -001 | System.UInt32
+Vision | 262 | M02_Fine_Blob | Blobs Gray Max Value | 5 | pxl | -001 | System.UInt32
+Vision | 263 | M02_Fine_Blob | Blobs MinWidth | 5 | pxl | -001 | System.Double
+Vision | 264 | M02_Fine_Blob | Blobs MaxWidth | 5 | pxl | -001 | System.Double
+Vision | 265 | M02_Fine_Blob | Blobs MinHeight | 5 | pxl | -001 | System.Double
+Vision | 266 | M02_Fine_Blob | Blobs MaxHeight | 5 | pxl | -001 | System.Double
+Vision | 267 | M02_Fine_Blob | Blobs AreaMin | 5 | percent | -001 | System.Double
+Vision | 268 | M02_Fine_Blob | Blobs AreaMax | 5 | percent | -001 | System.Double
+Vision | 270 | M02_Coarse_Blob | Blobs Method | 100 | lvl | -001 | System.Int32
+Vision | 271 | M02_Coarse_Blob | Blobs Gray Min Value | 5 | pxl | -001 | System.UInt32
+Vision | 272 | M02_Coarse_Blob | Blobs Gray Max Value | 5 | pxl | -001 | System.UInt32
+Vision | 273 | M02_Coarse_Blob | Blobs MinWidth | 5 | pxl | -001 | System.Double
+Vision | 274 | M02_Coarse_Blob | Blobs MaxWidth | 5 | pxl | -001 | System.Double
+Vision | 275 | M02_Coarse_Blob | Blobs MinHeight | 5 | pxl | -001 | System.Double
+Vision | 276 | M02_Coarse_Blob | Blobs MaxHeight | 5 | pxl | -001 | System.Double
+Vision | 277 | M02_Coarse_Blob | Blobs AreaMin | 5 | percent | -001 | System.Double
+Vision | 278 | M02_Coarse_Blob | Blobs AreaMax | 5 | percent | -001 | System.Double
+Vision | 280 | M02_Fine_Roi | Fiducial Marker | 0 | idx | -001 | System.Int32
+Vision | 400 | M02_Fine_Roi | X_01 | 0 | pxl | -001 | System.Int32
+Vision | 401 | M02_Fine_Roi | Y_01 | 0 | pxl | -001 | System.Int32
+Vision | 402 | M02_Fine_Roi | W_01 | 0 | pxl | -001 | System.Int32
+Vision | 403 | M02_Fine_Roi | H_01 | 0 | pxl | -001 | System.Int32
+Vision | 404 | M02_Fine_Roi | X_02 | 0 | pxl | -001 | System.Int32
+Vision | 405 | M02_Fine_Roi | Y_02 | 0 | pxl | -001 | System.Int32
+Vision | 406 | M02_Fine_Roi | W_02 | 0 | pxl | -001 | System.Int32
+Vision | 407 | M02_Fine_Roi | H_02 | 0 | pxl | -001 | System.Int32
+Vision | 408 | M02_Fine_Roi | X_03 | 0 | pxl | -001 | System.Int32
+Vision | 409 | M02_Fine_Roi | Y_03 | 0 | pxl | -001 | System.Int32
+Vision | 410 | M02_Fine_Roi | W_03 | 0 | pxl | -001 | System.Int32
+Vision | 411 | M02_Fine_Roi | H_03 | 0 | pxl | -001 | System.Int32
+Vision | 412 | M02_Fine_Roi | X_04 | 0 | pxl | -001 | System.Int32
+Vision | 413 | M02_Fine_Roi | Y_04 | 0 | pxl | -001 | System.Int32
+Vision | 414 | M02_Fine_Roi | W_04 | 0 | pxl | -001 | System.Int32
+Vision | 415 | M02_Fine_Roi | H_04 | 0 | pxl | -001 | System.Int32
+Vision | 416 | M02_Fine_Roi | X_05 | 0 | pxl | -001 | System.Int32
+Vision | 417 | M02_Fine_Roi | Y_05 | 0 | pxl | -001 | System.Int32
+Vision | 418 | M02_Fine_Roi | W_05 | 0 | pxl | -001 | System.Int32
+Vision | 419 | M02_Fine_Roi | H_05 | 0 | pxl | -001 | System.Int32
+Vision | 420 | M02_Fine_Roi | X_06 | 0 | pxl | -001 | System.Int32
+Vision | 421 | M02_Fine_Roi | Y_06 | 0 | pxl | -001 | System.Int32
+Vision | 422 | M02_Fine_Roi | W_06 | 0 | pxl | -001 | System.Int32
+Vision | 423 | M02_Fine_Roi | H_06 | 0 | pxl | -001 | System.Int32
+Vision | 424 | M02_Fine_Roi | X_07 | 0 | pxl | -001 | System.Int32
+Vision | 425 | M02_Fine_Roi | Y_07 | 0 | pxl | -001 | System.Int32
+Vision | 426 | M02_Fine_Roi | W_07 | 0 | pxl | -001 | System.Int32
+Vision | 427 | M02_Fine_Roi | H_07 | 0 | pxl | -001 | System.Int32
+Vision | 428 | M02_Fine_Roi | X_08 | 0 | pxl | -001 | System.Int32
+Vision | 429 | M02_Fine_Roi | Y_08 | 0 | pxl | -001 | System.Int32
+Vision | 430 | M02_Fine_Roi | W_08 | 0 | pxl | -001 | System.Int32
+Vision | 431 | M02_Fine_Roi | H_08 | 0 | pxl | -001 | System.Int32
+Vision | 432 | M02_Fine_Roi | X_09 | 0 | pxl | -001 | System.Int32
+Vision | 433 | M02_Fine_Roi | Y_09 | 0 | pxl | -001 | System.Int32
+Vision | 434 | M02_Fine_Roi | W_09 | 0 | pxl | -001 | System.Int32
+Vision | 435 | M02_Fine_Roi | H_09 | 0 | pxl | -001 | System.Int32
+Vision | 436 | M02_Fine_Roi | X_10 | 0 | pxl | -001 | System.Int32
+Vision | 437 | M02_Fine_Roi | Y_10 | 0 | pxl | -001 | System.Int32
+Vision | 438 | M02_Fine_Roi | W_10 | 0 | pxl | -001 | System.Int32
+Vision | 439 | M02_Fine_Roi | H_10 | 0 | pxl | -001 | System.Int32
+Vision | 290 | M02_Coarse_Roi | Fiducial Marker | 0 | idx | -001 | System.Int32
+Vision | 500 | M02_Coarse_Roi | X | 0 | pxl | -001 | System.Int32
+Vision | 501 | M02_Coarse_Roi | Y | 0 | pxl | -001 | System.Int32
+Vision | 502 | M02_Coarse_Roi | W | 0 | pxl | -001 | System.Int32
+Vision | 503 | M02_Coarse_Roi | H | 0 | pxl | -001 | System.Int32
+Vision | 504 | M02_Coarse_Roi | X | 0 | pxl | -001 | System.Int32
+Vision | 505 | M02_Coarse_Roi | Y | 0 | pxl | -001 | System.Int32
+Vision | 506 | M02_Coarse_Roi | W | 0 | pxl | -001 | System.Int32
+Vision | 507 | M02_Coarse_Roi | H | 0 | pxl | -001 | System.Int32
+Vision | 508 | M02_Coarse_Roi | X | 0 | pxl | -001 | System.Int32
+Vision | 509 | M02_Coarse_Roi | Y | 0 | pxl | -001 | System.Int32
+Vision | 510 | M02_Coarse_Roi | W | 0 | pxl | -001 | System.Int32
+Vision | 511 | M02_Coarse_Roi | H | 0 | pxl | -001 | System.Int32
+Vision | 512 | M02_Coarse_Roi | X | 0 | pxl | -001 | System.Int32
+Vision | 513 | M02_Coarse_Roi | Y | 0 | pxl | -001 | System.Int32
+Vision | 514 | M02_Coarse_Roi | W | 0 | pxl | -001 | System.Int32
+Vision | 515 | M02_Coarse_Roi | H | 0 | pxl | -001 | System.Int32
+Vision | 516 | M02_Coarse_Roi | X | 0 | pxl | -001 | System.Int32
+Vision | 517 | M02_Coarse_Roi | Y | 0 | pxl | -001 | System.Int32
+Vision | 518 | M02_Coarse_Roi | W | 0 | pxl | -001 | System.Int32
+Vision | 519 | M02_Coarse_Roi | H | 0 | pxl | -001 | System.Int32
+Vision | 520 | M02_Coarse_Roi | X | 0 | pxl | -001 | System.Int32
+Vision | 521 | M02_Coarse_Roi | Y | 0 | pxl | -001 | System.Int32
+Vision | 522 | M02_Coarse_Roi | W | 0 | pxl | -001 | System.Int32
+Vision | 523 | M02_Coarse_Roi | H | 0 | pxl | -001 | System.Int32
+Vision | 524 | M02_Coarse_Roi | X | 0 | pxl | -001 | System.Int32
+Vision | 525 | M02_Coarse_Roi | Y | 0 | pxl | -001 | System.Int32
+Vision | 526 | M02_Coarse_Roi | W | 0 | pxl | -001 | System.Int32
+Vision | 527 | M02_Coarse_Roi | H | 0 | pxl | -001 | System.Int32
+Vision | 528 | M02_Coarse_Roi | X | 0 | pxl | -001 | System.Int32
+Vision | 529 | M02_Coarse_Roi | Y | 0 | pxl | -001 | System.Int32
+Vision | 530 | M02_Coarse_Roi | W | 0 | pxl | -001 | System.Int32
+Vision | 531 | M02_Coarse_Roi | H | 0 | pxl | -001 | System.Int32
+Vision | 532 | M02_Coarse_Roi | X | 0 | pxl | -001 | System.Int32
+Vision | 533 | M02_Coarse_Roi | Y | 0 | pxl | -001 | System.Int32
+Vision | 534 | M02_Coarse_Roi | W | 0 | pxl | -001 | System.Int32
+Vision | 535 | M02_Coarse_Roi | H | 0 | pxl | -001 | System.Int32
+Vision | 536 | M02_Coarse_Roi | X | 0 | pxl | -001 | System.Int32
+Vision | 537 | M02_Coarse_Roi | Y | 0 | pxl | -001 | System.Int32
+Vision | 538 | M02_Coarse_Roi | W | 0 | pxl | -001 | System.Int32
+Vision | 539 | M02_Coarse_Roi | H | 0 | pxl | -001 | System.Int32
+Vision | 300 | M02_Fine_ExposeTime | Slow | 0 | lvl | -001 | System.Int32
+Vision | 301 | M02_Fine_ExposeTime | Fast | 0 | lvl | -001 | System.Int32
+Vision | 310 | M02_Coarse_ExposeTime | Slow | 0 | msec | -001 | System.Int32
+Vision | 311 | M02_Coarse_ExposeTime | Fast | 0 | msec | -001 | System.Int32
+Vision | 320 | M02_Fine_LightSource | Slow | 0 | lvl | -001 | System.Int32
+Vision | 321 | M02_Fine_LightSource | Fast | 0 | lvl | -001 | System.Int32
+Vision | 330 | M02_Coarse_LightSource | Slow | 0 | lvl | -001 | System.Int32
+Vision | 331 | M02_Coarse_LightSource | Fast | 0 | lvl | -001 | System.Int32
+Vision | 341 | M02_Fine_VisionScale | X | 0 | pxlPerMicro | -001 | System.Double
+Vision | 342 | M02_Fine_VisionScale | Y | 0 | pxlPerMicro | -001 | System.Double
+Vision | 351 | M02_Coarse_VisionScale | X | 0 | pxlPerMicro | -001 | System.Double
+Vision | 352 | M02_Coarse_VisionScale | Y | 0 | pxlPerMicro | -001 | System.Double

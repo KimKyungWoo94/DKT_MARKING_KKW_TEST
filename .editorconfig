@@ -1,0 +1,60 @@
+root = true
+
+# -----------------------------
+# C# (clang-format 스타일 이식)
+# -----------------------------
+[*.cs]
+
+# IndentWidth: 4 / UseTab: Never
+indent_style = space
+indent_size = 4
+tab_width = 4
+
+# BreakBeforeBraces: Allman (중괄호 다음 줄)
+csharp_new_line_before_open_brace = all
+
+# ColumnLimit: 0 에 해당 (C#은 0=무제한이 없음 → 매우 크게)
+# VS/대부분 IDE가 참고하는 "줄 길이" 힌트
+max_line_length = 9999
+
+# AlignAfterOpenBracket: DontAlign 느낌 (과도한 정렬 줄이기)
+# C#은 괄호 이후 인자 정렬을 '정렬'로 강제하진 않고 들여쓰기로 처리하는 편.
+# 아래 옵션들은 "가독성 중심, 과한 정렬 최소화" 쪽으로.
+csharp_indent_braces = false
+csharp_indent_block_contents = true
+csharp_indent_switch_labels = true
+csharp_indent_case_contents = true
+csharp_indent_case_contents_when_block = true
+
+# BinPackParameters/Arguments: true 느낌 (인자들을 한 줄에 유지하려는 성향)
+# => C#은 포맷터가 상황에 따라 자동 줄바꿈을 하지만,
+#    "가능하면 한 줄" 유지에 도움이 되는 건 주로 IDE 포맷 규칙 + 편집기 설정입니다.
+# (아래는 Roslyn에서 직접적으로 제어 가능한 범위만 넣음)
+
+# 표현식/문 스타일을 보수적으로 유지 (불필요한 줄바꿈/변형 줄이기)
+csharp_preserve_single_line_statements = true
+csharp_preserve_single_line_blocks = true
+
+# 괄호/간격: LLVM 느낌의 무난한 기본
+csharp_space_after_cast = false
+csharp_space_after_keywords_in_control_flow_statements = true
+csharp_space_between_method_call_parameter_list_parentheses = false
+csharp_space_between_method_declaration_parameter_list_parentheses = false
+csharp_space_between_parentheses = false
+csharp_space_before_colon_in_inheritance_clause = true
+csharp_space_after_colon_in_inheritance_clause = true
+csharp_space_around_binary_operators = before_and_after
+
+# using 정리(원하면)
+dotnet_sort_system_directives_first = false
+
+# var 사용 여부(LLVM과 직접 대응은 없지만 팀 스타일 고정이 필요하면)
+# 여기선 "명시적 타입 선호"로 둠 (원하면 바꿔도 됨)
+csharp_style_var_for_built_in_types = false:suggestion
+csharp_style_var_when_type_is_apparent = false:suggestion
+csharp_style_var_elsewhere = false:suggestion
+
+# -----------------------------
+# C# 포인터 정렬(PointerAlignment)은 직접 대응 불가
+# unsafe 포인터 사용 시에도 '*' 위치를 강제하는 Roslyn 포맷 옵션은 사실상 없음
+# -----------------------------

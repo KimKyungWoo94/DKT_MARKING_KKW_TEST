@@ -1,0 +1,938 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{07FE3D6F-74A2-415D-A107-3FDA5CE02D6C}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>EzIna</RootNamespace>
+    <AssemblyName>EzInaFlex</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+    <PublishUrl>게시\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>TRACE;DEBUG</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'SIM_Debug|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\SIM_Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE;SIM</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>false</Prefer32Bit>
+    <Optimize>false</Optimize>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Remote_Debug|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>\\200.200.1.10\DKT Marking SW\Remote_Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>false</Prefer32Bit>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x64\SIM_Debug\</OutputPath>
+    <DefineConstants>TRACE;DEBUG</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
+    <OutputPath>bin\x64\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'SIM_Debug|x64'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x64\SIM_Debug\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;SIM</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Remote_Debug|x64'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>\\200.200.1.10\DKT Marking SW\Remote_Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x86\Debug\</OutputPath>
+    <DefineConstants>TRACE;DEBUG</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
+    <OutputPath>bin\x86\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'SIM_Debug|x86'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x86\SIM_Debug\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;SIM</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Remote_Debug|x86'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x86\Remote_Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Remote_Release|AnyCPU'">
+    <OutputPath>\\200.200.1.10\DKT Marking SW\Remote_Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Remote_Release|x64'">
+    <OutputPath>bin\x64\Remote_Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Remote_Release|x86'">
+    <OutputPath>bin\x86\Remote_Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>ezINA_FLEX-2.PNG.ico</ApplicationIcon>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Aerotech.A3200, Version=6.4.4.16, Culture=neutral, PublicKeyToken=478e72719c32735e, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files (x86)\Aerotech\A3200\DotNet\Aerotech.A3200.dll</HintPath>
+    </Reference>
+    <Reference Include="log4net">
+      <HintPath>..\DLL\log4net.dll</HintPath>
+    </Reference>
+    <Reference Include="Oracle.ManagedDataAccess, Version=4.122.19.1, Culture=neutral, PublicKeyToken=89b483f429c47342, processorArchitecture=MSIL">
+      <HintPath>..\packages\Oracle.ManagedDataAccess.19.12.0\lib\net40\Oracle.ManagedDataAccess.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Windows.Forms.DataVisualization" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="FA\ACT\ACT.cs" />
+    <Compile Include="FA\ACT\ACT.Cylinder.cs" />
+    <Compile Include="FA\ACT\ACT_STATUS.cs" />
+    <Compile Include="FA\DEF\DEF.cs" />
+    <Compile Include="FA\DEF\DEF_ALARM.cs" />
+    <Compile Include="FA\DEF\DEF_COLOR.cs" />
+    <Compile Include="FA\DEF\DEF_ERROR.cs" />
+    <Compile Include="FA\DEF\DEF_RUN.cs" />
+    <Compile Include="FA\DEF\DEF_VISION.cs" />
+    <Compile Include="FA\LOG.cs" />
+    <Compile Include="FA\MGR.cs" />
+    <Compile Include="FA\OPT.cs" />
+    <Compile Include="FA\Recipe\RCP_DKT_RECIPE.cs" />
+    <Compile Include="FA\Recipe\RCP_INITIAL_PROCESS.cs" />
+    <Compile Include="FA\Recipe\RCP_MOTION.cs" />
+    <Compile Include="FA\Recipe\RCP_SYSTEM.cs" />
+    <Compile Include="FA\Recipe\RCP_VISION.cs" />
+    <Compile Include="FA\SYS.cs" />
+    <Compile Include="FORM\FrmPopupInitialize.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FORM\FrmPopupInitialize.Designer.cs">
+      <DependentUpon>FrmPopupInitialize.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FORM\POPUP\FrmPopupError.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FORM\POPUP\FrmPopupError.Designer.cs">
+      <DependentUpon>FrmPopupError.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FORM\POPUP\FrmPopupLaserWarmupAlarm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FORM\POPUP\FrmPopupLaserWarmupAlarm.Designer.cs">
+      <DependentUpon>FrmPopupLaserWarmupAlarm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FORM\POPUP\FrmPopupLogin.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FORM\POPUP\FrmPopupLogin.designer.cs">
+      <DependentUpon>FrmPopupLogin.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FORM\POPUP\FrmPopupLogMC.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FORM\POPUP\FrmPopupLogMC.Designer.cs">
+      <DependentUpon>FrmPopupLogMC.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FORM\POPUP\FrmPopupLogPM.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FORM\POPUP\FrmPopupLogPM.Designer.cs">
+      <DependentUpon>FrmPopupLogPM.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FORM\POPUP\FrmPopupSEQ.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FORM\POPUP\FrmPopupSEQ.Designer.cs">
+      <DependentUpon>FrmPopupSEQ.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FORM\POPUP\FrmPopupLogSW.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FORM\POPUP\FrmPopupLogSW.Designer.cs">
+      <DependentUpon>FrmPopupLogSW.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FORM\POPUP\FrmPopupAlarm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FORM\POPUP\FrmPopupAlarm.Designer.cs">
+      <DependentUpon>FrmPopupAlarm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FORM\POPUP\FrmPopupWaitingProgress.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FORM\POPUP\FrmPopupWaitingProgress.designer.cs">
+      <DependentUpon>FrmPopupWaitingProgress.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FORM\SXGA\INFO\Log\FrmInforLogEventlog_SXGA.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FORM\SXGA\INFO\Log\FrmInforLogEventlog_SXGA.Designer.cs">
+      <DependentUpon>FrmInforLogEventlog_SXGA.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FORM\SXGA\INFO\Log\FrmInforLogWorklog_SXGA.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FORM\SXGA\INFO\Log\FrmInforLogWorklog_SXGA.Designer.cs">
+      <DependentUpon>FrmInforLogWorklog_SXGA.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FORM\SXGA\INFO\Manual\FrmInforManualOperation_SXGA.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FORM\SXGA\INFO\Manual\FrmInforManualOperation_SXGA.Designer.cs">
+      <DependentUpon>FrmInforManualOperation_SXGA.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FORM\SXGA\INFO\Manual\FrmInforManualVision_SXGA.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FORM\SXGA\INFO\Manual\FrmInforManualVision_SXGA.Designer.cs">
+      <DependentUpon>FrmInforManualVision_SXGA.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FORM\SXGA\INFO\Manual\FrmInforManualMarking_SXGA.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FORM\SXGA\INFO\Manual\FrmInforManualMarking_SXGA.Designer.cs">
+      <DependentUpon>FrmInforManualMarking_SXGA.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FORM\SXGA\INFO\Operation\FrmInforOperationAuto_SXGA.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FORM\SXGA\INFO\Operation\FrmInforOperationAuto_SXGA.Designer.cs">
+      <DependentUpon>FrmInforOperationAuto_SXGA.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FORM\SXGA\INFO\Operation\FrmInforOperationSemi_SXGA.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FORM\SXGA\INFO\Operation\FrmInforOperationSemi_SXGA.Designer.cs">
+      <DependentUpon>FrmInforOperationSemi_SXGA.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FORM\SXGA\INFO\Operation\FrmInforOperAuto_TactTimeStatus.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FORM\SXGA\INFO\Operation\FrmInforOperAuto_TactTimeStatus.Designer.cs">
+      <DependentUpon>FrmInforOperAuto_TactTimeStatus.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FORM\SXGA\INFO\Operation\FrmInforOperAuto_ProcessStatus.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FORM\SXGA\INFO\Operation\FrmInforOperAuto_ProcessStatus.Designer.cs">
+      <DependentUpon>FrmInforOperAuto_ProcessStatus.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FORM\SXGA\INFO\Recipe\FrmInforRecipePanal_SXGA.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FORM\SXGA\INFO\Recipe\FrmInforRecipePanal_SXGA.Designer.cs">
+      <DependentUpon>FrmInforRecipePanal_SXGA.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FORM\SXGA\INFO\Recipe\NewRecipeTab\FrmTabRecipePanelCommon.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FORM\SXGA\INFO\Recipe\NewRecipeTab\FrmTabRecipePanelCommon.Designer.cs">
+      <DependentUpon>FrmTabRecipePanelCommon.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FORM\SXGA\INFO\Recipe\NewRecipeTab\FrmTabRecipePanelProces.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FORM\SXGA\INFO\Recipe\NewRecipeTab\FrmTabRecipePanelProces.Designer.cs">
+      <DependentUpon>FrmTabRecipePanelProces.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FORM\SXGA\INFO\Recipe\NewRecipeTab\FrmTabRecipePanelVision.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FORM\SXGA\INFO\Recipe\NewRecipeTab\FrmTabRecipePanelVision.Designer.cs">
+      <DependentUpon>FrmTabRecipePanelVision.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FORM\SXGA\INFO\Setup\FrmInforSetupInitialProcess_SXGA.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FORM\SXGA\INFO\Setup\FrmInforSetupInitialProcess_SXGA.Designer.cs">
+      <DependentUpon>FrmInforSetupInitialProcess_SXGA.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FORM\SXGA\INFO\Setup\FrmInforSetupCylinder_SXGA.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FORM\SXGA\INFO\Setup\FrmInforSetupCylinder_SXGA.Designer.cs">
+      <DependentUpon>FrmInforSetupCylinder_SXGA.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FORM\SXGA\INFO\Setup\FrmInforSetupIO_SXGA.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FORM\SXGA\INFO\Setup\FrmInforSetupIO_SXGA.Designer.cs">
+      <DependentUpon>FrmInforSetupIO_SXGA.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FORM\SXGA\INFO\Setup\FrmInforSetupAttenuator_SXGA.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FORM\SXGA\INFO\Setup\FrmInforSetupAttenuator_SXGA.Designer.cs">
+      <DependentUpon>FrmInforSetupAttenuator_SXGA.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FORM\SXGA\INFO\Setup\FrmInforSetupLaser_SXGA.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FORM\SXGA\INFO\Setup\FrmInforSetupLaser_SXGA.Designer.cs">
+      <DependentUpon>FrmInforSetupLaser_SXGA.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FORM\SXGA\INFO\Setup\FrmInforSetupMotion_SXGA.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FORM\SXGA\INFO\Setup\FrmInforSetupMotion_SXGA.Designer.cs">
+      <DependentUpon>FrmInforSetupMotion_SXGA.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FORM\SXGA\INFO\Setup\FrmInforSetupPowerMeter.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FORM\SXGA\INFO\Setup\FrmInforSetupPowerMeter.Designer.cs">
+      <DependentUpon>FrmInforSetupPowerMeter.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FORM\SXGA\INFO\Setup\FrmInforSetupScanner_SXGA.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FORM\SXGA\INFO\Setup\FrmInforSetupScanner_SXGA.Designer.cs">
+      <DependentUpon>FrmInforSetupScanner_SXGA.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FORM\SXGA\INFO\Setup\InitialProcess TAB\FrmTabInitialProcessConfigSet.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FORM\SXGA\INFO\Setup\InitialProcess TAB\FrmTabInitialProcessConfigSet.Designer.cs">
+      <DependentUpon>FrmTabInitialProcessConfigSet.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FORM\SXGA\INFO\Setup\InitialProcess TAB\FrmTabInitialProcessCrossHair.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FORM\SXGA\INFO\Setup\InitialProcess TAB\FrmTabInitialProcessCrossHair.Designer.cs">
+      <DependentUpon>FrmTabInitialProcessCrossHair.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FORM\SXGA\INFO\Setup\InitialProcess TAB\FrmTabInitialProcessFindCPU.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FORM\SXGA\INFO\Setup\InitialProcess TAB\FrmTabInitialProcessFindCPU.Designer.cs">
+      <DependentUpon>FrmTabInitialProcessFindCPU.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FORM\SXGA\INFO\Setup\InitialProcess TAB\FrmTabInitialProcessFindFocus.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FORM\SXGA\INFO\Setup\InitialProcess TAB\FrmTabInitialProcessFindFocus.Designer.cs">
+      <DependentUpon>FrmTabInitialProcessFindFocus.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FORM\SXGA\INFO\Setup\InitialProcess TAB\FrmTabInitialProcessGalvoCal.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FORM\SXGA\INFO\Setup\InitialProcess TAB\FrmTabInitialProcessGalvoCal.Designer.cs">
+      <DependentUpon>FrmTabInitialProcessGalvoCal.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FORM\SXGA\INFO\Setup\InitialProcess TAB\FrmTabInitialProcessStageCal.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FORM\SXGA\INFO\Setup\InitialProcess TAB\FrmTabInitialProcessStageCal.Designer.cs">
+      <DependentUpon>FrmTabInitialProcessStageCal.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FORM\SXGA\INFO\Setup\InitialProcess TAB\FrmTabInitialProcessTowerLamp.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FORM\SXGA\INFO\Setup\InitialProcess TAB\FrmTabInitialProcessTowerLamp.Designer.cs">
+      <DependentUpon>FrmTabInitialProcessTowerLamp.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FORM\SXGA\INFO\Setup\InitialProcess TAB\FrmTabInitialProcessVisionCal.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FORM\SXGA\INFO\Setup\InitialProcess TAB\FrmTabInitialProcessVisionCal.Designer.cs">
+      <DependentUpon>FrmTabInitialProcessVisionCal.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FORM\SXGA\INFO\Recipe\Tab\FrmTabRecipeConfiguration.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FORM\SXGA\INFO\Recipe\Tab\FrmTabRecipeConfiguration.Designer.cs">
+      <DependentUpon>FrmTabRecipeConfiguration.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FORM\SXGA\INFO\Recipe\Tab\FrmTabRecipeProcessRecipe.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FORM\SXGA\INFO\Recipe\Tab\FrmTabRecipeProcessRecipe.Designer.cs">
+      <DependentUpon>FrmTabRecipeProcessRecipe.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FORM\SXGA\INFO\Setup\InitialProcess TAB\FrmTabInitialProcessPowerTable.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FORM\SXGA\INFO\Setup\InitialProcess TAB\FrmTabInitialProcessPowerTable.Designer.cs">
+      <DependentUpon>FrmTabInitialProcessPowerTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FORM\SXGA\VISION\DragHandle.cs" />
+    <Compile Include="FORM\SXGA\VISION\DragHandleAnchor.cs" />
+    <Compile Include="FORM\SXGA\VISION\DragHandleCollection.cs" />
+    <Compile Include="FORM\SXGA\VISION\FrmImgFindModelOfPanel.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FORM\SXGA\VISION\FrmImgFindModelOfPanel.Designer.cs">
+      <DependentUpon>FrmImgFindModelOfPanel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FORM\SXGA\VISION\FrmVision.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FORM\SXGA\VISION\FrmVision.Designer.cs">
+      <DependentUpon>FrmVision.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FORM\SXGA\VISION\FrmVisionLIBOfPanel.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FORM\SXGA\VISION\FrmVisionLIBOfPanel.Designer.cs">
+      <DependentUpon>FrmVisionLIBOfPanel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FORM\SXGA\VISION\FrmVisionOfPanel.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FORM\SXGA\VISION\FrmVisionOfPanel.Designer.cs">
+      <DependentUpon>FrmVisionOfPanel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FORM\SXGA\VISION\FrmVision_SXGA.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FORM\SXGA\VISION\FrmVision_SXGA.Designer.cs">
+      <DependentUpon>FrmVision_SXGA.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FORM\SXGA\VISION\GlassButton.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="FORM\SXGA\VISION\GlassButton.Designer.cs">
+      <DependentUpon>GlassButton.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FORM\SXGA\VISION\GroupBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="FORM\SXGA\VISION\ImageBoxEx.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="FrmMain.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmMain.Designer.cs">
+      <DependentUpon>FrmMain.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MF\Acturators.cs" />
+    <Compile Include="MF\Alarms.cs" />
+    <Compile Include="MF\Options.cs" />
+    <Compile Include="MF\Recipe\RcpItem_DPValue.cs" />
+    <Compile Include="MF\Recipe\RecipeItem.cs" />
+    <Compile Include="MF\Recipe\RecipeItemBase.cs" />
+    <Compile Include="MF\Recipes.cs" />
+    <Compile Include="MF\Recipe\RecipeItemGroup.cs" />
+    <Compile Include="MF\Recipe\RecipesModify.cs" />
+    <Compile Include="MF\TowerLamp.cs" />
+    <Compile Include="MF\Users.cs" />
+    <Compile Include="MGR\Attenuator\AttenuatorManager.cs" />
+    <Compile Include="MGR\Attenuator\AttenuatorDeviceDataPaser.cs" />
+    <Compile Include="MGR\CorrMapping\CorrMappingItem.cs" />
+    <Compile Include="MGR\CorrMapping\CorrMappingMgr.cs" />
+    <Compile Include="MGR\DKT_MES\ConfigManager.cs" />
+    <Compile Include="MGR\DKT_MES\DKT_ConvertCode.cs" />
+    <Compile Include="MGR\DKT_MES\DKT_DBManager.cs" />
+    <Compile Include="MGR\DKT_MES\DKT_MES_Data.cs" />
+    <Compile Include="MGR\IO\IOManager.AI.GUI.cs" />
+    <Compile Include="MGR\IO\IOManager.AO.GUI.cs" />
+    <Compile Include="MGR\IO\IOManager.cs" />
+    <Compile Include="MGR\IO\IOManager.Cylinder.GUI.cs" />
+    <Compile Include="MGR\IO\IOManager.DI.GUI.cs" />
+    <Compile Include="MGR\IO\IOManager.DO.GUI.cs" />
+    <Compile Include="MGR\Laser\LaserPowerTablePaser.cs" />
+    <Compile Include="MGR\Laser\LaserDeviceDataPaser.cs" />
+    <Compile Include="MGR\Laser\LaserManager.cs" />
+    <Compile Include="MGR\Light\LightDeviceDataPaser.cs" />
+    <Compile Include="MGR\Light\LightManager.cs" />
+    <Compile Include="MGR\Motion\MotionAxisDataPaser.cs" />
+    <Compile Include="MGR\Motion\MotionManager.cs" />
+    <Compile Include="MGR\PowerMeter\PowerMeterDeviceDataPaser.cs" />
+    <Compile Include="MGR\PowerMeter\PowerMeterManager.cs" />
+    <Compile Include="MGR\ProjectMgr.cs" />
+    <Compile Include="MGR\RecipeMgr.cs" />
+    <Compile Include="MGR\RunnningData\RunningData.cs" />
+    <Compile Include="MGR\RunnningData\RunningDataItem.cs" />
+    <Compile Include="MGR\RunnningData\RunningDataManager.cs" />
+    <Compile Include="obj\Debug\TemporaryGeneratedFile_036C0B5B-1481-4323-8D20-8F5ADCB23D92.cs" />
+    <Compile Include="obj\Debug\TemporaryGeneratedFile_5937a670-0e60-4077-877b-f7221da3dda1.cs" />
+    <Compile Include="obj\Debug\TemporaryGeneratedFile_E7A71F73-0F8D-4B9B-B56E-8E70B10BC5D3.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="RUN\INIT_PGM\CountsPerUnit_Pgm.cs" />
+    <Compile Include="RUN\INIT_PGM\RTC_InitProcess\CrossHair_RTC.cs" />
+    <Compile Include="RUN\INIT_PGM\CrossHair_Pgm.cs" />
+    <Compile Include="RUN\INIT_PGM\RTC_InitProcess\Find_Focus_RTC.cs" />
+    <Compile Include="RUN\INIT_PGM\Find_Focus_Pgm.cs" />
+    <Compile Include="RUN\INIT_PGM\RTC_InitProcess\Galvo_Calibration_RTC.cs" />
+    <Compile Include="RUN\INIT_PGM\Galvo_Calibration_Pgm.cs" />
+    <Compile Include="RUN\INIT_PGM\Interface\DefinePgm.cs" />
+    <Compile Include="RUN\INIT_PGM\Interface\PGM_Interface.cs" />
+    <Compile Include="RUN\Modules\RunningLoad.cs" />
+    <Compile Include="RUN\Modules\RunningScanner.Init_GalvoCALB.cs" />
+    <Compile Include="RUN\Modules\RunningProcess.cs" />
+    <Compile Include="RUN\Modules\RunningScanner.cs" />
+    <Compile Include="RUN\Modules\RunningScanner.Init_CrossHair.cs" />
+    <Compile Include="RUN\Modules\RunningScanner.Init_PowerTable.cs" />
+    <Compile Include="RUN\Modules\RunningScanner.Int_FocusFInder.cs" />
+    <Compile Include="RUN\Modules\RunningStage.AutoFocus.cs" />
+    <Compile Include="RUN\Modules\RunningStage.cs" />
+    <Compile Include="RUN\Modules\RunningScanner.Init_CPU.cs" />
+    <Compile Include="RUN\Modules\RunningStage.MappingXY.cs" />
+    <Compile Include="RUN\Modules\RunningStage.SubSeq.Moving.cs" />
+    <Compile Include="RUN\Modules\RunningUnload.cs" />
+    <Compile Include="RUN\RunningBase.cs" />
+    <Compile Include="RUN\RunningInterface.cs" />
+    <Compile Include="RUN\RunningManager.cs" />
+    <Compile Include="RUN\RunningProductionManagement.cs" />
+    <Compile Include="RUN\RunningTimingChart.cs" />
+    <Compile Include="UC\DGVHelper.cs" />
+    <Compile Include="UC\NotifyProperyChangedBase.cs" />
+    <Compile Include="UC\PowerTable.cs" />
+    <Compile Include="UC\SingleTone.cs" />
+    <Compile Include="UC\APP.cs" />
+    <Compile Include="UC\FLICKER.cs" />
+    <Compile Include="UC\Geometry.cs" />
+    <Compile Include="UC\Helpers.cs" />
+    <Compile Include="UC\IniFile.cs" />
+    <Compile Include="UC\StopWatch.cs" />
+    <Compile Include="UC\Transformations.cs" />
+    <Compile Include="UC\Utils.cs" />
+    <Compile Include="UC\WinApi.cs" />
+    <EmbeddedResource Include="FORM\FrmPopupInitialize.resx">
+      <DependentUpon>FrmPopupInitialize.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FORM\POPUP\FrmPopupError.resx">
+      <DependentUpon>FrmPopupError.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FORM\POPUP\FrmPopupLaserWarmupAlarm.resx">
+      <DependentUpon>FrmPopupLaserWarmupAlarm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FORM\POPUP\FrmPopupLogin.resx">
+      <DependentUpon>FrmPopupLogin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FORM\POPUP\FrmPopupLogMC.resx">
+      <DependentUpon>FrmPopupLogMC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FORM\POPUP\FrmPopupLogPM.resx">
+      <DependentUpon>FrmPopupLogPM.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FORM\POPUP\FrmPopupSEQ.resx">
+      <DependentUpon>FrmPopupSEQ.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FORM\POPUP\FrmPopupLogSW.resx">
+      <DependentUpon>FrmPopupLogSW.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FORM\POPUP\FrmPopupAlarm.resx">
+      <DependentUpon>FrmPopupAlarm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FORM\POPUP\FrmPopupWaitingProgress.resx">
+      <DependentUpon>FrmPopupWaitingProgress.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FORM\SXGA\INFO\Log\FrmInforLogEventlog_SXGA.resx">
+      <DependentUpon>FrmInforLogEventlog_SXGA.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FORM\SXGA\INFO\Log\FrmInforLogWorklog_SXGA.resx">
+      <DependentUpon>FrmInforLogWorklog_SXGA.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FORM\SXGA\INFO\Manual\FrmInforManualOperation_SXGA.resx">
+      <DependentUpon>FrmInforManualOperation_SXGA.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FORM\SXGA\INFO\Manual\FrmInforManualVision_SXGA.resx">
+      <DependentUpon>FrmInforManualVision_SXGA.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FORM\SXGA\INFO\Manual\FrmInforManualMarking_SXGA.resx">
+      <DependentUpon>FrmInforManualMarking_SXGA.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FORM\SXGA\INFO\Operation\FrmInforOperationAuto_SXGA.resx">
+      <DependentUpon>FrmInforOperationAuto_SXGA.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FORM\SXGA\INFO\Operation\FrmInforOperationSemi_SXGA.resx">
+      <DependentUpon>FrmInforOperationSemi_SXGA.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FORM\SXGA\INFO\Operation\FrmInforOperAuto_TactTimeStatus.resx">
+      <DependentUpon>FrmInforOperAuto_TactTimeStatus.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FORM\SXGA\INFO\Operation\FrmInforOperAuto_ProcessStatus.resx">
+      <DependentUpon>FrmInforOperAuto_ProcessStatus.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FORM\SXGA\INFO\Recipe\FrmInforRecipePanal_SXGA.resx">
+      <DependentUpon>FrmInforRecipePanal_SXGA.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FORM\SXGA\INFO\Recipe\NewRecipeTab\FrmTabRecipePanelCommon.resx">
+      <DependentUpon>FrmTabRecipePanelCommon.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FORM\SXGA\INFO\Recipe\NewRecipeTab\FrmTabRecipePanelProces.resx">
+      <DependentUpon>FrmTabRecipePanelProces.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FORM\SXGA\INFO\Recipe\NewRecipeTab\FrmTabRecipePanelVision.resx">
+      <DependentUpon>FrmTabRecipePanelVision.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FORM\SXGA\INFO\Setup\FrmInforSetupCylinder_SXGA.resx">
+      <DependentUpon>FrmInforSetupCylinder_SXGA.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FORM\SXGA\INFO\Setup\FrmInforSetupInitialProcess_SXGA.resx">
+      <DependentUpon>FrmInforSetupInitialProcess_SXGA.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FORM\SXGA\INFO\Setup\FrmInforSetupIO_SXGA.resx">
+      <DependentUpon>FrmInforSetupIO_SXGA.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FORM\SXGA\INFO\Setup\FrmInforSetupAttenuator_SXGA.resx">
+      <DependentUpon>FrmInforSetupAttenuator_SXGA.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FORM\SXGA\INFO\Setup\FrmInforSetupLaser_SXGA.resx">
+      <DependentUpon>FrmInforSetupLaser_SXGA.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FORM\SXGA\INFO\Setup\FrmInforSetupMotion_SXGA.resx">
+      <DependentUpon>FrmInforSetupMotion_SXGA.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FORM\SXGA\INFO\Setup\FrmInforSetupPowerMeter.resx">
+      <DependentUpon>FrmInforSetupPowerMeter.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FORM\SXGA\INFO\Setup\FrmInforSetupScanner_SXGA.resx">
+      <DependentUpon>FrmInforSetupScanner_SXGA.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FORM\SXGA\INFO\Setup\InitialProcess TAB\FrmTabInitialProcessConfigSet.resx">
+      <DependentUpon>FrmTabInitialProcessConfigSet.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FORM\SXGA\INFO\Setup\InitialProcess TAB\FrmTabInitialProcessCrossHair.resx">
+      <DependentUpon>FrmTabInitialProcessCrossHair.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FORM\SXGA\INFO\Setup\InitialProcess TAB\FrmTabInitialProcessFindCPU.resx">
+      <DependentUpon>FrmTabInitialProcessFindCPU.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FORM\SXGA\INFO\Setup\InitialProcess TAB\FrmTabInitialProcessFindFocus.resx">
+      <DependentUpon>FrmTabInitialProcessFindFocus.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FORM\SXGA\INFO\Setup\InitialProcess TAB\FrmTabInitialProcessGalvoCal.resx">
+      <DependentUpon>FrmTabInitialProcessGalvoCal.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FORM\SXGA\INFO\Setup\InitialProcess TAB\FrmTabInitialProcessStageCal.resx">
+      <DependentUpon>FrmTabInitialProcessStageCal.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FORM\SXGA\INFO\Setup\InitialProcess TAB\FrmTabInitialProcessTowerLamp.resx">
+      <DependentUpon>FrmTabInitialProcessTowerLamp.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FORM\SXGA\INFO\Recipe\Tab\FrmTabRecipeConfiguration.resx">
+      <DependentUpon>FrmTabRecipeConfiguration.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FORM\SXGA\INFO\Recipe\Tab\FrmTabRecipeProcessRecipe.resx">
+      <DependentUpon>FrmTabRecipeProcessRecipe.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FORM\SXGA\INFO\Setup\InitialProcess TAB\FrmTabInitialProcessPowerTable.resx">
+      <DependentUpon>FrmTabInitialProcessPowerTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FORM\SXGA\INFO\Setup\InitialProcess TAB\FrmTabInitialProcessVisionCal.resx">
+      <DependentUpon>FrmTabInitialProcessVisionCal.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FORM\SXGA\VISION\FrmImgFindModelOfPanel.resx">
+      <DependentUpon>FrmImgFindModelOfPanel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FORM\SXGA\VISION\FrmVision.resx">
+      <DependentUpon>FrmVision.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FORM\SXGA\VISION\FrmVisionLIBOfPanel.resx">
+      <DependentUpon>FrmVisionLIBOfPanel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FORM\SXGA\VISION\FrmVisionOfPanel.resx">
+      <DependentUpon>FrmVisionOfPanel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FORM\SXGA\VISION\FrmVision_SXGA.resx">
+      <DependentUpon>FrmVision_SXGA.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmMain.resx">
+      <DependentUpon>FrmMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <SubType>Designer</SubType>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <None Include="obj\Debug\build.force" />
+    <None Include="obj\Debug\DesignTimeResolveAssemblyReferences.cache" />
+    <None Include="obj\Debug\DesignTimeResolveAssemblyReferencesInput.cache" />
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <Compile Include="RUN\Modules\RunningStage.SubSeq.CalibMove.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="ezINA_FLEX-2.PNG.ico" />
+    <Content Include="Helper.txt" />
+    <Content Include="obj\Debug\EzInaFlex.csproj.FileListAbsolute.txt" />
+    <Content Include="obj\Debug\TempPE\Properties.Resources.Designer.cs.dll" />
+    <None Include="Resources\Log.png" />
+    <None Include="Resources\Setup.png" />
+    <None Include="Resources\Manual.png" />
+    <None Include="Resources\Project.png" />
+    <None Include="Resources\Operation.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Cyotek.Windows.Forms.ImageBoxV2.Design\Cyotek.Windows.Forms.ImageBoxV2.Design.csproj">
+      <Project>{9f169b78-70fd-456a-bb48-2aa470938d38}</Project>
+      <Name>Cyotek.Windows.Forms.ImageBoxV2.Design</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Cyotek.Windows.Forms.ImageBoxV2\Cyotek.Windows.Forms.ImageBoxV2.csproj">
+      <Project>{4159c8d3-c18d-4bed-8be6-9bad1b0ca4f6}</Project>
+      <Name>Cyotek.Windows.Forms.ImageBoxV2</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\EzInaAttenuatorOPTOGAMA\EzInaAttenuatorOPTOGAMA.csproj">
+      <Project>{c3aa4473-3b59-4249-8831-6b159f93ae19}</Project>
+      <Name>EzInaAttenuatorOPTOGAMA</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\EzInaAttenuator\EzInaAttenuator.csproj">
+      <Project>{252c98bb-07e1-4cbd-912a-d1134e7ff6e3}</Project>
+      <Name>EzInaAttenuator</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\EzInaCommucation\EzInaCommucation.csproj">
+      <Project>{0900a378-826a-438b-b946-ed06f657d841}</Project>
+      <Name>EzInaCommucation</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\EzInaDataMatrix\EzInaDataMatrix.csproj">
+      <Project>{60f4229b-66b4-4753-9c61-4b5dac5ce72d}</Project>
+      <Name>EzInaDataMatrix</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\EzInaGui\EzInaGui.csproj">
+      <Project>{efbdc3dd-2339-4691-b914-f277865df081}</Project>
+      <Name>EzInaGui</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\EzInaIO\EzInaIO.csproj">
+      <Project>{f4a1dafb-122f-4a2c-b328-8bd861502a69}</Project>
+      <Name>EzInaIO</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\EzInaIO_AXT\EzInaIO_AXT.csproj">
+      <Project>{1ae9e0eb-e802-4f42-9bac-89d364697c46}</Project>
+      <Name>EzInaIO_AXT</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\EzInaLaserIPG\EzInaLaserIPG.csproj">
+      <Project>{c4a1bde7-1ebf-45dc-8b05-729d05e9e635}</Project>
+      <Name>EzInaLaserIPG</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\EzInaLaserLumentum\EzInaLaserLumentum.csproj">
+      <Project>{cfdfba95-04b3-4919-a310-5973e99c00b0}</Project>
+      <Name>EzInaLaserLumentum</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\EzInaLaserTalon\EzInaLaserTalon.csproj">
+      <Project>{6d747c0f-5436-43c4-95e5-03f320aee31d}</Project>
+      <Name>EzInaLaserTalon</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\EzInaLaser\EzInaLaser.csproj">
+      <Project>{5f386e7c-5dfe-479f-b78d-0ee87b39c6fc}</Project>
+      <Name>EzInaLaser</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\EzInaLightDaeShin\EzInaLightDaeShin.csproj">
+      <Project>{fc082d77-9f1b-4b14-817b-f5480c205091}</Project>
+      <Name>EzInaLightDaeShin</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\EzInaLightJoySystem\EzInaLightJoySystem.csproj">
+      <Project>{90d546f9-52e3-42dd-9e36-8dd5a442cc07}</Project>
+      <Name>EzInaLightJoySystem</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\EzInaLight\EzInaLight.csproj">
+      <Project>{a6ff821e-2f5d-40e5-8bd2-32a929c734a0}</Project>
+      <Name>EzInaLight</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\EzInaMotionAerotech\EzInaMotionAerotech.csproj">
+      <Project>{4c83285a-fdb9-42e6-9819-cb9792c28d36}</Project>
+      <Name>EzInaMotionAerotech</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\EzInaMotionAXT\EzInaMotionAXT.csproj">
+      <Project>{61bf3bbc-4848-4b37-a9a5-78e5b75f5b9d}</Project>
+      <Name>EzInaMotionAXT</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\EzInaMotion\EzInaMotion.csproj">
+      <Project>{cdd575b7-894a-49dd-b5b4-1075585374e9}</Project>
+      <Name>EzInaMotion</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\EzInaPowerMeterOhpir\EzInaPowerMeterOhpir.csproj">
+      <Project>{7df82b20-b13a-4b4f-87ce-31e60c292b9c}</Project>
+      <Name>EzInaPowerMeterOhpir</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\EzInaPowerMeterZentec\EzInaPowerMeterZentec.csproj">
+      <Project>{bd121611-2d7b-4543-bb52-6f3b9f643d34}</Project>
+      <Name>EzInaPowerMeterZentec</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\EzInaPowerMeter\EzInaPowerMeter.csproj">
+      <Project>{534057d8-5ae1-411c-9722-b5b0b9bb8795}</Project>
+      <Name>EzInaPowerMeter</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\EzInaScanLAB\EzInaScanLAB.csproj">
+      <Project>{27a41437-1b80-4244-a18b-2f681125523a}</Project>
+      <Name>EzInaScanLAB</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\EzInaThread\EzInaThread.csproj">
+      <Project>{6e4efc29-0130-4b0e-b102-444daff1aa5c}</Project>
+      <Name>EzInaThread</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\EzInaVisionLibEuresys\EzInaVisionLibEuresys.csproj">
+      <Project>{e85a211a-8023-4897-b24c-34261e6a2510}</Project>
+      <Name>EzInaVisionLibEuresys</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\EzInaVisionMultiCam\EzInaVisionCamEuresys.csproj">
+      <Project>{c5ce6218-eea0-4e63-8cb3-d8e8c046675d}</Project>
+      <Name>EzInaVisionCamEuresys</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\EzInaVision\EzInaVision.csproj">
+      <Project>{bb5b539b-3c02-43e1-83fd-161bd888ac15}</Project>
+      <Name>EzInaVision</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="MGR\TempMeasure\" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.5.2">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4.5.2%28x86 및 x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="..\packages\System.Runtime.WindowsRuntime.4.6.0\build\net451\System.Runtime.WindowsRuntime.targets" Condition="Exists('..\packages\System.Runtime.WindowsRuntime.4.6.0\build\net451\System.Runtime.WindowsRuntime.targets')" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>이 프로젝트는 이 컴퓨터에 없는 NuGet 패키지를 참조합니다. 해당 패키지를 다운로드하려면 NuGet 패키지 복원을 사용하십시오. 자세한 내용은 http://go.microsoft.com/fwlink/?LinkID=322105를 참조하십시오. 누락된 파일은 {0}입니다.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\System.Runtime.WindowsRuntime.4.6.0\build\net451\System.Runtime.WindowsRuntime.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\System.Runtime.WindowsRuntime.4.6.0\build\net451\System.Runtime.WindowsRuntime.targets'))" />
+    <Error Condition="!Exists('..\packages\System.Runtime.WindowsRuntime.UI.Xaml.4.6.0\build\net45\System.Runtime.WindowsRuntime.UI.Xaml.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\System.Runtime.WindowsRuntime.UI.Xaml.4.6.0\build\net45\System.Runtime.WindowsRuntime.UI.Xaml.targets'))" />
+  </Target>
+  <Import Project="..\packages\System.Runtime.WindowsRuntime.UI.Xaml.4.6.0\build\net45\System.Runtime.WindowsRuntime.UI.Xaml.targets" Condition="Exists('..\packages\System.Runtime.WindowsRuntime.UI.Xaml.4.6.0\build\net45\System.Runtime.WindowsRuntime.UI.Xaml.targets')" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

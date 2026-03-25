@@ -1,0 +1,997 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>EzInaCommucation</name>
+    </assembly>
+    <members>
+        <member name="T:EzIna.Commucation.bit">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:EzIna.Commucation.BitField32Helper">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:EzIna.Commucation.BitField32Helper.#ctor(System.UInt32)">
+            <summary>
+            
+            </summary>
+            <param name="a_value"></param>
+        </member>
+        <member name="P:EzIna.Commucation.BitField32Helper.Item(EzIna.Commucation.bit)">
+            <summary>
+            
+            </summary>
+            <param name="a_IDX"></param>
+            <returns></returns>
+        </member>
+        <member name="P:EzIna.Commucation.BitField32Helper.Data">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:EzIna.Commucation.enumPacketMode">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:EzIna.Commucation.enumPacketMode.SetOnly">
+            <summary>
+            Command , SetValue
+            </summary>
+        </member>
+        <member name="F:EzIna.Commucation.enumPacketMode.GettingOnly">
+            <summary>
+            Getting Only
+            </summary>
+        </member>
+        <member name="F:EzIna.Commucation.enumPacketMode.Both">
+            <summary>
+            Both
+            </summary>
+        </member>
+        <member name="T:EzIna.Commucation.PacketAttribute">
+            <summary>
+            
+            </summary>
+            <summary>
+            Enum packet 등록 
+            </summary>
+        </member>
+        <member name="M:EzIna.Commucation.PacketAttribute.#ctor(System.String,System.String,System.String,System.Boolean,System.Boolean,System.Boolean,System.Boolean,EzIna.Commucation.enumPacketMode)">
+            <summary>
+            
+            </summary>
+            <param name="a_strCmd">Command String</param>
+            <param name="a_strSetMark">Set Command Mark String</param>
+            <param name="a_strGettingMark">Getting Command Mark String</param>
+            <param name="a_bSetEchoEnable">Set ReceiveData Include Command</param>
+            <param name="a_bGettingEchoEnable">Getting ReceiveData Include Command</param>
+            <param name="a_bExistSetFeedbackPacket">Set ReceiveData Include Command</param>
+            <param name="a_bExistGettingFeedbackPacket">Getting ReceiveData Include Command</param>
+            <param name="a_packetMode">SetOnly , S </param>
+        </member>
+        <member name="P:EzIna.Commucation.PacketAttribute.strCMD">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:EzIna.Commucation.PacketAttribute.strSetMark">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:EzIna.Commucation.PacketAttribute.strGettingMark">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:EzIna.Commucation.PacketAttribute.IsSetEchoEnable">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:EzIna.Commucation.PacketAttribute.IsGettingEchoEnable">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:EzIna.Commucation.PacketAttribute.ExistSetFeedbackPacket">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:EzIna.Commucation.PacketAttribute.ExistGettingFeedbackPacket">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:EzIna.Commucation.PacketAttribute.PacketMode">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:EzIna.Commucation.enumCommMethod">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:EzIna.Commucation.enumCommMethod.SERIAL">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:EzIna.Commucation.enumCommMethod.SOCKET">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:EzIna.Commucation.enumPacketType">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:EzIna.Commucation.enumPacketType.SetValue">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:EzIna.Commucation.enumPacketType.GetValue">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:EzIna.Commucation.stCommPacket">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:EzIna.Commucation.stCommPacket.StrSendMsg">
+            <summary>
+             SendPacket string Byte convert require
+            </summary>
+        </member>
+        <member name="F:EzIna.Commucation.stCommPacket.StrReciveMsg">
+            <summary>
+            SendPacket string Byte convert require
+            </summary>
+        </member>
+        <member name="F:EzIna.Commucation.stCommPacket.StrSetValue">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:EzIna.Commucation.stCommPacket.bRecvMode">
+            <summary>
+            0: Send mode // 1:Recive mode
+            </summary>
+        </member>
+        <member name="F:EzIna.Commucation.stCommPacket.bSendMode">
+            <summary>
+            0:Recive mode // 1:Send mode
+            </summary>
+        </member>
+        <member name="F:EzIna.Commucation.stCommPacket.bRecvUse">
+            <summary>
+             0 : No Receive , 1: Receive Exist
+            </summary>
+        </member>
+        <member name="F:EzIna.Commucation.stCommPacket.bEchoCMD">
+            <summary>
+            0 : nonEcho , 1: Echo Command
+            </summary>
+        </member>
+        <member name="F:EzIna.Commucation.stCommPacket.nTimeCal">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:EzIna.Commucation.stCommPacket.nSize">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:EzIna.Commucation.stCommPacket.nReceiveReTryCnt">
+            <summary>
+            Retry Count
+            </summary>
+        </member>
+        <member name="F:EzIna.Commucation.stCommPacket.iCMD">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:EzIna.Commucation.stCommPacket.PacketType">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:EzIna.Commucation.stCommPacket.#ctor">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:EzIna.Commucation.stCommPacket.Clear">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:EzIna.Commucation.stCommPacket.Clone">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:EzIna.Commucation.CommunicationBase">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:EzIna.Commucation.CommunicationBase.m_CommMethod">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:EzIna.Commucation.CommunicationBase.CommMethod">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:EzIna.Commucation.CommunicationBase.m_SerialCommInfo">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:EzIna.Commucation.CommunicationBase.SerialCommInfo">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:EzIna.Commucation.CommunicationBase.m_SocketInfo">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:EzIna.Commucation.CommunicationBase.SocketInfo">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:EzIna.Commucation.CommunicationBase.m_iPacketDoneTimeout">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:EzIna.Commucation.CommunicationBase.iPacketDoneTimeout">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:EzIna.Commucation.CommunicationBase.m_veclinkedLoopCmd">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:EzIna.Commucation.CommunicationBase.m_vecStorelinkedLoopCmd">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:EzIna.Commucation.CommunicationBase.m_veclinkedExecuteCmd">
+            <summary>
+                    
+            </summary>
+        </member>
+        <member name="F:EzIna.Commucation.CommunicationBase.m_pCurrentCmd">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:EzIna.Commucation.CommunicationBase.RetryConnectLimit">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:EzIna.Commucation.CommunicationBase.ReceiveRetryLimit">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:EzIna.Commucation.CommunicationBase.PacketFailRetryLimit">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:EzIna.Commucation.CommunicationBase.m_nRetryConnectCurr">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:EzIna.Commucation.CommunicationBase.m_nPacketFailCount">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:EzIna.Commucation.CommunicationBase.m_lock">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:EzIna.Commucation.CommunicationBase.m_bInitialized">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:EzIna.Commucation.CommunicationBase.m_SerialPortEncoding">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:EzIna.Commucation.CommunicationBase.m_SocketSendEncoding">
+            <summary>
+            Socket Send 시 Data Enconding 타입, 기본 : Encoding.UTF8
+            </summary>
+        </member>
+        <member name="F:EzIna.Commucation.CommunicationBase.m_SocketReceiveEncoding">
+            <summary>
+            Socket Receive 시 Data Enconding 타입, 기본 : Encoding.ASCII       
+            </summary>
+        </member>
+        <member name="M:EzIna.Commucation.CommunicationBase.#ctor(EzIna.Commucation.SerialCom.stSerialSetting,System.Int32)">
+            <summary>
+            
+            </summary>
+            <param name="a_Setting"></param>
+            <param name="a_iPacketDoneTimeout"></param>
+        </member>
+        <member name="M:EzIna.Commucation.CommunicationBase.#ctor(EzIna.Commucation.SocketCom.stSocketSetting,System.Int32)">
+            <summary>
+            
+            </summary>
+            <param name="a_Setting"></param>
+            <param name="a_iPacketDoneTimeout"></param>
+        </member>
+        <member name="M:EzIna.Commucation.CommunicationBase.Finalize">
+            <summary>
+            <see href="https://m.blog.naver.com/seokcrew/221700422916"/>
+            </summary>
+        </member>
+        <member name="M:EzIna.Commucation.CommunicationBase.Dispose">
+            <summary>
+            <see href="https://m.blog.naver.com/seokcrew/221700422916"/>
+            </summary>        
+        </member>
+        <member name="M:EzIna.Commucation.CommunicationBase.Dispose(System.Boolean)">
+            <summary>
+            <see href="https://m.blog.naver.com/seokcrew/221700422916"/>
+            <see href="https://docs.microsoft.com/ko-kr/dotnet/standard/garbage-collection/implementing-dispose"/>
+            </summary>
+            <param name="a_Disposeing"></param>
+        </member>
+        <member name="M:EzIna.Commucation.CommunicationBase.Initialize">
+            <summary>
+            상속 후 별도의 Init , 상속된 생성자에 별도 실행하지말것
+            </summary>                              
+        </member>
+        <member name="P:EzIna.Commucation.CommunicationBase.CurrentRecvEncodeing">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:EzIna.Commucation.CommunicationBase.CurrentPacket">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:EzIna.Commucation.CommunicationBase.addTestMsg(System.String,System.Boolean)">
+            <summary>
+            
+            </summary>
+            <param name="a_str"></param>
+            <param name="bRecvUse"></param>
+        </member>
+        <member name="M:EzIna.Commucation.CommunicationBase.ResistLoopPacket(EzIna.Commucation.stCommPacket)">
+            <summary>
+            
+            </summary>
+            <param name="a_Packet"></param>
+        </member>
+        <member name="M:EzIna.Commucation.CommunicationBase.ClearResistLoopPacket">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:EzIna.Commucation.CommunicationBase.AddExcutePacket(EzIna.Commucation.stCommPacket)">
+            <summary>
+            실행해야되는 명령이 있으면 이 Func 이용 
+            </summary>
+            <param name="a_Packet">패킷 내용</param>
+        </member>
+        <member name="M:EzIna.Commucation.CommunicationBase.ClearExcutePacket(EzIna.Commucation.stCommPacket)">
+            <summary>
+            
+            </summary>
+            <param name="a_Packet"></param>
+        </member>
+        <member name="M:EzIna.Commucation.CommunicationBase.ParsingPacketData(System.Byte[])">
+            <summary>
+            
+            </summary>
+            <param name="RecvData">Receive Data , Encoding 필요 </param>
+            <returns>데이터 Parsing 성공여부 , 데이터가 잘려오거나 Retry 가 필요한경우 false</returns>                     
+            
+        </member>
+        <member name="M:EzIna.Commucation.CommunicationBase.ConnectSuceessAfterWork">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:EzIna.Commucation.CommunicationBase.DisConnectSuceessAfterWork">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:EzIna.Commucation.CommunicationBase.SetReciveRetryLimitCnt(System.Int32)">
+            <summary>
+            
+            </summary>
+            <param name="a_nCnt"></param>
+        </member>
+        <member name="M:EzIna.Commucation.CommunicationBase.ResetRetryConnectCount">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:EzIna.Commucation.CommunicationBase.LoopExecute">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:EzIna.Commucation.CommunicationBase.Execute">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:EzIna.Commucation.CommunicationBase.AddLoopPacket">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:EzIna.Commucation.CommunicationBase.ClearCurrentCmd">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:EzIna.Commucation.CommunicationBase.Connection">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:EzIna.Commucation.CommunicationBase.SocketCommConnection(EzIna.Commucation.SocketCom.stSocketSetting)">
+            <summary>
+            
+            </summary>
+            <param name="a_SocketInfo"></param>
+        </member>
+        <member name="M:EzIna.Commucation.CommunicationBase.Disconnection">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:EzIna.Commucation.CommunicationBase.IsConnected">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:EzIna.Commucation.CommunicationBase.SendLoop">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:EzIna.Commucation.CommunicationBase.SerialComReceiveMsg(System.Object,System.IO.Ports.SerialDataReceivedEventArgs)">
+            <summary>
+            
+            </summary>
+            <param name="sender">SerailPort </param>
+            <param name="e">SerialDataReceivedEventArgs </param>
+        </member>
+        <member name="M:EzIna.Commucation.CommunicationBase.SocketConnected_Completed(System.Object,System.Net.Sockets.SocketAsyncEventArgs)">
+            <summary>
+            
+            </summary>
+            <param name="sender"> Socket ( m_pSoeket ) </param>
+            <param name="e"> SocketAsyncEventArgs </param>
+        </member>
+        <member name="M:EzIna.Commucation.CommunicationBase.SocketSend_Completed(System.Object,System.Net.Sockets.SocketAsyncEventArgs)">
+            <summary>
+            
+            </summary>
+            <param name="sender">Socket ( m_pSoeket )</param>
+            <param name="e">SocketAsyncEventArgs</param>
+        </member>
+        <member name="M:EzIna.Commucation.CommunicationBase.SocketRecieve_Completed(System.Object,System.Net.Sockets.SocketAsyncEventArgs)">
+            <summary>
+            
+            </summary>
+            <param name="sender">Socket ( m_pSoeket )</param>
+            <param name="e">SocketAsyncEventArgs </param>                    
+        </member>
+        <member name="M:EzIna.Commucation.CommunicationBase.ByteToString(System.Byte[])">
+            <summary>
+            
+            </summary>
+            <param name="strByte"></param>
+            <returns></returns>
+        </member>
+        <member name="M:EzIna.Commucation.CommunicationBase.StringToByte(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="str"></param>
+            <returns></returns>
+        </member>
+        <member name="T:EzIna.Commucation.IniFile">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:EzIna.Commucation.IniFile.FileName">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:EzIna.Commucation.IniFile.MaxBufferSize">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:EzIna.Commucation.IniFile.#ctor(System.String,System.Int32)">
+            <summary>
+            
+            </summary>
+            <param name="iniFileName"></param>
+            <param name="maxBufferSize"></param>
+        </member>
+        <member name="M:EzIna.Commucation.IniFile.Write(System.String,System.String,System.String)">
+            <summary>
+            
+            </summary>
+            <param name="section"></param>
+            <param name="key"></param>
+            <param name="sValue"></param>
+        </member>
+        <member name="M:EzIna.Commucation.IniFile.Write(System.String,System.String,System.Double)">
+            <summary>
+            
+            </summary>
+            <param name="section"></param>
+            <param name="key"></param>
+            <param name="dValue"></param>
+        </member>
+        <member name="M:EzIna.Commucation.IniFile.Write(System.String,System.String,System.Drawing.Color)">
+            <summary>
+            
+            </summary>
+            <param name="section"></param>
+            <param name="key"></param>
+            <param name="color"></param>
+        </member>
+        <member name="M:EzIna.Commucation.IniFile.Write(System.String,System.String,System.TimeSpan)">
+            <summary>
+            
+            </summary>
+            <param name="section"></param>
+            <param name="key"></param>
+            <param name="defaultValue"></param>
+        </member>
+        <member name="M:EzIna.Commucation.IniFile.Write``1(System.String,System.String,``0)">
+            <summary>
+            
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="section"></param>
+            <param name="key"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:EzIna.Commucation.IniFile.Write(System.String,System.Object)">
+            <summary>
+            
+            </summary>
+            <param name="section"></param>
+            <param name="o"></param>
+        </member>
+        <member name="M:EzIna.Commucation.IniFile.Read(System.String,System.String,System.String)">
+            <summary>
+            
+            </summary>
+            <param name="section"></param>
+            <param name="key"></param>
+            <param name="sDefault"></param>
+            <returns></returns>
+        </member>
+        <member name="M:EzIna.Commucation.IniFile.Read(System.String,System.String,System.Int32)">
+            <summary>
+            
+            </summary>
+            <param name="section"></param>
+            <param name="key"></param>
+            <param name="defaultValue"></param>
+            <returns></returns>
+        </member>
+        <member name="M:EzIna.Commucation.IniFile.Read(System.String,System.String,System.Byte)">
+            <summary>
+            
+            </summary>
+            <param name="section"></param>
+            <param name="key"></param>
+            <param name="defaultValue"></param>
+            <returns></returns>
+        </member>
+        <member name="M:EzIna.Commucation.IniFile.Read(System.String,System.String,System.TimeSpan)">
+            <summary>
+            
+            </summary>
+            <param name="section"></param>
+            <param name="key"></param>
+            <param name="defaultValue"></param>
+            <returns></returns>
+        </member>
+        <member name="M:EzIna.Commucation.IniFile.Read(System.String,System.String,System.DateTime)">
+            <summary>
+            
+            </summary>
+            <param name="section"></param>
+            <param name="key"></param>
+            <param name="defaultValue"></param>
+            <returns></returns>
+        </member>
+        <member name="M:EzIna.Commucation.IniFile.Read(System.String,System.String,System.Int64)">
+            <summary>
+            
+            </summary>
+            <param name="section"></param>
+            <param name="key"></param>
+            <param name="defaultValue"></param>
+            <returns></returns>
+        </member>
+        <member name="M:EzIna.Commucation.IniFile.Read(System.String,System.String,System.Double)">
+            <summary>
+            
+            </summary>
+            <param name="section"></param>
+            <param name="key"></param>
+            <param name="defaultValue"></param>
+            <returns></returns>
+        </member>
+        <member name="M:EzIna.Commucation.IniFile.Read(System.String,System.String,System.Boolean)">
+            <summary>
+            
+            </summary>
+            <param name="section"></param>
+            <param name="key"></param>
+            <param name="defaultValue"></param>
+            <returns></returns>
+        </member>
+        <member name="M:EzIna.Commucation.IniFile.Read(System.String,System.String,System.Drawing.Color)">
+            <summary>
+            
+            </summary>
+            <param name="section"></param>
+            <param name="key"></param>
+            <param name="defaultValue"></param>
+            <returns></returns>
+        </member>
+        <member name="M:EzIna.Commucation.IniFile.Read``1(System.String,System.String,``0)">
+            <summary>
+            
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="section"></param>
+            <param name="key"></param>
+            <param name="defaultValue"></param>
+            <returns></returns>
+        </member>
+        <member name="M:EzIna.Commucation.IniFile.Read(System.String,System.Object)">
+            <summary>
+            
+            </summary>
+            <param name="section"></param>
+            <param name="o"></param>
+        </member>
+        <member name="T:EzIna.Commucation.SerialCom.strPacketCmd">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:EzIna.Commucation.SerialCom.strPacketCmd.#ctor(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="a_strCmd"></param>
+        </member>
+        <member name="P:EzIna.Commucation.SerialCom.strPacketCmd.strCMD">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:EzIna.Commucation.SerialCom.PacketEnum">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:EzIna.Commucation.SerialCom.PacketEnum.GetCmd(System.Enum)">
+            <summary>
+            
+            </summary>
+            <param name="value"></param>
+            <returns></returns>
+        </member>
+        <member name="T:EzIna.Commucation.SerialCom.stSerialSetting">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:EzIna.Commucation.SerialCom.stSerialSetting.strComPortName">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:EzIna.Commucation.SerialCom.stSerialSetting.nBaudRate">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:EzIna.Commucation.SerialCom.stSerialSetting.nDataBits">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:EzIna.Commucation.SerialCom.stSerialSetting.Parity">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:EzIna.Commucation.SerialCom.stSerialSetting.StopBits">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:EzIna.Commucation.SerialCom.stSerialSetting.ReadTimeout">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:EzIna.Commucation.SerialCom.stSerialSetting.WriteTimeout">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:EzIna.Commucation.SerialCom.stSerialSetting.Init">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:EzIna.Commucation.SerialCom.stSerialSetting.Clear">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:EzIna.Commucation.SerialCom.stSerialSetting.Clone">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:EzIna.Commucation.SerialCom.ComDefine">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:EzIna.Commucation.SerialCom.ComDefine.MAX_PATH">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:EzIna.Commucation.SerialCom.ComDefine.COMM_CMD_MAX">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:EzIna.Commucation.SerialCom.ComDefine.COMMTIMEOUT">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:EzIna.Commucation.SerialCom.ComDefine.MAX_BUFF">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:EzIna.Commucation.SerialCom.ComDefine.nDefaultLigthValue">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:EzIna.Commucation.SerialCom.ComDefine.ConfigFolderPath">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:EzIna.Commucation.SerialCom.ComDefine.ConfigComSerialFileFullName">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:EzIna.Commucation.SerialCom.SerialComFactory">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:EzIna.Commucation.SerialCom.SerialComFactory.OnCreateInstance">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:EzIna.Commucation.SerialCom.SerialComFactory.Dispose">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:EzIna.Commucation.SerialCom.SerialComFactory.InitializePort">
+            <summary>
+            
+            </summary>                    
+        </member>
+        <member name="M:EzIna.Commucation.SerialCom.SerialComFactory.OnRemovePortDetected(System.Object,EzIna.Commucation.SerialCom.SerialPortChangeInfoEventArgs)">
+            <summary>
+            
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>                    
+        </member>
+        <member name="M:EzIna.Commucation.SerialCom.SerialComFactory.IsExistPort(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="strPortName"></param>
+            <returns></returns>
+        </member>
+        <member name="P:EzIna.Commucation.SerialCom.SerialComFactory.Item(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="strComport"></param>
+            <returns></returns>                    
+        </member>
+        <member name="T:EzIna.Commucation.SerialCom.CSerialPortWatcher">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="E:EzIna.Commucation.SerialCom.CSerialPortWatcher.RemoveComPortEvent">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:EzIna.Commucation.SerialCom.CSerialPortWatcher.#ctor">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:EzIna.Commucation.SerialCom.CSerialPortWatcher.ComPorts">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:EzIna.Commucation.SerialCom.CSerialPortWatcher.RemoveComPorts">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:EzIna.Commucation.SerialCom.CSerialPortWatcher.AddComPorts">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:EzIna.Commucation.SerialCom.CSerialPortWatcher.Dispose">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:EzIna.Commucation.SerialCom.SerialPortChangeHandler">
+            <summary>
+            
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="T:EzIna.Commucation.SerialCom.SerialPortChangeInfoEventArgs">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:EzIna.Commucation.SerialCom.SerialPortChangeInfoEventArgs.PortList">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:EzIna.Commucation.SerialCom.SerialPortChangeInfoEventArgs.#ctor(System.Collections.Generic.List{System.String})">
+            <summary>
+            
+            </summary>
+            <param name="a_PortList"></param>
+        </member>
+        <member name="T:EzIna.Commucation.SingleTone`1">
+            <summary>
+            싱글톤 패턴을 지원해 주는 추상 클래스
+            </summary>
+            <typeparam name="ClassType">싱글톤 패턴을 적용할 클래스 타입</typeparam>
+        </member>
+        <member name="P:EzIna.Commucation.SingleTone`1.ExistInstance">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:EzIna.Commucation.SingleTone`1.Instance">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:EzIna.Commucation.SingleTone`1.#ctor">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:EzIna.Commucation.SingleTone`1.OnCreateInstance">
+            <summary>
+            싱글톤 생성시 발생
+            </summary>
+        </member>
+        <member name="T:EzIna.Commucation.SocketCom.stSocketSetting">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:EzIna.Commucation.SocketCom.stSocketSetting.strIPName">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:EzIna.Commucation.SocketCom.stSocketSetting.iPort">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:EzIna.Commucation.SocketCom.stSocketSetting.ReadTimeout">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:EzIna.Commucation.SocketCom.stSocketSetting.WriteTimeout">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:EzIna.Commucation.SocketCom.stSocketSetting.Init">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:EzIna.Commucation.SocketCom.stSocketSetting.Clear">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:EzIna.Commucation.SocketCom.stSocketSetting.Clone">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+    </members>
+</doc>

@@ -1,0 +1,11 @@
+﻿<Configuration>
+  <DATABASE>
+    <D_ADDR01>172.10.10.17</D_ADDR01>
+    <D_ADDR02>192.168.10.5</D_ADDR02>
+    <PORT>2683</PORT>
+    <SID>sc1vina</SID>
+    <USER>pcmif</USER>
+    <PWD>pcmif</PWD>
+    <SERVICE_NAME>sc1vina</SERVICE_NAME>
+  </DATABASE>
+</Configuration>

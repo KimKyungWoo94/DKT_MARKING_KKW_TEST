@@ -1,0 +1,855 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>EzInaLaserTalon</name>
+    </assembly>
+    <members>
+        <member name="T:EzIna.Laser.Talon.GUI.FrmLaserTalon">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:EzIna.Laser.Talon.GUI.FrmLaserTalon.#ctor">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:EzIna.Laser.Talon.GUI.FrmLaserTalon.InitForm(EzIna.Laser.LaserInterface)">
+            <summary>
+            
+            </summary>
+            <param name="a_Item"></param>
+        </member>
+        <member name="M:EzIna.Laser.Talon.GUI.FrmLaserTalon.InitializeDataGridView(System.Windows.Forms.DataGridView)">
+            <summary>
+            
+            </summary>
+            <param name="a_DatagirdView"></param>
+        </member>
+        <member name="M:EzIna.Laser.Talon.GUI.FrmLaserTalon.CreateDataGridViewTextColumn(System.String,System.String,System.Int32)">
+            <summary>
+            
+            </summary>
+            <param name="a_strHeaderTxt"></param>
+            <param name="a_strBindingPropTxt"></param>
+            <param name="a_Width"></param>
+            <returns></returns>
+        </member>
+        <member name="M:EzIna.Laser.Talon.GUI.FrmLaserTalon.UpdateDisplay">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:EzIna.Laser.Talon.GUI.FrmLaserTalon.UpdateFilker">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:EzIna.Laser.Talon.GUI.FrmLaserTalon.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:EzIna.Laser.Talon.GUI.FrmLaserTalon.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:EzIna.Laser.Talon.GUI.FrmLaserTalon.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="T:EzIna.Laser.Talon.TALON355_CMD">
+            <summary>
+            TALON355 Laser Command , Getting 시 Query Mark 맨앞 or 맨뒤에 하던 상관없음
+            </summary>
+        </member>
+        <member name="F:EzIna.Laser.Talon.TALON355_CMD.DIODE_CURRENT">
+            <summary>
+            Laser Diode drive Current(amps)        
+            <para>C1:6.30 [CR]	Set the diode current to 6.30 Amps</para>
+            <para>?C1 [CR]	    What is the laser diode measured current for diode #1?</para>
+            <para>6.32 [CR][LF]	The laser diode current for diode #1 is 6.32A.</para>        
+            </summary>
+        </member>
+        <member name="F:EzIna.Laser.Talon.TALON355_CMD.DIODE_EMISSION_STATE">
+            <summary>
+            The present state of laser diode emission
+            <para>?D[CR] What is the On/Off Status of diode emission? </para>
+            <para>1[CR][LF] </para>
+            </summary>
+        </member>
+        <member name="F:EzIna.Laser.Talon.TALON355_CMD.EPRF_VALUE">
+            <summary>
+            Set or Read EPRF
+            <para> EPRF:100000[CR] Set the external EPRF to 100KHz </para>
+            <para> ?EPRF[CR] What is the EPRFEXT setting </para>
+            <para> 100000 [CR][LF] The external EPRF is set to 100 KHz.</para>
+            </summary>
+        </member>
+        <member name="F:EzIna.Laser.Talon.TALON355_CMD.SYSTEM_STATUS_ASCII">
+            <summary>
+            The Current System status as an ASCII string 
+            <para>?F[CR] </para>
+            <para>SYSTEM OK[CR][LF]</para>
+            <para>KEY ILK[CR][LF]</para>
+            <para>SYS ILK[CR][LF]</para>
+            </summary>
+        </member>
+        <member name="F:EzIna.Laser.Talon.TALON355_CMD.SYSTEM_STATUS_HISTORY">
+            <summary>
+            The 16 Event System Status History , Data Delimited ; (Semicolon)
+            <para>?FH[CR] </para>
+            <para>011;013;000;002;000;000;000;000;000,000;000;000;000;000,000;000;000;000;000[CR][LF]</para>
+            </summary>
+        </member>
+        <member name="F:EzIna.Laser.Talon.TALON355_CMD.GATE_SWITCH">
+            <summary>
+            Internal Q-Switch to Stop/Start Laser Pulsing
+            <para>G:1[CR]</para>
+            <para>?G[CR]</para>
+            <para>0[CR][LF]</para>
+            </summary>
+        </member>
+        <member name="F:EzIna.Laser.Talon.TALON355_CMD.ENABLE_EXT_GATE">
+            <summary>
+            Enable external Gate Control 
+            <para>GEXT:1[CR]</para>
+            <para>?GEXT[CR]</para>
+            <para>1[CR][LF]</para>
+            </summary>
+        </member>
+        <member name="F:EzIna.Laser.Talon.TALON355_CMD.THG_CRYSTAL_SPOT_HOURS">
+            <summary>
+            accumulated operating hours for a current spot On the THG harmonic crystal
+            <para>?MTR:THR[CR]</para>
+            <para>-128.5[CR][LF]</para>        
+            </summary>
+        </member>
+        <member name="F:EzIna.Laser.Talon.TALON355_CMD.MOVE_THG_CRYSTAL_SPOT_POS">
+            <summary>
+            moves the THG crystal to new spot position , Set Range 1~15  -99 → Moving now
+            <para>MTR:TSPOT:2[CR]</para>
+            <para>-99[CR][LF]</para>        
+            </summary>
+        </member>
+        <member name="F:EzIna.Laser.Talon.TALON355_CMD.EMISSION_OFF">
+            <summary>
+            Laser Emission OFF
+            <para>OFF[CR]</para>
+            </summary>
+        </member>
+        <member name="F:EzIna.Laser.Talon.TALON355_CMD.EMISSION_ON">
+            <summary>
+            Laser Emission ON
+            <para>ON[CR]</para>
+            </summary>
+        </member>
+        <member name="F:EzIna.Laser.Talon.TALON355_CMD.POWER_EMITTED">
+            <summary>
+            reads the internal laser power emitted by the laser (in watts)  Range: 0.0 ≤ f ≤ 20.00
+            <para>?P[CR]</para>
+            <para>10.00[CR][LF]</para>
+            </summary>
+        </member>
+        <member name="F:EzIna.Laser.Talon.TALON355_CMD.REPETITION_RATE">
+            <summary>
+            the internal Q-switch pulse-repetition frequency for the laser (in Hertz). 
+            <para>Range: 0 ≤ f ≤ 2000000 and Q = 0</para>
+            <para>Q:50000[CR]</para>
+            <para>?:Q[CR]</para>
+            <para>50000[CR][LF]</para>
+            </summary>
+        </member>
+        <member name="F:EzIna.Laser.Talon.TALON355_CMD.SHG_AUTO_TUNE">
+            <summary>
+            starts (1) or stops (0) the SHG temperature auto-tune function
+            <para>SAUTO:1[CR]</para>
+            <para>?SAUTO[CR]</para>
+            <para>1[CR][LF]</para>
+            </summary>
+        </member>
+        <member name="F:EzIna.Laser.Talon.TALON355_CMD.SHG_CRYSTAL_TEMP">
+            <summary>
+            the SHG crystal temperature regulation point ,Range: 20000 ≤ n ≤ 65535
+            <para>SHG:29100[CR]</para>
+            <para>?SHG[CR]</para>
+            <para>29100[CR][LF]</para>
+            </summary>
+        </member>
+        <member name="F:EzIna.Laser.Talon.TALON355_CMD.SHG_CRYSTAL_TEMP_LAST_SET">
+            <summary>
+            SHG crystal temperature regulation point Range: 20000 ≤ n ≤ 65535
+            <para>?SHGS[CR]</para>
+            <para>35000[CR][LF]</para>
+            </summary>
+        </member>
+        <member name="F:EzIna.Laser.Talon.TALON355_CMD.SHUTTER_ENABLE">
+            <summary>
+            opens ＆ closes the shutter on the laser head
+            <para>SHT:0[CR]</para>
+            <para>?SHT[CR]</para>
+            <para>1[CR][LF]</para>
+            </summary>
+        </member>
+        <member name="F:EzIna.Laser.Talon.TALON355_CMD.SHUTTER_ENABLE_LAST_SET">
+            <summary>
+            opens ＆ closes the shutter on the laser head     
+            <para>?SHT[CR]</para>
+            <para>1[CR][LF]</para>
+            </summary>
+        </member>
+        <member name="F:EzIna.Laser.Talon.TALON355_CMD.SYSTEM_STSTUS_BYTE">
+            <summary>
+            System status byte reply needs to be converted to hex value 1~32(0~-31)bit
+            <para>Bit # Description                                         </para>
+            <para>0 Emission ,1 Shutter ,2 Gate ,3 SHG warming up           </para>
+            <para>4 EXT gate ,5 System Fault,6 SHG autotune,7 THG autotune  </para>
+            <para>8 Reserved,9 Motor moving ,10 Reserved,11 Reserved        </para>
+            <para>12 Reserved,13 Reserved,14 Shutter time out,15 Reserved   </para>
+            <para>16 Last Spot reached,17 Reserved,18 Reserved              </para>                                          
+            <para>19 Reserved                                               </para>
+            <para>19 value[CR][LF]                                          </para>
+            </summary>
+        </member>
+        <member name="F:EzIna.Laser.Talon.TALON355_CMD.DIODE_TEMP">
+            <summary>
+            actual laser diode temperature in degrees Celsius
+            <para>?T[CR]</para>
+            <para>23.25[CR][LF]</para>
+            </summary>
+        </member>
+        <member name="F:EzIna.Laser.Talon.TALON355_CMD.THG_AUTO_TUNE">
+            <summary>
+            starts (1) or stops (0) the THG temperature auto-tune function
+            <para>TAUTO:1[CR]</para>
+            <para>?TAUTO[CR]</para>
+            <para>1[CR][LF]</para>
+            </summary>
+        </member>
+        <member name="F:EzIna.Laser.Talon.TALON355_CMD.THG_OVEN_TEMP">
+            <summary>
+            the THG (355 nm) crystal oven temperature (in counts).  Range: n = 10000 ... 65535
+            <para>THG:16000[CR]</para>
+            <para>?THG[CR]</para>
+            <para>16000[CR][LF]</para>
+            </summary>
+        </member>
+        <member name="F:EzIna.Laser.Talon.TALON355_CMD.THG_OVEN_TEMP_LAST_SET">
+            <summary>
+            the THGS (355 nm) crystal oven temperature (in counts).  Range: n = 10000 ... 65535
+            <para>?THGS[CR]</para>
+            <para>16000[CR][LF]</para>        
+            </summary>
+        </member>
+        <member name="F:EzIna.Laser.Talon.TALON355_CMD.TOWER_TEMP">
+            <summary>
+            the crystal tower temperature in degrees Celsius. Range: n = 1 - 50
+            <para>?TT[CR]</para>
+            <para>23.50[CR][LF]</para>
+            </summary>
+        </member>
+        <member name="F:EzIna.Laser.Talon.TALON355_CMD.REMAIN_WARM_UP_TIME">
+            <summary>
+            This query returns the remaining warm-up time of the harmonics crystals
+            <para>?WARMUPTIME[CR]</para>
+            <para>23:50[CR][LF]</para>
+            </summary>
+        </member>
+        <member name="F:EzIna.Laser.Talon.TALON355_CMD.COMM_BAUDRATE">
+            <summary>
+            Comm Baudrate
+            <para>?BAUDRATE[CR]</para>
+            <para>value[CR][LF]</para>
+            </summary>
+        </member>
+        <member name="F:EzIna.Laser.Talon.TALON355_CMD.GATE_ENABLE_SIGNAL_LEVEL">
+            <summary>
+            inverts the control of the external GATE signal
+            <para>BEI:1[CR]</para>
+            <para>?BEI[CR] </para>
+            <para>1[CR][LF] </para>
+            </summary>
+        </member>
+        <member name="F:EzIna.Laser.Talon.TALON355_CMD.TRIGGER_EDGE_SIGNAL_LEVEL">
+            <summary>
+            inverts the trigger edge of the external TRIGGER signal
+            <para>BTI:0 or the TRIGGER signal has an active rising edge. </para>
+            <para>BTI:1 or the TRIGGER signal has an active falling edge. </para>
+            <para>BTI:1[CR]</para>
+            <para>?BTI[CR] </para>
+            <para>1[CR][LF] </para>
+            </summary>
+        </member>
+        <member name="F:EzIna.Laser.Talon.TALON355_CMD.DIODE_CALB_CURRENT">
+            <summary>
+            the initial current set point (in Amps) 
+            <para>?CALC[CR] </para>
+            <para>6.30[CR][LF] </para>
+            </summary>
+        </member>
+        <member name="F:EzIna.Laser.Talon.TALON355_CMD.RECALB_POWER_MONITOR">
+            <summary>
+            recalibrate the internal power monitor , Range: 0.00 ≤ f ≤ 40.00
+            <para>CAL:POW:PCAL:10.00[CR]</para>
+            <para>?CAL:POW:PCAL[CR] </para>
+            <para>10.00[CR][LF] </para>
+            </summary>
+        </member>
+        <member name="F:EzIna.Laser.Talon.TALON355_CMD.CHASSIS_TEMP">
+            <summary>
+            the actual laser chassis temperature in degrees Celsius
+            <para>?CT[CR] </para>
+            <para>6.30[CR][LF] </para>
+            </summary>
+        </member>
+        <member name="F:EzIna.Laser.Talon.TALON355_CMD.DIODE_CURRENT_HEADROOM">
+            <summary>
+            the amount of current headroom for the current limit (CALC+DCD = DCL). 
+            <para>?DCD[CR] </para>
+            <para>6.30[CR][LF] </para>
+            </summary>
+        </member>
+        <member name="F:EzIna.Laser.Talon.TALON355_CMD.DIODE1_CURRENT_LIMIT">
+            <summary>
+            the laser diode current limit (in amps) from memory
+            <para>?DCL1[CR] </para>
+            <para>6.30[CR][LF] </para>
+            </summary>
+        </member>
+        <member name="F:EzIna.Laser.Talon.TALON355_CMD.DIODE1_CURRENT_LAST_SET">
+            <summary>
+            the laser diode current Set Value
+            /// <para>?CL1[CR] </para>
+            <para>6.30[CR][LF] </para>
+            </summary>
+        </member>
+        <member name="F:EzIna.Laser.Talon.TALON355_CMD.DIODE1_HOURS">
+            <summary>
+            the number of hours the laser diode emission has been on
+            <para>?DH1[CR] </para>
+            <para>6.30[CR][LF] </para>
+            </summary>
+        </member>
+        <member name="F:EzIna.Laser.Talon.TALON355_CMD.ENABLE_USB_PORT_FLASH_DRIVE">
+            <summary>
+            enables the use of the USB port as a flash drive connection and allows access to the data log files. The USB connection automatically reverts back to a virtual port.
+            </summary>
+        </member>
+        <member name="F:EzIna.Laser.Talon.TALON355_CMD.ENABLE_USB_PORT_AS_SERIAL_PORT">
+            <summary>
+            enables the use of the USB port as a serial control port (a virtual COM port). This is the default setting for the system
+            </summary>
+        </member>
+        <member name="F:EzIna.Laser.Talon.TALON355_CMD.SYSTEM_CURRENT_TIME">
+            <summary>
+            Internal time clock (real time clock ) 
+            <para>?DIAG:TIME:READ[CR] </para>
+            <para>2011-2-3 09:44:51[CR][LF] </para>
+            </summary>
+        </member>
+        <member name="F:EzIna.Laser.Talon.TALON355_CMD.DIODE_SERIAL_NUMBER">
+            <summary>
+            the laser diode serial number
+            <para>?DSN[CR] </para>
+            <para>1345873[CR][LF] </para>
+            </summary>
+        </member>
+        <member name="F:EzIna.Laser.Talon.TALON355_CMD.COMM_TERMINATION_CHAR">
+            <summary>
+            Termination char  Range =0 , 16, 128   , 0=[LF] , 16=[CR][LF], 128=[CR]
+            <para>ECHO:16[CR] </para>
+            <para>?ECHO[CR] </para>
+            <para>16[CR][LF] </para>
+            </summary>
+        </member>
+        <member name="F:EzIna.Laser.Talon.TALON355_CMD.LASER_HEAD_EMITTING_HOUR">
+            <summary>
+            the number of hours the laser head has been on. ( Hours)
+            <para>?HEADERS[CR] </para>
+            <para>1175.20[CR][LF] </para>
+            </summary>
+        </member>
+        <member name="F:EzIna.Laser.Talon.TALON355_CMD.IDENT_PRODECT">
+            <summary>
+            the laser’s identification string
+            <para>IDN?[CR] </para>
+            <para>Spectra_Physics,Morpheus,21400.000.032/CD00000009”[CR][LF]</para>
+            <para>mfg,model,S/N,Version</para>
+            </summary>
+        </member>
+        <member name="F:EzIna.Laser.Talon.TALON355_CMD.SHUTTER_EXIST">
+            <summary>
+            the laser’s identification string
+            <para>SHTEXIST?[CR] </para>      
+            </summary>
+        </member>
+        <member name="F:EzIna.Laser.Talon.TALON355_CMD.THG_ALL_SPOT_HOURS">
+            <summary>
+            the laser’s identification string
+            <para>MTR:TALLHRS?[CR] </para>        
+            </summary>
+        </member>
+        <member name="T:EzIna.Laser.Talon.EnumHelper">
+            <summary>
+            <para>EnumHelper Class Enum 확장 메서드 </para>
+            <see href="https://docs.microsoft.com/ko-kr/dotnet/csharp/programming-guide/classes-and-structs/extension-methods"/> 
+            <para>같은 네임스페이스에 선언이 되어있어야 확장 메서드를 쓸수 있다.</para>
+            </summary>
+        </member>
+        <member name="M:EzIna.Laser.Talon.EnumHelper.GetPacketAttrFrom(EzIna.Laser.Talon.TALON355_CMD)">
+            <summary>
+            
+            </summary>
+            <param name="a_Value"></param>
+            <returns></returns>
+        </member>
+        <member name="M:EzIna.Laser.Talon.EnumHelper.GetAttributesFrom``1(System.Enum)">
+            <summary>
+            Attribute Generic Function
+            </summary>
+            <typeparam name="T">Attribute Class</typeparam>
+            <param name="a_Value">Enum Value</param>
+            <returns>Attribute Class</returns>
+        </member>
+        <member name="T:EzIna.Laser.Talon.Talon355">
+            <summary>
+            
+            </summary>
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:EzIna.Laser.Talon.Talon355.#ctor(System.String,EzIna.Commucation.SerialCom.stSerialSetting,System.Int32)">
+            <summary>
+            
+            </summary>
+            <param name="a_strName"></param>
+            <param name="a_Setting"></param>
+            <param name="a_iPacketDoneTimeout"></param>
+        </member>
+        <member name="M:EzIna.Laser.Talon.Talon355.#ctor(System.String,EzIna.Commucation.SocketCom.stSocketSetting,System.Int32)">
+            <summary>
+            
+            </summary>
+            <param name="a_strName"></param>
+            <param name="a_Setting"></param>
+            <param name="a_iPacketDoneTimeout"></param>
+        </member>
+        <member name="M:EzIna.Laser.Talon.Talon355.DisposeLaser">
+            <summary>
+            Interface Dispose
+            </summary>
+        </member>
+        <member name="M:EzIna.Laser.Talon.Talon355.Dispose(System.Boolean)">
+            <summary>
+            <see href="https://m.blog.naver.com/seokcrew/221700422916"/>
+            <see href="https://docs.microsoft.com/ko-kr/dotnet/standard/garbage-collection/implementing-dispose"/>
+            </summary>
+            <param name="a_Disposeing"></param>
+        </member>
+        <member name="M:EzIna.Laser.Talon.Talon355.Initialize">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:EzIna.Laser.Talon.Talon355.LoopExecute">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:EzIna.Laser.Talon.Talon355.ConnectSuceessAfterWork">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:EzIna.Laser.Talon.Talon355.DisConnectSuceessAfterWork">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:EzIna.Laser.Talon.Talon355.SendTestMsg(System.String,System.Boolean)">
+            <summary>
+            
+            </summary>
+            <param name="str"></param>
+            <param name="bRecvUse"></param>
+        </member>
+        <member name="M:EzIna.Laser.Talon.Talon355.AddPacket``1(EzIna.Laser.Talon.TALON355_CMD,``0,EzIna.Commucation.enumPacketType,System.Boolean)">
+            <summary>
+            
+            </summary>
+            <typeparam name="T">Value (bool int string)</typeparam>
+            <param name="a_CMD">CMD</param>
+            <param name="a_Value">Value</param>
+            <param name="a_Type">0: Get 1: Set Packet </param>
+            <param name="a_bLoop">Loop or Execute Now</param>
+        </member>
+        <member name="M:EzIna.Laser.Talon.Talon355.ParsingPacketData(System.Byte[])">
+            <summary>
+            
+            </summary>
+            <param name="RecvData"></param>
+            <returns></returns>
+        </member>
+        <member name="P:EzIna.Laser.Talon.Talon355.strID">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:EzIna.Laser.Talon.Talon355.strModelName">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:EzIna.Laser.Talon.Talon355.RepetitionRate">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:EzIna.Laser.Talon.Talon355.IsConnected">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:EzIna.Laser.Talon.Talon355.IsCommConnected">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:EzIna.Laser.Talon.Talon355.IsSystemFault">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:EzIna.Laser.Talon.Talon355.IsLaserReady">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:EzIna.Laser.Talon.Talon355.IsGateOpen">
+            <summary>
+            
+            </summary>                       
+        </member>
+        <member name="P:EzIna.Laser.Talon.Talon355.IsShutterOpen">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:EzIna.Laser.Talon.Talon355.IsEmissionOn">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:EzIna.Laser.Talon.Talon355.IsQSW_On">
+            <summary>
+            Not Support
+            </summary>
+        </member>
+        <member name="P:EzIna.Laser.Talon.Talon355.QSW_OnOff">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:EzIna.Laser.Talon.Talon355.DeviceType">
+            <summary>
+            
+            </summary>
+            
+        </member>
+        <member name="P:EzIna.Laser.Talon.Talon355.GateOpen">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:EzIna.Laser.Talon.Talon355.GateMode">
+            <summary>
+            
+            </summary>
+            
+        </member>
+        <member name="P:EzIna.Laser.Talon.Talon355.TriggerMode">
+            <summary>
+            if INT Mode RepetitionRate > 0  INT Triiger
+            </summary>
+        </member>
+        <member name="P:EzIna.Laser.Talon.Talon355.RemainWarmUptime">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:EzIna.Laser.Talon.Talon355.ShutterOpen">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:EzIna.Laser.Talon.Talon355.ShutterOpenLastSet">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:EzIna.Laser.Talon.Talon355.EmissionOnOff">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:EzIna.Laser.Talon.Talon355.DiodeCurrent">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:EzIna.Laser.Talon.Talon355.SetDiodeCurrent">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:EzIna.Laser.Talon.Talon355.EPRF">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:EzIna.Laser.Talon.Talon355.LaserEmittedPower">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:EzIna.Laser.Talon.Talon355.THG_CrystalSpotPos">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:EzIna.Laser.Talon.Talon355.THG_CrystalSpotHours">
+            <summary>
+            Current Select THG Crystal Spot Hours 
+            <see cref="P:EzIna.Laser.Talon.Talon355.THG_CrystalSpotPos"/> 
+            </summary>
+        </member>
+        <member name="P:EzIna.Laser.Talon.Talon355.SHG_Temperature_REG_Point">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:EzIna.Laser.Talon.Talon355.SHG_Temperature_REG_Point_LastSet">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:EzIna.Laser.Talon.Talon355.DiodeTemperature">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:EzIna.Laser.Talon.Talon355.THG_OvenTemprature">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:EzIna.Laser.Talon.Talon355.THG_OvenTempratureLastSet">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:EzIna.Laser.Talon.Talon355.TowerTemperature">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:EzIna.Laser.Talon.Talon355.GateEnableSignalLevel">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:EzIna.Laser.Talon.Talon355.TriggerEdgeSignalLevel">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:EzIna.Laser.Talon.Talon355.ChassisTemperature">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:EzIna.Laser.Talon.Talon355.DiodeCurrentLimit">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:EzIna.Laser.Talon.Talon355.DiodeEmittedHours">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:EzIna.Laser.Talon.Talon355.LaserHeadEmittedHours">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:EzIna.Laser.Talon.Talon355.GetSystemHistory(System.Int32)">
+            <summary>
+            
+            </summary>
+            <param name="a_Index"></param>
+            <returns></returns>
+        </member>
+        <member name="T:EzIna.Laser.Talon.Talon355.enumSystemStatus">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:EzIna.Laser.Talon.Talon355.enumSystemStatus.EMSSIMON_ONOFF">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:EzIna.Laser.Talon.Talon355.enumSystemStatus.SHUTTER">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:EzIna.Laser.Talon.Talon355.enumSystemStatus.GATE">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:EzIna.Laser.Talon.Talon355.enumSystemStatus.SHG_WARMING_UP">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:EzIna.Laser.Talon.Talon355.enumSystemStatus.EXT_GATE">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:EzIna.Laser.Talon.Talon355.enumSystemStatus.SYSTEM_FAULT">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:EzIna.Laser.Talon.Talon355.enumSystemStatus.SHG_AUTO_TUNE">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:EzIna.Laser.Talon.Talon355.enumSystemStatus.THG_AUTO_TUNE">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:EzIna.Laser.Talon.Talon355.enumSystemStatus.MOTOR_MOVING">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:EzIna.Laser.Talon.Talon355.enumSystemStatus.SHUTTER_TIME_OUT">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:EzIna.Laser.Talon.Talon355.enumSystemStatus.LAST_SPOT_REACHED">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:EzIna.Laser.Talon.Talon355.enumGateEnableLevel">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:EzIna.Laser.Talon.Talon355.enumGateEnableLevel.ActiveLow">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:EzIna.Laser.Talon.Talon355.enumGateEnableLevel.ActiveHigh">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:EzIna.Laser.Talon.Talon355.enumTriggerEdgeLevel">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:EzIna.Laser.Talon.Talon355.enumTriggerEdgeLevel.RisingEdge">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:EzIna.Laser.Talon.Talon355.enumTriggerEdgeLevel.FallingEdge">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:EzIna.Laser.Talon.Talon355.enumHistoryEventCode">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:EzIna.Laser.Talon.Talon355.enumHistoryEventCode.SYSTEM_READY">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:EzIna.Laser.Talon.Talon355.enumHistoryEventCode.SYS_ILK">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:EzIna.Laser.Talon.Talon355.enumHistoryEventCode.TEST_ILK">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:EzIna.Laser.Talon.Talon355.enumHistoryEventCode.KEY_ILK">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:EzIna.Laser.Talon.Talon355.enumHistoryEventCode.DIODE1_TEMP_ERR">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:EzIna.Laser.Talon.Talon355.enumHistoryEventCode.TOWER_TEMP_ERR">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:EzIna.Laser.Talon.Talon355.enumHistoryEventCode.CHASSIS_TEMP_ERR">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:EzIna.Laser.Talon.Talon355.enumHistoryEventCode.WATCHDOG_EXPIRED">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:EzIna.Laser.Talon.Talon355.enumHistoryEventCode.TOWER_TEMP_WARNING">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:EzIna.Laser.Talon.Talon355.enumHistoryEventCode.SHUTTER_IN_UNEXPECTED_STATE">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:EzIna.Laser.Talon.Talon355.enumHistoryEventCode.THG_RECOVERY">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:EzIna.Laser.Talon.Talon355.enumHistoryEventCode.DIODE_TEMP_WARNING">
+            <summary>
+            
+            </summary>
+        </member>
+    </members>
+</doc>

@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<PowerMeterDevices>
+  <!--Device(LaserClass)-->
+  <!--Talon     : EzIna.Laser.Talon.Talon355-->
+  <!--PicoBlade : EzIna.Laser.Lumentum.PicoBlade2-->
+  <!--IPG       : EzIna.Laser.IPG.GLPM-->
+  <!--CommMethod : SERIAL or SOCKET-->
+  <!--SerialCom-->
+  <!--Parity : None ,Odd ,Even ,Mark ,Space ,-->
+  <!--StopBit : None ,One ,Two ,OnePointFive ,-->
+  <PowerMeterDeviceList>
+  
+  </PowerMeterDeviceList>
+</PowerMeterDevices>

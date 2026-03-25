@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ScannerDevices>
+  <!--Table1~4 : FileName With out Path-->
+  <!--Path Fixed \System\CFG\Scanner\RTC5\ in Execute path-->
+  <ScannerList>
+    <!--CardNo : 0 (Real +1 in Coding)-->
+    <ScannerItem ID="" CardNo="1" ItelliScanUse="0" Angle="0" Enable_HeadA="1" Enable_HeadB="0">
+      <!--Head A or B CorrtableNo 1 ~ 4-->
+      <Correction XPosScale="6313.1313" YPosScale="6340.6592" Scale="6326.89525" HeadA_CorrTableNo="1" HeadB_CorrTableNo="0">
+        <!--FileName : (input Name) Path Fixed ../system/CFG/Scanner/RCT5/-->
+        <Table1 FileName="Cor_1to1.ct5" DIMEMSION="2" />
+        <Table2 FileName="" DIMEMSION="0" />
+        <Table3 FileName="" DIMEMSION="0" />
+        <Table4 FileName="" DIMEMSION="0" />
+      </Correction>
+      <!--List 1 + List2  size <= 2^20-1-->
+      <List _1stMemorySize="10000" _2ndMemorySize="3000" />
+      <set_delay_mode PolygonDelay="0" Direct3D="0" EdgeLevel="0" MinJumpDelay="0" JumpLengthLimit="0" JumpDelay="10" MarkDelay="10" />
+      <LaserCtrlValue PulseSwitchSet="0" PhaseShift="0" EnableLaserActive="1" LaserOnActiveLevel="0" LaserPortSignalLevel="0" LaserEXT_SignalLevel="1" OuputSYNC_Switch="0" ConstantPulseLength="0" />
+      <LaserParam Mode="0" FirstPulseKiller="0" QSwitchDelay="0" />
+      <StandBy HalfPeriod="0" PulseLength="0" />
+      <LaserPulse HalfPeriod="106" PulseLength="106" />
+    </ScannerItem>
+  </ScannerList>
+</ScannerDevices>

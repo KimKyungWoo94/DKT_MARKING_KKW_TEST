@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<AttenuatorDevices>
+  <!--Device(Attenuator)Class-->
+  <!--LPA     : EzIna.Attenuator.OPTOGAMA.LPA-->
+  <!--CommMethod : SERIAL or SOCKET-->
+  <!--SerialCom-->
+  <!--Parity : None ,Odd ,Even ,Mark ,Space ,-->
+  <!--StopBit : None ,One ,Two ,OnePointFive ,-->
+  <AttenuatorDeviceList>
+   
+  </AttenuatorDeviceList>
+</AttenuatorDevices>

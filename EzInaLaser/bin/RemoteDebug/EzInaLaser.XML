@@ -1,0 +1,113 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>EzInaLaser</name>
+    </assembly>
+    <members>
+        <member name="T:EzIna.Laser.LaserInterface">
+            <summary>
+            Laser    
+            </summary>
+        </member>
+        <member name="P:EzIna.Laser.LaserInterface.strID">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:EzIna.Laser.LaserInterface.strModelName">
+            <summary>
+                
+            </summary>        
+        </member>
+        <member name="P:EzIna.Laser.LaserInterface.DeviceType">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:EzIna.Laser.LaserInterface.IsSystemFault">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:EzIna.Laser.LaserInterface.IsLaserReady">
+            <summary>
+                
+            </summary>
+        </member>
+        <member name="P:EzIna.Laser.LaserInterface.IsConnected">
+            <summary>
+                
+            </summary>
+        </member>
+        <member name="P:EzIna.Laser.LaserInterface.IsCommConnected">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:EzIna.Laser.LaserInterface.IsEmissionEnable">
+            <summary>
+                
+            </summary>
+        </member>
+        <member name="P:EzIna.Laser.LaserInterface.EmissionEnable">
+            <summary>
+                
+            </summary>
+        </member>
+        <member name="P:EzIna.Laser.LaserInterface.IsGateEnable">
+            <summary>
+                
+            </summary>
+        </member>
+        <member name="P:EzIna.Laser.LaserInterface.GateEnable">
+            <summary>
+                
+            </summary>
+        </member>
+        <member name="P:EzIna.Laser.LaserInterface.IsEXT_GateEnable">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:EzIna.Laser.LaserInterface.EXT_GateEnable">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:EzIna.Laser.LaserInterface.IsShutterOpen">
+            <summary>
+                
+            </summary>   
+        </member>
+        <member name="P:EzIna.Laser.LaserInterface.ShutterOpen">
+            <summary>
+                
+            </summary>
+        </member>
+        <member name="P:EzIna.Laser.LaserInterface.RepetitionRate">
+            <summary>
+                
+            </summary>
+        </member>
+        <member name="P:EzIna.Laser.LaserInterface.EPRF">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:EzIna.Laser.LaserInterface.RemainWarmUptime">
+            <summary>
+                
+            </summary>
+        </member>
+        <member name="M:EzIna.Laser.LaserInterface.Reset">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:EzIna.Laser.LaserInterface.DisposeLaser">
+            <summary>
+            
+            </summary>
+        </member>
+    </members>
+</doc>

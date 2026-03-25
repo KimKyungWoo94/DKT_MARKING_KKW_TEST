@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<LightDevices>
+  <!--Device(Light)Classs-->
+  <!--DeaShin     : EzIna.Light.DaeShin.LP205R-->
+  <!--JoySytem    : EzIna.Light.JoySystem.JPSeries-->
+  <!--CommMethod : SERIAL or SOCKET-->
+  <!--SerialCom-->
+  <!--Parity : None ,Odd ,Even ,Mark ,Space ,-->
+  <!--StopBit : None ,One ,Two ,OnePointFive ,-->
+  <LightDeviceList>
+    <LightDeviceItem ID="BARLIGHT" Device="EzIna.Light.JoySystem.JPSeries" ChannelNo="4" CommMethod="SERIAL" PacketDoneTimeout="3000">
+      <SerialCom PortName="COM2" BaudRate="19200" DataBits="8" Parity="None" StopBits="One" ReadTimeout="3000" WriteTimeout="3000" />
+      <SocketCom IPAddr="" PortNum="0" />
+    </LightDeviceItem>
+	
+  </LightDeviceList>
+</LightDevices>

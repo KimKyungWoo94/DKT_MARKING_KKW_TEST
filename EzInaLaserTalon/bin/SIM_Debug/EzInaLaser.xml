@@ -1,0 +1,138 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>EzInaLaser</name>
+    </assembly>
+    <members>
+        <member name="T:EzIna.Laser.TRIG_MODE">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:EzIna.Laser.LaserInterface">
+            <summary>
+            Laser    
+            </summary>		
+        </member>
+        <member name="P:EzIna.Laser.LaserInterface.strID">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:EzIna.Laser.LaserInterface.strModelName">
+            <summary>
+                
+            </summary>        
+        </member>
+        <member name="P:EzIna.Laser.LaserInterface.DeviceType">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:EzIna.Laser.LaserInterface.IsSystemFault">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:EzIna.Laser.LaserInterface.IsLaserReady">
+            <summary>
+                
+            </summary>
+        </member>
+        <member name="P:EzIna.Laser.LaserInterface.IsConnected">
+            <summary>
+                
+            </summary>
+        </member>
+        <member name="P:EzIna.Laser.LaserInterface.IsCommConnected">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:EzIna.Laser.LaserInterface.IsEmissionOn">
+            <summary>
+             = Diode On 
+            </summary>
+        </member>
+        <member name="P:EzIna.Laser.LaserInterface.EmissionOnOff">
+            <summary>
+             = Diode On 
+            </summary>
+        </member>
+        <member name="P:EzIna.Laser.LaserInterface.IsQSW_On">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:EzIna.Laser.LaserInterface.QSW_OnOff">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:EzIna.Laser.LaserInterface.IsGateOpen">
+            <summary>
+                
+            </summary>
+        </member>
+        <member name="P:EzIna.Laser.LaserInterface.GateOpen">
+            <summary>
+                
+            </summary>
+        </member>
+        <member name="P:EzIna.Laser.LaserInterface.TriggerMode">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:EzIna.Laser.LaserInterface.GateMode">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:EzIna.Laser.LaserInterface.IsShutterOpen">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:EzIna.Laser.LaserInterface.ShutterOpen">
+            <summary>
+                
+            </summary>
+        </member>
+        <member name="P:EzIna.Laser.LaserInterface.RepetitionRate">
+            <summary>
+                
+            </summary>
+        </member>
+        <member name="P:EzIna.Laser.LaserInterface.EPRF">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:EzIna.Laser.LaserInterface.DiodeCurrent">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:EzIna.Laser.LaserInterface.SetDiodeCurrent">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:EzIna.Laser.LaserInterface.RemainWarmUptime">
+            <summary>
+                
+            </summary>
+        </member>
+        <member name="M:EzIna.Laser.LaserInterface.Reset">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:EzIna.Laser.LaserInterface.DisposeLaser">
+            <summary>
+            
+            </summary>
+        </member>
+    </members>
+</doc>

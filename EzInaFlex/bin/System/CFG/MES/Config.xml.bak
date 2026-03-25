@@ -1,0 +1,11 @@
+﻿<Configuration>
+  <DATABASE>
+    <D_ADDR01>192.168.40.10</D_ADDR01>
+    <D_ADDR02>192.168.10.5</D_ADDR02>
+    <PORT>3653</PORT>
+    <SID>sc3kor</SID>
+    <USER>pcmif</USER>
+    <PWD>pcmif</PWD>
+    <SERVICE_NAME>sc3kor</SERVICE_NAME>
+  </DATABASE>
+</Configuration>

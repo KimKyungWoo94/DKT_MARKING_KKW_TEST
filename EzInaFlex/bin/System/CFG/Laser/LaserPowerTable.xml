@@ -1,0 +1,76 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<LaserPowerTables>
+  <!--LaserPowerTable : DefaultFrequency = Value-->
+  <!--TableItem : Percent = Value , Power = Value-->
+  <LaserPowerTableList>
+    <LaserPowerTable DefaultFrequency="100000">
+      <TableItem Percent="0.000" Power="000.000" />
+      <TableItem Percent="0.050" Power="000.003" />
+      <TableItem Percent="0.100" Power="000.011" />
+      <TableItem Percent="0.150" Power="000.020" />
+      <TableItem Percent="0.200" Power="000.035" />
+      <TableItem Percent="0.250" Power="000.054" />
+      <TableItem Percent="0.300" Power="000.079" />
+      <TableItem Percent="0.350" Power="000.108" />
+      <TableItem Percent="0.400" Power="000.142" />
+      <TableItem Percent="0.450" Power="000.180" />
+      <TableItem Percent="0.500" Power="000.225" />
+      <TableItem Percent="0.550" Power="000.273" />
+      <TableItem Percent="0.600" Power="000.320" />
+      <TableItem Percent="0.650" Power="000.383" />
+      <TableItem Percent="0.700" Power="000.444" />
+      <TableItem Percent="0.750" Power="000.508" />
+      <TableItem Percent="0.800" Power="000.572" />
+      <TableItem Percent="0.850" Power="000.645" />
+      <TableItem Percent="0.900" Power="000.727" />
+      <TableItem Percent="0.950" Power="000.815" />
+      <TableItem Percent="1.000" Power="000.895" />
+    </LaserPowerTable>
+    <LaserPowerTable DefaultFrequency="200000">
+      <TableItem Percent="0.000" Power="000.000" />
+      <TableItem Percent="0.050" Power="000.012" />
+      <TableItem Percent="0.100" Power="000.027" />
+      <TableItem Percent="0.150" Power="000.051" />
+      <TableItem Percent="0.200" Power="000.084" />
+      <TableItem Percent="0.250" Power="000.128" />
+      <TableItem Percent="0.300" Power="000.183" />
+      <TableItem Percent="0.350" Power="000.245" />
+      <TableItem Percent="0.400" Power="000.319" />
+      <TableItem Percent="0.450" Power="000.403" />
+      <TableItem Percent="0.500" Power="000.497" />
+      <TableItem Percent="0.550" Power="000.606" />
+      <TableItem Percent="0.600" Power="000.725" />
+      <TableItem Percent="0.650" Power="000.845" />
+      <TableItem Percent="0.700" Power="000.980" />
+      <TableItem Percent="0.750" Power="001.125" />
+      <TableItem Percent="0.800" Power="001.277" />
+      <TableItem Percent="0.850" Power="001.430" />
+      <TableItem Percent="0.900" Power="001.590" />
+      <TableItem Percent="0.950" Power="001.760" />
+      <TableItem Percent="1.000" Power="001.935" />
+    </LaserPowerTable>
+    <LaserPowerTable DefaultFrequency="300000">
+      <TableItem Percent="0.000" Power="000.000" />
+      <TableItem Percent="0.050" Power="000.017" />
+      <TableItem Percent="0.100" Power="000.038" />
+      <TableItem Percent="0.150" Power="000.072" />
+      <TableItem Percent="0.200" Power="000.121" />
+      <TableItem Percent="0.250" Power="000.186" />
+      <TableItem Percent="0.300" Power="000.267" />
+      <TableItem Percent="0.350" Power="000.365" />
+      <TableItem Percent="0.400" Power="000.483" />
+      <TableItem Percent="0.450" Power="000.613" />
+      <TableItem Percent="0.500" Power="000.760" />
+      <TableItem Percent="0.550" Power="000.925" />
+      <TableItem Percent="0.600" Power="001.090" />
+      <TableItem Percent="0.650" Power="001.280" />
+      <TableItem Percent="0.700" Power="001.470" />
+      <TableItem Percent="0.750" Power="001.690" />
+      <TableItem Percent="0.800" Power="001.920" />
+      <TableItem Percent="0.850" Power="002.150" />
+      <TableItem Percent="0.900" Power="002.380" />
+      <TableItem Percent="0.950" Power="002.620" />
+      <TableItem Percent="1.000" Power="002.860" />
+    </LaserPowerTable>
+  </LaserPowerTableList>
+</LaserPowerTables>

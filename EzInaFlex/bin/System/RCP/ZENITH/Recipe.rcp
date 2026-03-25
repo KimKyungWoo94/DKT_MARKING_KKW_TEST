@@ -1,0 +1,64 @@
+﻿-------------------------------------------------------------------------------------------
+# | KEY | CATEGORY | CAPTION | VALUE | UNIT | AXIS | ValueType
+-------------------------------------------------------------------------------------------
+COMMON | 101 | M06_TEACHING | Init Proc Area X Pos | 186.107 | mm | 000 | System.Double  
+COMMON | 102 | M06_TEACHING | Init Proc Area Y Pos | 187.168 | mm | 000 | System.Double  
+COMMON | 103 | M06_TEACHING | Init Proc Area Z Pos | 112.162 | mm | 000 | System.Double  
+COMMON | 104 | M06_TEACHING | Product 1st X Pos | 186.107 | mm | 000 | System.Double  
+COMMON | 105 | M06_TEACHING | Product 1st Y Pos | 207.168 | mm | 000 | System.Double  
+COMMON | 106 | M06_TEACHING | Product 1st Z Pos | 112.162 | mm | 000 | System.Double  
+COMMON | 107 | M06_TEACHING | JIG Code X Pos | 186.107 | mm | 000 | System.Double  
+COMMON | 108 | M06_TEACHING | JIG Code Y Pos | 207.168 | mm | 000 | System.Double  
+COMMON | 109 | M06_TEACHING | JIG Code Z Pos | 112.162 | mm | 000 | System.Double  
+COMMON | 150 | M06_PRODUCT_INFOR | Product Row Count | 10 | ea | 000 | System.Double  
+COMMON | 151 | M06_PRODUCT_INFOR | Product Column Count | 4 | ea | 000 | System.Double  
+COMMON | 152 | M06_PRODUCT_INFOR | Product Row Pitch | 20 | mm | 000 | System.Double  
+COMMON | 153 | M06_PRODUCT_INFOR | Product Col Pitch | 71 | mm | 000 | System.Double  
+COMMON | 154 | M06_PRODUCT_INFOR | Product Row Progress Dir | DOWN | none | 000 | EzIna.FA.eRecipeRowProgressDir  
+COMMON | 155 | M06_PRODUCT_INFOR | Product Col Progress Dir | LEFT | none | 000 | EzIna.FA.eRecipeColProgressDir  
+PROCESS | 902 | M07_MARKING_PARAM | Scanner Frequency | 300 | Khz | 000 | System.Double
+PROCESS | 903 | M07_MARKING_PARAM | Scanner Duty Cycle Ratio | 0.5 | percent | 000 | System.Double
+PROCESS | 904 | M07_MARKING_PARAM | Laser Power | 2.9 | W | 000 | System.Double
+PROCESS | 905 | M07_MARKING_PARAM | Scanner 1st Pulse Killer | 0 | usec | 000 | System.Double
+PROCESS | 906 | M07_MARKING_PARAM | Scanner Jump Delay | 1 | usec | 000 | System.Double
+PROCESS | 907 | M07_MARKING_PARAM | Scanner Mark Delay | 1 | usec | 000 | System.Double
+PROCESS | 908 | M07_MARKING_PARAM | Scanner Polygon Delay | 0 | usec | 000 | System.Double
+PROCESS | 909 | M07_MARKING_PARAM | Scanner Laser On Delay | 160 | usec | 000 | System.Double
+PROCESS | 910 | M07_MARKING_PARAM | Scanner Laser Off Delay | 130 | usec | 000 | System.Double
+PROCESS | 911 | M07_MARKING_PARAM | Scanner Jump Speed | 1000 | mmPerSec | 000 | System.Double
+PROCESS | 912 | M07_MARKING_PARAM | Scanner Mark Speed | 1000 | mmPerSec | 000 | System.Double
+PROCESS | 950 | M07_DATA_MATRIX_PARAM | Data Matrix Size | DM20X20 | none | 000 | EzIna.DataMatrix.eDataMatrixSize
+PROCESS | 951 | M07_DATA_MATRIX_PARAM | Data Matrix Shape | Rectangle | none | 000 | EzIna.DataMatrix.CellShape
+PROCESS | 952 | M07_DATA_MATRIX_PARAM | Data Matrix Zero Default | Center | none | 000 | EzIna.DataMatrix.ZeroPosition
+PROCESS | 953 | M07_DATA_MATRIX_PARAM | Data Matrix Rotate | R_0 | none | 000 | EzIna.DataMatrix.Rotate
+PROCESS | 954 | M07_DATA_MATRIX_PARAM | Data Matrix Width | 1.9 | mm | 000 | System.Double
+PROCESS | 955 | M07_DATA_MATRIX_PARAM | Data Matrix Height | 1.9 | mm | 000 | System.Double
+PROCESS | 956 | M07_DATA_MATRIX_PARAM | Data Matrix Hatch Type | LINE | none | 000 | EzIna.DataMatrix.DM_HATCH_TYPE
+PROCESS | 957 | M07_DATA_MATRIX_PARAM | Data Matrix Hatch OutLine Enable | False | none | 000 | System.Boolean
+PROCESS | 958 | M07_DATA_MATRIX_PARAM | Data Matrix Hatch Line Angle | 0 | deg | 000 | System.Double
+PROCESS | 959 | M07_DATA_MATRIX_PARAM | Data Matrix Hatch Line Pitch | 0.03 | mm | 000 | System.Double
+PROCESS | 960 | M07_DATA_MATRIX_PARAM | Data Matrix Hatch Offset | 0 | mm | 000 | System.Double
+PROCESS | 961 | M07_DATA_MATRIX_PARAM | Data Matrix Marking Offset X | -3.3 | mm | 000 | System.Double
+PROCESS | 962 | M07_DATA_MATRIX_PARAM | Data Matrix Marking Offset Y | -0.95 | mm | 000 | System.Double
+VISION | 700 | M08_VISION_PARAM | Match Minimum Scale | 1 | percent | 000 | System.Double  
+VISION | 701 | M08_VISION_PARAM | Match Maximum Scale | 1 | percent | 000 | System.Double  
+VISION | 702 | M08_VISION_PARAM | Match Score | 0.96 | percent | 000 | System.Double  
+VISION | 703 | M08_VISION_PARAM | Match Angle | 1 | deg | 000 | System.Double  
+VISION | 704 | M08_VISION_PARAM | Match Max count | 2 | ea | 000 | System.Double  
+VISION | 705 | M08_VISION_PARAM | Match Correlation Mode | 2 | none | 000 | System.Double  
+VISION | 706 | M08_VISION_PARAM | Match ContrastMode | 0 | idx | 000 | System.Double  
+VISION | 707 | M08_VISION_PARAM | Light Left | 99 | pxl | 000 | System.Int32  
+VISION | 708 | M08_VISION_PARAM | Light Right | 68 | pxl | 000 | System.Int32  
+VISION | 709 | M08_VISION_PARAM | Light Up | 29 | pxl | 000 | System.Int32  
+VISION | 710 | M08_VISION_PARAM | Light Bottom | 43 | pxl | 000 | System.Int32  
+VISION | 711 | M08_VISION_PARAM | Inspection Row Count | 2 | ea | 000 | System.Double  
+VISION | 712 | M08_VISION_PARAM | Inspection Col Count | 1 | ea | 000 | System.Int32  
+VISION | 713 | M08_VISION_PARAM | Match Image IDX | Fiducial_No1 | none | 000 | EzInaVision.GDV.eGoldenImages  
+VISION | 714 | M08_VISION_PARAM | Match Find ROI IDX | ROI_No0 | none | 000 | EzInaVision.GDV.eRoiItems  
+VISION | 715 | M08_VISION_PARAM | Inspection 1st Pixel Center X | 2094 | pxl | 000 | System.Double  
+VISION | 716 | M08_VISION_PARAM | Inspection 1st Pixel Center Y | 879 | pxl | 000 | System.Double  
+VISION | 717 | M08_VISION_PARAM | Inspection Error Range | 6 | mm | 000 | System.Double  
+VISION | 718 | M08_VISION_PARAM | JIG Code ROI X | 1116 | pxl | 000 | System.Int32  
+VISION | 719 | M08_VISION_PARAM | JIG Code ROI Y | 996 | pxl | 000 | System.Int32  
+VISION | 720 | M08_VISION_PARAM | JIG Code ROI Width | 516 | pxl | 000 | System.Int32  
+VISION | 721 | M08_VISION_PARAM | JIG Code ROI Height | 510 | pxl | 000 | System.Int32  

@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Motion>
+  <!--ID         : Input Axis Index-->
+  <!--Device(Motion)Classs-->
+  <!--Aerotech   : EzIna.Motion.CMotionA3200-->
+  <!--AJIN       : EzIan.Motion.CMotionAXT-->
+  <AxisItems>
+    <AxisItem Name="RX" ID="0" Device="EzIna.Motion.CMotionAXT" />
+    <AxisItem Name="Y" ID="1" Device="EzIna.Motion.CMotionAXT" />
+    <AxisItem Name="RZ" ID="2" Device="EzIna.Motion.CMotionAXT" />
+    <AxisItem Name="RAIL_ADJUST" ID="3" Device="EzIna.Motion.CMotionAXT" />
+    <AxisItem Name="PINCH_ROLLER_L_U" ID="4" Device="EzIna.Motion.CMotionAXT" />
+    <AxisItem Name="PINCH_ROLLER_L_U" ID="5" Device="EzIna.Motion.CMotionAXT" />
+    <AxisItem Name="PINCH_ROLLER_R_U" ID="6" Device="EzIna.Motion.CMotionAXT" />
+    <AxisItem Name="PINCH_ROLLER_R_B" ID="7" Device="EzIna.Motion.CMotionAXT" />
+  </AxisItems>
+</Motion>

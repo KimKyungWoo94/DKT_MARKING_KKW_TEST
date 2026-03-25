@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<LaserDevices>
+  <!--Device(LaserClass)-->
+  <!--Talon     : EzIna.Laser.Talon.Talon355-->
+  <!--PicoBlade : EzIna.Laser.Lumentum.PicoBlade2-->
+  <!--IPG 		: EzIna.Laser.IPG.GLPM ( Ver 6) GLPM_V8 -->  
+  <!--CommMethod : SERIAL or SOCKET-->
+  <!--SerialCom-->
+  <!--Parity : None ,Odd ,Even ,Mark ,Space ,-->
+  <!--StopBit : None ,One ,Two ,OnePointFive ,-->
+  <LaserDeviceList>   
+	 <LaserDeviceItem ID="2" Device="EzIna.Laser.IPG.GLPM" CommMethod="SERIAL" PacketDoneTimeout="30000">
+      <SerialCom PortName="COM1" BaudRate="57200" DataBits="8" Parity="None" StopBits="One" ReadTimeout="3000" WriteTimeout="3000" />
+      <SocketCom IPAddr="127.0.0.1" PortNum="8000" />
+    </LaserDeviceItem>
+  </LaserDeviceList>
+</LaserDevices>
