@@ -785,6 +785,9 @@
   <ItemGroup>
     <Content Include="ezINA_FLEX-2.PNG.ico" />
     <Content Include="Helper.txt" />
+        <Content Include="Fonts\OCR-B.ttf"> <!-- KKW Font Marking 폰트 추가 -->
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="obj\Debug\EzInaFlex.csproj.FileListAbsolute.txt" />
     <Content Include="obj\Debug\TempPE\Properties.Resources.Designer.cs.dll" />
     <None Include="Resources\Log.png" />

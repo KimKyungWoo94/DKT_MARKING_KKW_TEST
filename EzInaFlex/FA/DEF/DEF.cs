@@ -361,6 +361,7 @@ namespace EzIna.FA
             M06_PRODUCT_INFOR,
             M07_MARKING_PARAM,
             M07_DATA_MATRIX_PARAM,
+            M07_FONT_MARKING_PARAM, // KKW Font Marking Parameter
             M08_VISION_PARAM,
             M08_VISION_ROI,
             /*
