@@ -116,11 +116,29 @@ namespace EzIna
                         }
                         else if (m_strMarkingInfo_Type.ToUpper().Equals("AV"))
                         {
+                            m_bTargetDMCstringExist = false;// KKW 반드시 추가(AV 타입은 Target DMC string 없음)
                             m_bGuideBarCodeMarking = true;
                             m_strGuideBarCode = strMarkingData[2].Trim();
                             m_strMarkingInfo_MarkingData = strMarkingData[3].Trim();
-                            iNumStartIDX = 4;
-                            iNumEndIDX = strMarkingData.Length - 2;
+                            ///////////////////////////////////////////////////////////////////////////
+                            //기존 코드(BV 타입과 동일하다면 해당 부분 주석 처리 해제 후 아래 코드 주석 처리 필요)
+                            // iNumStartIDX = 4;
+                            // iNumEndIDX = strMarkingData.Length - 2;
+                            ///////////////////////////////////////////////////////////////////////////
+
+                            ///////////////////////////////////////////////////////////////////////////
+                            // KKW V 타입과 동일하게 StartNo/EndNo 파싱(MES 업체로부터 확인 완료)
+                            m_iMarkingInfo_StartNoLength = strMarkingData[4].Trim().Length;
+                            m_iMarkingInfo_EndNoLength = strMarkingData[5].Trim().Length;
+                            m_bMarkingInfo_ZeroPadSame = strMarkingData[4].Trim().Length == strMarkingData[5].Trim().Length;
+                            m_bMarkingInfo_ZeroPadLengthOK = strMarkingData[4].Trim().Length > 0 && strMarkingData[5].Trim().Length > 0;
+                            m_iMarkingInfo_ZeroPad = strMarkingData[4].Trim().Length;
+
+                            int.TryParse(strMarkingData[4].Trim(), out m_iMarkingInfo_StartNo);
+                            int.TryParse(strMarkingData[5].Trim(), out m_iMarkingInfo_EndNo);
+                            int.TryParse(strMarkingData[6].Trim(), out m_iMarkingInfo_Cipher);
+                            return true;
+                            ///////////////////////////////////////////////////////////////////////////
                         }
                         if (iNumEndIDX - iNumStartIDX > 0)
                         {
