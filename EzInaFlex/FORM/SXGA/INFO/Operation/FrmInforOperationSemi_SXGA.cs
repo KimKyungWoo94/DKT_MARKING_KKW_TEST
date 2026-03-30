@@ -1321,6 +1321,256 @@ namespace EzIna
             }
         }
 
+        // =====================================================================
+        // Font Marking Preview
+        // 실제 설비 없이 GraphicsPath 렌더링 결과를 시각적으로 확인
+        // =====================================================================
+        private void btn_FontMarkingPreview_Click(object sender, EventArgs e)
+        {
+            string input = ShowTextInputDialog(
+                "Font Marking Preview",
+                "미리볼 문자를 입력하세요 (최대 3글자):",
+                "F5C");
+
+            if (string.IsNullOrEmpty(input))
+                return;
+
+            if (input.Length > 3)
+                input = input.Substring(0, 3);
+
+            ShowFontMarkingPreviewDialog(input);
+        }
+
+        private void ShowFontMarkingPreviewDialog(string text)
+        {
+            double matWidth = RCP_Modify.PROCESS_DATA_MAT_WIDTH.GetValue<double>();
+            double matHeight = RCP_Modify.PROCESS_DATA_MAT_HEIGHT.GetValue<double>();
+            double textWidth = RCP_Modify.PROCESS_FONT_TEXT_WIDTH_MM.GetValue<double>();
+            double gap = RCP_Modify.PROCESS_FONT_GAP_FROM_MATRIX_MM.GetValue<double>();
+            double charSpacing = RCP_Modify.PROCESS_FONT_CHAR_SPACING_MM.GetValue<double>();
+
+            int charCount = text.Length > 0 ? text.Length : 1;
+            double charWidth = textWidth > 0 ? textWidth : 1.0;
+            double charHeight = charCount > 1
+                ? (matHeight - charSpacing * (charCount - 1)) / charCount
+                : matHeight;
+            if (charHeight <= 0) charHeight = 1.0;
+
+            double textCenterX = matWidth / 2.0 + gap + textWidth / 2.0;
+
+            using (GraphicsPath textPath = CreateVerticalTextGraphicsPath(
+                text,
+                charWidthMM: charWidth,
+                charHeightMM: charHeight,
+                charSpacingMM: charSpacing,
+                fontName: "OCR-B",
+                bold: false,
+                offsetXMM: textCenterX))
+            {
+                if (textPath == null || textPath.PointCount == 0)
+                {
+                    MsgBox.Error("Text path 생성 실패 (폰트 또는 파라미터 확인 필요).");
+                    return;
+                }
+
+                using (Form dlg = new Form())
+                {
+                    dlg.Text = string.Format("Font Marking Preview  ─  [{0}]", text);
+                    dlg.Width = 820;
+                    dlg.Height = 680;
+                    dlg.FormBorderStyle = FormBorderStyle.FixedDialog;
+                    dlg.StartPosition = FormStartPosition.CenterParent;
+                    dlg.MaximizeBox = false;
+                    dlg.MinimizeBox = false;
+                    dlg.BackColor = Color.FromArgb(245, 247, 250);
+
+                    // ── 파라미터 정보 라벨 ──
+                    Label lblInfo = new Label
+                    {
+                        Text = string.Format(
+                            "matW={0:F2}mm   matH={1:F2}mm   textW={2:F2}mm   gap={3:F2}mm   " +
+                            "charSpacing={4:F2}mm   →   charW={5:F2}mm   charH={6:F2}mm   textCenterX={7:F2}mm",
+                            matWidth, matHeight, textWidth, gap, charSpacing,
+                            charWidth, charHeight, textCenterX),
+                        Left = 10,
+                        Top = 10,
+                        Width = 790,
+                        Height = 20,
+                        Font = new Font("Consolas", 8.5f),
+                        ForeColor = Color.DimGray,
+                        AutoSize = false
+                    };
+
+                    Label lblNote = new Label
+                    {
+                        Text = "● 파란 점선 = DataMatrix 영역  ● 빨간 외곽선 = 레이저 각인 경로  ● 그리드 간격 = 1 mm  ● 스캐너 좌표계 (중심 = DataMatrix 중심)",
+                        Left = 10,
+                        Top = 32,
+                        Width = 790,
+                        Height = 16,
+                        Font = new Font("Malgun Gothic", 7.5f),
+                        ForeColor = Color.SlateGray,
+                        AutoSize = false
+                    };
+
+                    // ── 캔버스 패널 ──
+                    Panel pnlCanvas = new Panel
+                    {
+                        Left = 10,
+                        Top = 56,
+                        Width = 790,
+                        Height = 574,
+                        BackColor = Color.White,
+                        BorderStyle = BorderStyle.FixedSingle
+                    };
+
+                    dlg.Controls.Add(lblInfo);
+                    dlg.Controls.Add(lblNote);
+                    dlg.Controls.Add(pnlCanvas);
+
+                    // 캡처한 값들을 람다에서 사용하기 위해 로컬 변수로 고정
+                    double _matW = matWidth, _matH = matHeight;
+                    double _textCX = textCenterX, _textW = textWidth;
+                    GraphicsPath _path = (GraphicsPath)textPath.Clone();
+
+                    pnlCanvas.Paint += (s, pe) =>
+                    {
+                        Graphics g = pe.Graphics;
+                        g.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
+                        g.TextRenderingHint = System.Drawing.Text.TextRenderingHint.AntiAlias;
+
+                        // ── 월드 좌표 범위 계산 (스캐너 mm, Y+: 위) ──
+                        const double kMargin = 3.0;
+                        double wLeft = -(_matW / 2.0) - kMargin;
+                        double wRight = _textCX + _textW / 2.0 + kMargin;
+                        double wTop = (_matH / 2.0) + kMargin;   // 화면 상단 = 스캐너 Y+
+                        double wBottom = -(_matH / 2.0) - kMargin;   // 화면 하단 = 스캐너 Y-
+
+                        float cW = pnlCanvas.Width - 2;
+                        float cH = pnlCanvas.Height - 2;
+
+                        float scaleX = cW / (float)(wRight - wLeft);
+                        float scaleY = cH / (float)(wTop - wBottom);
+                        float scale = Math.Min(scaleX, scaleY) * 0.92f;
+
+                        // 월드 중심 → 캔버스 중심
+                        float cx = cW / 2f;
+                        float cy = cH / 2f;
+                        double worldCX = (wLeft + wRight) / 2.0;
+                        double worldCY = (wTop + wBottom) / 2.0;
+
+                        Func<double, float> toSX = wx => cx + (float)(wx - worldCX) * scale;
+                        // 스캐너 Y+: 위 → 화면 Y-: 위이므로 부호 반전
+                        Func<double, float> toSY = wy => cy - (float)(wy - worldCY) * scale;
+
+                        // ── 1mm 그리드 ──
+                        using (Pen gridPen = new Pen(Color.FromArgb(220, 220, 220), 1f))
+                        {
+                            gridPen.DashStyle = System.Drawing.Drawing2D.DashStyle.Dot;
+                            for (double x = Math.Floor(wLeft); x <= wRight + 0.5; x += 1.0)
+                            {
+                                float sx = toSX(x);
+                                g.DrawLine(gridPen, sx, 0, sx, cH);
+                            }
+                            for (double y = Math.Floor(wBottom); y <= wTop + 0.5; y += 1.0)
+                            {
+                                float sy = toSY(y);
+                                g.DrawLine(gridPen, 0, sy, cW, sy);
+                            }
+                        }
+
+                        // ── 원점 축 ──
+                        using (Pen axisPen = new Pen(Color.FromArgb(180, 180, 180), 1f))
+                        {
+                            g.DrawLine(axisPen, toSX(wLeft), toSY(0), toSX(wRight), toSY(0));
+                            g.DrawLine(axisPen, toSX(0), toSY(wTop), toSX(0), toSY(wBottom));
+                        }
+
+                        // ── DataMatrix 사각형 ──
+                        using (Pen matPen = new Pen(Color.RoyalBlue, 1.5f))
+                        {
+                            matPen.DashStyle = System.Drawing.Drawing2D.DashStyle.Dash;
+                            float rx = toSX(-_matW / 2.0);
+                            float ry = toSY(_matH / 2.0);   // 스캐너 Y+ 위쪽 = 화면 위쪽 (작은 Y)
+                            float rw = (float)(_matW * scale);
+                            float rh = (float)(_matH * scale);
+                            g.DrawRectangle(matPen, rx, ry, rw, rh);
+                            g.DrawString("DataMatrix",
+                                new Font("Arial", 7f), Brushes.RoyalBlue, rx + 2, ry + 2);
+                        }
+
+                        // ── 텍스트 경로 렌더링 ──
+                        // CreateVerticalTextGraphicsPath 는 screen-Y(아래+) 관례로 경로를 생성.
+                        // MakeListFromGraphicsPath(a_YDirReverse=true) 에서 Y를 반전.
+                        // 결과적으로 각인 위치는 path 좌표와 Y가 같은 방향.
+                        // 미리보기에서는:
+                        //   screen_x = toSX(path_x)
+                        //   screen_y = toSY(0) + path_y * scale  (Y 반전 없이 그대로)
+                        using (GraphicsPath drawPath = (GraphicsPath)_path.Clone())
+                        {
+                            float ox = toSX(0);
+                            float oy = toSY(0);
+                            // [path_x * scale + ox, path_y * scale + oy]
+                            // Matrix(m11,m12,m21,m22,dx,dy): x'=m11*x+m21*y+dx, y'=m12*x+m22*y+dy
+                            using (Matrix m = new Matrix(scale, 0, 0, scale, ox, oy))
+                                drawPath.Transform(m);
+
+                            using (Pen textPen = new Pen(Color.Red, 1.5f))
+                                g.DrawPath(textPen, drawPath);
+                        }
+
+                        // ── 눈금 라벨 ──
+                        using (Font tickFont = new Font("Arial", 7f))
+                        using (SolidBrush tickBrush = new SolidBrush(Color.DimGray))
+                        {
+                            for (double x = Math.Ceiling(wLeft); x <= wRight; x += 1.0)
+                            {
+                                if (Math.Abs(x) < 0.1) continue;
+                                g.DrawString(x.ToString("0"), tickFont, tickBrush,
+                                    toSX(x) - 7, toSY(0) + 3);
+                            }
+                            for (double y = Math.Ceiling(wBottom); y <= wTop; y += 1.0)
+                            {
+                                if (Math.Abs(y) < 0.1) continue;
+                                g.DrawString(y.ToString("0"), tickFont, tickBrush,
+                                    toSX(0) + 3, toSY(y) - 8);
+                            }
+                        }
+
+                        // ── 치수 표시: DataMatrix 폭/높이 ──
+                        using (Pen dimPen = new Pen(Color.CornflowerBlue, 1f))
+                        using (Font dimFont = new Font("Consolas", 7.5f))
+                        using (SolidBrush dimBrush = new SolidBrush(Color.CornflowerBlue))
+                        {
+                            // 가로 치수
+                            float y0 = toSY(-_matH / 2.0) + 12;
+                            float x1 = toSX(-_matW / 2.0);
+                            float x2 = toSX(_matW / 2.0);
+                            g.DrawLine(dimPen, x1, y0, x2, y0);
+                            string wLabel = string.Format("{0:F2}mm", _matW);
+                            g.DrawString(wLabel, dimFont, dimBrush,
+                                (x1 + x2) / 2f - g.MeasureString(wLabel, dimFont).Width / 2f, y0 + 1);
+
+                            // 세로 치수
+                            float x0 = toSX(-_matW / 2.0) - 14;
+                            float yT = toSY(_matH / 2.0);
+                            float yB = toSY(-_matH / 2.0);
+                            g.DrawLine(dimPen, x0, yT, x0, yB);
+                            string hLabel = string.Format("{0:F2}mm", _matH);
+                            SizeF hs = g.MeasureString(hLabel, dimFont);
+                            g.TranslateTransform(x0 - 1, (yT + yB) / 2f + hs.Width / 2f);
+                            g.RotateTransform(-90);
+                            g.DrawString(hLabel, dimFont, dimBrush, 0, 0);
+                            g.ResetTransform();
+                        }
+                    };
+
+                    dlg.FormClosed += (s, fe) => _path.Dispose();
+                    dlg.ShowDialog(this);
+                }
+            }
+        }
+
         /// <summary>
         /// 간단한 텍스트 입력 다이얼로그
         /// 취소하면 null 반환
