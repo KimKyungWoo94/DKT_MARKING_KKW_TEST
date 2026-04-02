@@ -695,6 +695,7 @@ namespace EzIna
                         sb.AppendLine($"    Type       : {startInfo.strMarkkingInfo_Type}");
                         sb.AppendLine($"    ModelName  : {startInfo.strMarkingInfo_ModelName}");
                         sb.AppendLine($"    MarkingData: {startInfo.strMarkingInfo_MarkingData}");
+                        sb.AppendLine($"    GuideBarData: {startInfo.strGuideBarCode}");
                         sb.AppendLine($"    Cipher     : {startInfo.iMarkingInfo_Cipher}");
                         sb.AppendLine($"    ZeroPad    : {startInfo.iMarkingInfo_ZeroPad}");
                         if (startInfo.bTargetDMCstringExist)
@@ -714,12 +715,57 @@ namespace EzIna
                         sb.AppendLine($"    CommMSG: {startInfo?.strCommMSG}");
                     }
 
-                    // 4. SET_MARKING_END
-                    sb.AppendLine($"[4] SET_MARKING_END (StartNo=1, EndNo=1)");
+                    // 4. SendMarkingReportForUnit TEST
+                    sb.AppendLine($"[4] SendMarkingReportForUnit (유닛 1개 NONE 결과 전송 테스트)");
+                    RunningDataItem[] testItems = new RunningDataItem[1];
+                    testItems[0] = new RunningDataItem();
+                    if (!startInfo.bTargetDMCstringExist)
+                    {
+                        // StartNo 기반으로 IDX 세팅 (ZeroPad 적용)
+                        testItems[0].iMarkingIDX = startInfo.iMarkingInfo_StartNo;
+                        testItems[0].iZeroPadCount = startInfo.iMarkingInfo_ZeroPad;
+                        testItems[0].CraeteMarkingIDX_TO_String();
+                    }
+                    else
+                    {
+                        // NumList 기반이면 첫 번째 항목 사용
+                        testItems[0].strMarkingIDX = startInfo.pMarkingTargetNumList.Count > 0
+                            ? startInfo.pMarkingTargetNumList[0]
+                            : "TEST";
+                    }
+                    // pDataMatrix = null 로 두면 → strMarkingResults = "NONE" 으로 전송됨
+                    DKT_MES_MarkingReportInfo reportInfo;
+                    bool bReport = SendMarkingReportForUnit(
+                        a_strLotCode,
+                        a_strJIGCode,
+                        startInfo.strMarkingInfo_MarkingData,
+                        testItems,
+                        out reportInfo);
+                    sb.AppendLine(bReport
+                        ? $"    → OK / MSG: {reportInfo?.strCommMSG}"
+                        : $"    → 실패: {LastExceptionString}");
+                    sb.AppendLine($"    SN: {testItems[0].strMarkingIDX}, Result: NONE");
+
+                    // 5. SET_MARKING_END  ← 번호만 4→5로 변경
+                    sb.AppendLine($"[5] SET_MARKING_END (StartNo=1, EndNo=1)");
                     DKT_MES_MarkingEndInfo endInfo;
-                    // bool bEnd = SendMarkingEnd(a_strLotCode, a_strJIGCode, "V", "", 1, 11, null, out endInfo);
-                    bool bEnd = SendMarkingEnd("C-6260001", "VSSEINS 2601 A 0003-B8 SUB V2.0 ET 40CH", "V", "P01100070ADUC8BB0AM991010", 701, 720, null, out endInfo);
+                    bool bEnd = SendMarkingEnd(
+                        a_strLotCode,                              // "P-63A0001"
+                        a_strJIGCode,                              // "VSSA OP 2603 A 0003-B8 SUB V2.0 DMC MARKING"
+                        startInfo.strMarkkingInfo_Type,            // "AV"
+                        startInfo.strMarkingInfo_MarkingData,      // "P01100253ABVSH60310I"
+                        startInfo.iMarkingInfo_StartNo,            // 30
+                        startInfo.iMarkingInfo_EndNo,              // 70
+                        startInfo.bTargetDMCstringExist ? startInfo.pMarkingTargetNumList : null,
+                        out endInfo);
                     sb.AppendLine(bEnd ? $"    → OK / MSG: {endInfo?.strCommMSG}" : $"    → 실패: {LastExceptionString}");
+
+                    // 4. SET_MARKING_END 기존 TEST
+                    // sb.AppendLine($"[4] SET_MARKING_END (StartNo=1, EndNo=1)");
+                    // DKT_MES_MarkingEndInfo endInfo;
+                    // // bool bEnd = SendMarkingEnd(a_strLotCode, a_strJIGCode, "V", "", 1, 11, null, out endInfo);
+                    // bool bEnd = SendMarkingEnd("C-6260001", "VSSEINS 2601 A 0003-B8 SUB V2.0 ET 40CH", "V", "P01100070ADUC8BB0AM991010", 701, 720, null, out endInfo);
+                    // sb.AppendLine(bEnd ? $"    → OK / MSG: {endInfo?.strCommMSG}" : $"    → 실패: {LastExceptionString}");
                 }
                 else
                 {

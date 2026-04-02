@@ -112,7 +112,8 @@ namespace EzIna
             // 2026.03.12 KKW DB 프로시저 TEST 추가
             System.Threading.Tasks.Task.Run(() =>
             {
-                string result = FA.MGR.MESMgr.RunMESConnectionTest("SPS00064NI15830", "VPOACAR21090001-SDI_R0 REV3.0");
+                // string result = FA.MGR.MESMgr.RunMESConnectionTest("SPS00064NI15830", "VPOACAR21090001-SDI_R0 REV3.0");
+                string result = FA.MGR.MESMgr.RunMESConnectionTest("P-63A0001", "VSSA OP 2603 A 0003-B8 SUB V2.0 DMC MARKING");
                 this.InvokeIfNeeded(() => MessageBox.Show(result, "MES Connection Test Result",
                     MessageBoxButtons.OK, MessageBoxIcon.Information));
             });

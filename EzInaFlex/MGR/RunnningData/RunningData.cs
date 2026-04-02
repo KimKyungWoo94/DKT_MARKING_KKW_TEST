@@ -1,4 +1,4 @@
-﻿using EzIna.FA;
+using EzIna.FA;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -54,13 +54,13 @@ namespace EzIna
         {
             get { return m_pMES_MarkingStartInfo != null ? m_pMES_MarkingStartInfo.bGuideBarCodeMarking : false; }
         }
-        public bool GetTargetDMCstring(int iIDX,out string a_outString)
+        public bool GetTargetDMCstring(int iIDX, out string a_outString)
         {
-            a_outString="";
-            if (bTargetDMCstringExist&& m_pMES_MarkingStartInfo.pMarkingTargetNumList.Count>0&&
-                iIDX >-1 && iIDX < m_pMES_MarkingStartInfo.pMarkingTargetNumList.Count)
+            a_outString = "";
+            if (bTargetDMCstringExist && m_pMES_MarkingStartInfo.pMarkingTargetNumList.Count > 0 &&
+                iIDX > -1 && iIDX < m_pMES_MarkingStartInfo.pMarkingTargetNumList.Count)
             {
-                a_outString=m_pMES_MarkingStartInfo.pMarkingTargetNumList[iIDX];
+                a_outString = m_pMES_MarkingStartInfo.pMarkingTargetNumList[iIDX];
                 return true;
             }
             return false;
@@ -301,6 +301,7 @@ namespace EzIna
         {
             m_pDatalist = new List<RunningDataItem>();
             m_pDrawMouseOver = new List<bool>();
+            m_pGuideBarData = new RunningDataItem(); // KKW Guide bar Modify
             if (m_pDrawStringFont == null)
                 m_pDrawStringFont = new Font("Century Gothic", 11, FontStyle.Regular, GraphicsUnit.Pixel);
 
@@ -311,9 +312,8 @@ namespace EzIna
         public RunningData Clone()
         {
             RunningData pRet = new RunningData();
-            m_pGuideBarData=new RunningDataItem();
             pRet.m_pDatalist = this.m_pDatalist.ConvertAll(o => o.Clone());
-            pRet.m_pGuideBarData=this.m_pGuideBarData.Clone();
+            pRet.m_pGuideBarData = this.m_pGuideBarData != null ? this.m_pGuideBarData.Clone() : new RunningDataItem(); // KKW Guide bar Modify
             pRet.m_pDrawMouseOver = this.m_pDrawMouseOver.ConvertAll(o => o);
             pRet.m_strJIGCode = this.m_strJIGCode;
             pRet.m_strLotCardCode = this.m_strLotCardCode;
@@ -339,7 +339,7 @@ namespace EzIna
         }
         public RunningDataItem pGuideBarDMC
         {
-            get { return m_pGuideBarData;}
+            get { return m_pGuideBarData; }
         }
         public void AddData(RunningDataItem a_Value)
         {

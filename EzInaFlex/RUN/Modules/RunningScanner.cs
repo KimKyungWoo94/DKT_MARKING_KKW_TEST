@@ -1357,6 +1357,10 @@ namespace EzIna
                             if (!FA.VISION.FINE_CAM.Grab())
                                 break;
 #endif
+                            // KKW Guide bar Modify
+                            m_stRun.stwatchForSub.SetDelay = 20;
+                            FA.LOG.SEQ(string.Format("Scanner_{0}", SubSeq_RecipeProcessStep), "GUIDE BAR Insp Grab Start");
+                            NextSubStep();
                         }
                         break;
                     case eMODULE_SEQ_PROC.GUIDE_CODE_INSP_ACTION:
