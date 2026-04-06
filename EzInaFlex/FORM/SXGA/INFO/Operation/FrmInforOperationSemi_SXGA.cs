@@ -1358,6 +1358,31 @@ namespace EzIna
 
             double textCenterX = matWidth / 2.0 + gap + textWidth / 2.0;
 
+            // ── DataMatrix 셀 패턴 경로 생성 ──
+            System.Drawing.Drawing2D.GraphicsPath dmCellPath = null;
+            try
+            {
+                if (FA.MGR.DMGenertorMgr != null)
+                {
+                    EzIna.DataMatrix.DMGenerater.Instance.DatamatrixSize =
+                        RCP_Modify.PROCESS_DATA_MAT_SIZE.GetValue<EzIna.DataMatrix.eDataMatrixSize>();
+                    EzIna.DataMatrix.DM dm = FA.MGR.DMGenertorMgr.CreateDataMatrix(text);
+                    if (dm != null)
+                    {
+                        dm.CreateCodrdinates(
+                            PointF.Empty,
+                            new SizeF((float)matWidth, (float)matHeight),
+                            EzIna.DataMatrix.ZeroPosition.Center,
+                            EzIna.DataMatrix.Rotate.R_0);
+                        dmCellPath = dm.Get2dCodeGrapchicsPath();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                FA.LOG.InfoJIG("ShowFontMarkingPreviewDialog: DM path 생성 실패 [{0}]", ex.Message);
+            }
+
             using (GraphicsPath textPath = CreateVerticalTextGraphicsPath(
                 text,
                 charWidthMM: charWidth,
@@ -1403,7 +1428,7 @@ namespace EzIna
 
                     Label lblNote = new Label
                     {
-                        Text = "● 파란 점선 = DataMatrix 영역  ● 빨간 외곽선 = 레이저 각인 경로  ● 그리드 간격 = 1 mm  ● 스캐너 좌표계 (중심 = DataMatrix 중심)",
+                        Text = "● 파란 채움 = DataMatrix 셀  ● 파란 점선 = DataMatrix 영역  ● 빨간 외곽선 = 폰트 각인 경로  ● 그리드 1 mm  ● 스캐너 좌표계 (중심 = DataMatrix 중심)",
                         Left = 10,
                         Top = 32,
                         Width = 790,
@@ -1432,6 +1457,7 @@ namespace EzIna
                     double _matW = matWidth, _matH = matHeight;
                     double _textCX = textCenterX, _textW = textWidth;
                     GraphicsPath _path = (GraphicsPath)textPath.Clone();
+                    GraphicsPath _dmPath = dmCellPath != null ? (GraphicsPath)dmCellPath.Clone() : null;
 
                     pnlCanvas.Paint += (s, pe) =>
                     {
@@ -1497,6 +1523,21 @@ namespace EzIna
                             g.DrawRectangle(matPen, rx, ry, rw, rh);
                             g.DrawString("DataMatrix",
                                 new Font("Arial", 7f), Brushes.RoyalBlue, rx + 2, ry + 2);
+                        }
+
+                        // ── DataMatrix 셀 패턴 렌더링 ──
+                        // DM path는 스캐너 Y-up 좌표계 → Y 부호를 반전하여 화면에 매핑
+                        if (_dmPath != null && _dmPath.PointCount > 0)
+                        {
+                            using (GraphicsPath drawDM = (GraphicsPath)_dmPath.Clone())
+                            {
+                                float ox = toSX(0);
+                                float oy = toSY(0);
+                                using (Matrix m = new Matrix(scale, 0, 0, -scale, ox, oy))
+                                    drawDM.Transform(m);
+                                using (SolidBrush dmFill = new SolidBrush(Color.FromArgb(200, 30, 90, 210)))
+                                    g.FillPath(dmFill, drawDM);
+                            }
                         }
 
                         // ── 텍스트 경로 렌더링 ──
@@ -1565,10 +1606,15 @@ namespace EzIna
                         }
                     };
 
-                    dlg.FormClosed += (s, fe) => _path.Dispose();
+                    dlg.FormClosed += (s, fe) =>
+                    {
+                        _path.Dispose();
+                        _dmPath?.Dispose();
+                    };
                     dlg.ShowDialog(this);
                 }
             }
+            dmCellPath?.Dispose();
         }
 
         /// <summary>
