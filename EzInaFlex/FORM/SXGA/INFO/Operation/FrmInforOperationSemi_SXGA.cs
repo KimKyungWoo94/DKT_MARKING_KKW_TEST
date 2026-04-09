@@ -1358,6 +1358,12 @@ namespace EzIna
 
             double textCenterX = matWidth / 2.0 + gap + textWidth / 2.0;
 
+            // ── 자동 가로 맞춤(Fit Width) 파라미터 ──
+            // 세로에서 자동 계산된 charHeight와 동일한 값으로 charWidth를 맞춤
+            // (세로: charHeight = (matH - spacing*(n-1))/n 과 동일한 원리)
+            double fitCharWidth = charHeight;
+            double fitTextCenterX = matWidth / 2.0 + gap + fitCharWidth / 2.0;
+
             // ── DataMatrix 셀 패턴 경로 생성 ──
             System.Drawing.Drawing2D.GraphicsPath dmCellPath = null;
             try
@@ -1391,6 +1397,14 @@ namespace EzIna
                 fontName: "OCR-B",
                 bold: false,
                 offsetXMM: textCenterX))
+            using (GraphicsPath fitTextPath = CreateVerticalTextGraphicsPath(
+                text,
+                charWidthMM: fitCharWidth,   // charHeight 와 동일한 폭으로 글자 재생성
+                charHeightMM: charHeight,
+                charSpacingMM: charSpacing,
+                fontName: "OCR-B",
+                bold: false,
+                offsetXMM: fitTextCenterX))
             {
                 if (textPath == null || textPath.PointCount == 0)
                 {
@@ -1402,7 +1416,7 @@ namespace EzIna
                 {
                     dlg.Text = string.Format("Font Marking Preview  ─  [{0}]", text);
                     dlg.Width = 820;
-                    dlg.Height = 680;
+                    dlg.Height = 798;
                     dlg.FormBorderStyle = FormBorderStyle.FixedDialog;
                     dlg.StartPosition = FormStartPosition.CenterParent;
                     dlg.MaximizeBox = false;
@@ -1413,10 +1427,12 @@ namespace EzIna
                     Label lblInfo = new Label
                     {
                         Text = string.Format(
-                            "matW={0:F2}mm   matH={1:F2}mm   textW={2:F2}mm   gap={3:F2}mm   " +
-                            "charSpacing={4:F2}mm   →   charW={5:F2}mm   charH={6:F2}mm   textCenterX={7:F2}mm",
+                            "matW={0:F2}   matH={1:F2}   textW={2:F2}   gap={3:F2}   spacing={4:F2}   " +
+                            "→  [레시피] charW={5:F2}  charH={6:F2}  textCX={7:F2}   " +
+                            "[Fit] charW={8:F2}(=charH)  textCX={9:F2}   (mm)",
                             matWidth, matHeight, textWidth, gap, charSpacing,
-                            charWidth, charHeight, textCenterX),
+                            charWidth, charHeight, textCenterX,
+                            fitCharWidth, fitTextCenterX),
                         Left = 10,
                         Top = 10,
                         Width = 790,
@@ -1428,7 +1444,7 @@ namespace EzIna
 
                     Label lblNote = new Label
                     {
-                        Text = "● 파란 채움 = DataMatrix 셀  ● 파란 점선 = DataMatrix 영역  ● 빨간 외곽선 = 폰트 각인 경로  ● 그리드 1 mm  ● 스캐너 좌표계 (중심 = DataMatrix 중심)",
+                        Text = "● 녹색 배경 = PCB 실크 영역  ● 파란 채움 = DM 셀  ● 파란 점선 = DM 영역  ● 빨간 실선 = 폰트 각인 경로  ● 빨간 점선 = 경로 외곽 범위  ● 그리드 1 mm",
                         Left = 10,
                         Top = 32,
                         Width = 790,
@@ -1449,14 +1465,211 @@ namespace EzIna
                         BorderStyle = BorderStyle.FixedSingle
                     };
 
+                    // ── 가로 폭 모드 선택 ──
+                    bool[] fitWidthFlag = { false };
+
+                    RadioButton rbRecipeWidth = new RadioButton
+                    {
+                        Text = "레시피 설정 폭 (Recipe Width)",
+                        Left = 10,
+                        Top = 638,
+                        Width = 220,
+                        Height = 22,
+                        Font = new Font("Malgun Gothic", 8.5f),
+                        Checked = true
+                    };
+                    RadioButton rbFitWidth = new RadioButton
+                    {
+                        Text = "자동 가로 맞춤 (Fit Width)",
+                        Left = 240,
+                        Top = 638,
+                        Width = 200,
+                        Height = 22,
+                        Font = new Font("Malgun Gothic", 8.5f),
+                        Checked = false
+                    };
+                    Label lblWidthMode = new Label
+                    {
+                        Text = "가로 폭 모드 :",
+                        Left = 10,
+                        Top = 640,
+                        Width = 0,
+                        Height = 0,
+                        AutoSize = true,
+                        Font = new Font("Malgun Gothic", 8.5f, FontStyle.Bold),
+                        ForeColor = Color.DimGray
+                    };
+
+                    rbFitWidth.CheckedChanged += (s, e) =>
+                    {
+                        fitWidthFlag[0] = rbFitWidth.Checked;
+                        pnlCanvas.Invalidate();
+                    };
+
+                    // 모드 설명 라벨
+                    Label lblModeDesc = new Label
+                    {
+                        Text = string.Format(
+                            "레시피 설정 폭 : charW={0:F3}mm (레시피 textWidth 그대로)  |  " +
+                            "자동 가로 맞춤 : charW={1:F3}mm (= charH, 세로와 동일 자동 계산값으로 가로 폭 적용)",
+                            charWidth, fitCharWidth),
+                        Left = 10,
+                        Top = 664,
+                        Width = 790,
+                        Height = 16,
+                        Font = new Font("Malgun Gothic", 7.5f),
+                        ForeColor = Color.SlateGray,
+                        AutoSize = false
+                    };
+
+                    // 모드 선택 앞 레이블 배치 후 RadioButton 위치 조정
+                    lblWidthMode.Left = 10;
+                    rbRecipeWidth.Left = lblWidthMode.Left + 90;
+                    rbFitWidth.Left = rbRecipeWidth.Left + 220;
+
+                    // ── PCB 영역 입력 ──
+                    double[] pcbSizeFlag = { 0.0, 0.0 }; // [W, H], 0 이면 미표시
+
+                    Label lblPcbTitle = new Label
+                    {
+                        Text = "PCB 영역 :",
+                        Left = 10,
+                        Top = 690,
+                        AutoSize = true,
+                        Font = new Font("Malgun Gothic", 8.5f, FontStyle.Bold),
+                        ForeColor = Color.DimGray
+                    };
+                    Label lblPcbW = new Label
+                    {
+                        Text = "W",
+                        Left = 100,
+                        Top = 692,
+                        AutoSize = true,
+                        Font = new Font("Malgun Gothic", 8.5f)
+                    };
+                    TextBox tbPcbW = new TextBox
+                    {
+                        Left = 116,
+                        Top = 688,
+                        Width = 64,
+                        Text = "0",
+                        Font = new Font("Consolas", 9f)
+                    };
+                    Label lblPcbX = new Label
+                    {
+                        Text = "×",
+                        Left = 186,
+                        Top = 692,
+                        AutoSize = true,
+                        Font = new Font("Malgun Gothic", 8.5f)
+                    };
+                    Label lblPcbH = new Label
+                    {
+                        Text = "H",
+                        Left = 202,
+                        Top = 692,
+                        AutoSize = true,
+                        Font = new Font("Malgun Gothic", 8.5f)
+                    };
+                    TextBox tbPcbH = new TextBox
+                    {
+                        Left = 218,
+                        Top = 688,
+                        Width = 64,
+                        Text = "0",
+                        Font = new Font("Consolas", 9f)
+                    };
+                    Label lblPcbUnit = new Label
+                    {
+                        Text = "mm   (0 입력 시 미표시 / PCB 중심 = DM 중심)",
+                        Left = 290,
+                        Top = 692,
+                        AutoSize = true,
+                        Font = new Font("Malgun Gothic", 7.5f),
+                        ForeColor = Color.SlateGray
+                    };
+
+                    EventHandler pcbChanged = (s, e) =>
+                    {
+                        double pw = 0, ph = 0;
+                        double.TryParse(tbPcbW.Text, out pw);
+                        double.TryParse(tbPcbH.Text, out ph);
+                        pcbSizeFlag[0] = pw > 0 ? pw : 0;
+                        pcbSizeFlag[1] = ph > 0 ? ph : 0;
+                        pnlCanvas.Invalidate();
+                    };
+                    tbPcbW.TextChanged += pcbChanged;
+                    tbPcbH.TextChanged += pcbChanged;
+
+                    // ── 마킹 위치 오프셋 입력 (DM + Font 공통) ──
+                    double[] markOffFlag = { 0.0, 0.0 }; // [0]=X  [1]=Y
+
+                    Label lblMarkOff = new Label
+                    {
+                        Text = "마킹 오프셋 :",
+                        Left = 10,
+                        Top = 722,
+                        AutoSize = true,
+                        Font = new Font("Malgun Gothic", 8.5f, FontStyle.Bold),
+                        ForeColor = Color.DimGray
+                    };
+                    Label lblOffX = new Label { Text = "X", Left = 102, Top = 724, AutoSize = true, Font = new Font("Malgun Gothic", 8.5f) };
+                    TextBox tbOffX = new TextBox { Left = 116, Top = 720, Width = 64, Text = "0", Font = new Font("Consolas", 9f) };
+                    Label lblOffY = new Label { Text = "Y", Left = 186, Top = 724, AutoSize = true, Font = new Font("Malgun Gothic", 8.5f) };
+                    TextBox tbOffY = new TextBox { Left = 200, Top = 720, Width = 64, Text = "0", Font = new Font("Consolas", 9f) };
+                    Label lblOffUnit = new Label
+                    {
+                        Text = "mm   (+ : 우/상,  - : 좌/하)   DM · Font 전체 이동",
+                        Left = 272,
+                        Top = 724,
+                        AutoSize = true,
+                        Font = new Font("Malgun Gothic", 7.5f),
+                        ForeColor = Color.SlateGray
+                    };
+
+                    EventHandler offChanged = (s, e) =>
+                    {
+                        double ox = 0, oy = 0;
+                        double.TryParse(tbOffX.Text, out ox);
+                        double.TryParse(tbOffY.Text, out oy);
+                        markOffFlag[0] = ox;
+                        markOffFlag[1] = oy;
+                        pnlCanvas.Invalidate();
+                    };
+                    tbOffX.TextChanged += offChanged;
+                    tbOffY.TextChanged += offChanged;
+
                     dlg.Controls.Add(lblInfo);
                     dlg.Controls.Add(lblNote);
                     dlg.Controls.Add(pnlCanvas);
+                    dlg.Controls.Add(lblWidthMode);
+                    dlg.Controls.Add(rbRecipeWidth);
+                    dlg.Controls.Add(rbFitWidth);
+                    dlg.Controls.Add(lblModeDesc);
+                    dlg.Controls.Add(lblPcbTitle);
+                    dlg.Controls.Add(lblPcbW);
+                    dlg.Controls.Add(tbPcbW);
+                    dlg.Controls.Add(lblPcbX);
+                    dlg.Controls.Add(lblPcbH);
+                    dlg.Controls.Add(tbPcbH);
+                    dlg.Controls.Add(lblPcbUnit);
+                    dlg.Controls.Add(lblMarkOff);
+                    dlg.Controls.Add(lblOffX);
+                    dlg.Controls.Add(tbOffX);
+                    dlg.Controls.Add(lblOffY);
+                    dlg.Controls.Add(tbOffY);
+                    dlg.Controls.Add(lblOffUnit);
 
                     // 캡처한 값들을 람다에서 사용하기 위해 로컬 변수로 고정
                     double _matW = matWidth, _matH = matHeight;
                     double _textCX = textCenterX, _textW = textWidth;
+                    double _fitCX = fitTextCenterX, _fitW = fitCharWidth;
+                    bool[] _fitWidth = fitWidthFlag;
+                    double[] _pcbSize = pcbSizeFlag;    // [0]=W [1]=H
+                    double[] _markOff = markOffFlag;    // [0]=X [1]=Y  (DM·Font 공통)
                     GraphicsPath _path = (GraphicsPath)textPath.Clone();
+                    GraphicsPath _fitPath = (fitTextPath != null && fitTextPath.PointCount > 0)
+                                           ? (GraphicsPath)fitTextPath.Clone() : null;
                     GraphicsPath _dmPath = dmCellPath != null ? (GraphicsPath)dmCellPath.Clone() : null;
 
                     pnlCanvas.Paint += (s, pe) =>
@@ -1465,12 +1678,29 @@ namespace EzIna
                         g.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
                         g.TextRenderingHint = System.Drawing.Text.TextRenderingHint.AntiAlias;
 
+                        // ── 현재 모드에 따라 활성 경로/파라미터 선택 ──
+                        bool isFit = _fitWidth[0] && _fitPath != null;
+                        GraphicsPath activePath = isFit ? _fitPath : _path;
+                        double activeCX = isFit ? _fitCX : _textCX;
+                        double activeW = isFit ? _fitW : _textW;
+
                         // ── 월드 좌표 범위 계산 (스캐너 mm, Y+: 위) ──
-                        const double kMargin = 3.0;
-                        double wLeft = -(_matW / 2.0) - kMargin;
-                        double wRight = _textCX + _textW / 2.0 + kMargin;
-                        double wTop = (_matH / 2.0) + kMargin;   // 화면 상단 = 스캐너 Y+
-                        double wBottom = -(_matH / 2.0) - kMargin;   // 화면 하단 = 스캐너 Y-
+                        // 레시피 폭 기준 고정. PCB 입력 시 PCB 크기도 포함하도록 확장
+                        const double kMargin = 2.0;
+                        double pcbW = _pcbSize[0], pcbH = _pcbSize[1];
+                        bool hasPcb = pcbW > 0 && pcbH > 0;
+                        double wLeft = hasPcb
+                            ? Math.Min(-(_matW / 2.0), -pcbW / 2.0) - kMargin
+                            : -(_matW / 2.0) - kMargin;
+                        double wRight = hasPcb
+                            ? Math.Max(_textCX + _textW / 2.0, pcbW / 2.0) + kMargin
+                            : _textCX + _textW / 2.0 + kMargin;
+                        double wTop = hasPcb
+                            ? Math.Max((_matH / 2.0), pcbH / 2.0) + kMargin
+                            : (_matH / 2.0) + kMargin;
+                        double wBottom = hasPcb
+                            ? Math.Min(-(_matH / 2.0), -pcbH / 2.0) - kMargin
+                            : -(_matH / 2.0) - kMargin;
 
                         float cW = pnlCanvas.Width - 2;
                         float cH = pnlCanvas.Height - 2;
@@ -1488,6 +1718,58 @@ namespace EzIna
                         Func<double, float> toSX = wx => cx + (float)(wx - worldCX) * scale;
                         // 스캐너 Y+: 위 → 화면 Y-: 위이므로 부호 반전
                         Func<double, float> toSY = wy => cy - (float)(wy - worldCY) * scale;
+
+                        // ── PCB 실크 배경 (가장 먼저 그려서 DM·Font 아래에 위치) ──
+                        if (hasPcb)
+                        {
+                            float pbgX = toSX(-pcbW / 2.0);
+                            float pbgY = toSY(pcbH / 2.0);
+                            float pbgW = (float)(pcbW * scale);
+                            float pbgH = (float)(pcbH * scale);
+
+                            // PCB 기판 배경 (연한 녹색 – 실제 PCB 색 느낌)
+                            using (SolidBrush pcbFill = new SolidBrush(Color.FromArgb(45, 30, 140, 60)))
+                                g.FillRectangle(pcbFill, pbgX, pbgY, pbgW, pbgH);
+
+                            // PCB 테두리
+                            using (Pen pcbBorder = new Pen(Color.FromArgb(220, 40, 160, 80), 1.8f))
+                                g.DrawRectangle(pcbBorder, pbgX, pbgY, pbgW, pbgH);
+
+                            using (Font pcbFont = new Font("Consolas", 7.5f))
+                            using (SolidBrush pcbDimBrush = new SolidBrush(Color.FromArgb(220, 40, 160, 80)))
+                            using (Pen pcbDimPen = new Pen(Color.FromArgb(220, 40, 160, 80), 1f))
+                            {
+                                // ── PCB 가로 치수 (아래쪽) ──
+                                float dimY = toSY(-pcbH / 2.0) + 14;
+                                float dimX1 = toSX(-pcbW / 2.0);
+                                float dimX2 = toSX(pcbW / 2.0);
+                                g.DrawLine(pcbDimPen, dimX1, dimY, dimX2, dimY);
+                                // 끝 세리프
+                                g.DrawLine(pcbDimPen, dimX1, dimY - 4, dimX1, dimY + 4);
+                                g.DrawLine(pcbDimPen, dimX2, dimY - 4, dimX2, dimY + 4);
+                                string pcbWLabel = string.Format("PCB W={0:F2}mm", pcbW);
+                                SizeF pwSz = g.MeasureString(pcbWLabel, pcbFont);
+                                g.DrawString(pcbWLabel, pcbFont, pcbDimBrush,
+                                    (dimX1 + dimX2) / 2f - pwSz.Width / 2f, dimY + 2);
+
+                                // ── PCB 세로 치수 (오른쪽) ──
+                                float dimX = toSX(pcbW / 2.0) + 14;
+                                float dimYT = toSY(pcbH / 2.0);
+                                float dimYB = toSY(-pcbH / 2.0);
+                                g.DrawLine(pcbDimPen, dimX, dimYT, dimX, dimYB);
+                                g.DrawLine(pcbDimPen, dimX - 4, dimYT, dimX + 4, dimYT);
+                                g.DrawLine(pcbDimPen, dimX - 4, dimYB, dimX + 4, dimYB);
+                                string pcbHLabel = string.Format("PCB H={0:F2}mm", pcbH);
+                                SizeF phSz = g.MeasureString(pcbHLabel, pcbFont);
+                                g.TranslateTransform(dimX + 2, (dimYT + dimYB) / 2f + phSz.Width / 2f);
+                                g.RotateTransform(-90);
+                                g.DrawString(pcbHLabel, pcbFont, pcbDimBrush, 0, 0);
+                                g.ResetTransform();
+
+                                // PCB 라벨
+                                g.DrawString("PCB", pcbFont, pcbDimBrush, pbgX + 3, pbgY + 3);
+                            }
+                        }
 
                         // ── 1mm 그리드 ──
                         using (Pen gridPen = new Pen(Color.FromArgb(220, 220, 220), 1f))
@@ -1512,12 +1794,16 @@ namespace EzIna
                             g.DrawLine(axisPen, toSX(0), toSY(wTop), toSX(0), toSY(wBottom));
                         }
 
-                        // ── DataMatrix 사각형 ──
+                        // ── 현재 오프셋 읽기 (DM · Font 공통) ──
+                        double dmOX = _markOff[0], dmOY = _markOff[1];
+                        double foOX = _markOff[0], foOY = _markOff[1];
+
+                        // ── DataMatrix 사각형 (DM 오프셋 적용) ──
                         using (Pen matPen = new Pen(Color.RoyalBlue, 1.5f))
                         {
                             matPen.DashStyle = System.Drawing.Drawing2D.DashStyle.Dash;
-                            float rx = toSX(-_matW / 2.0);
-                            float ry = toSY(_matH / 2.0);   // 스캐너 Y+ 위쪽 = 화면 위쪽 (작은 Y)
+                            float rx = toSX(-_matW / 2.0 + dmOX);
+                            float ry = toSY(_matH / 2.0 + dmOY);
                             float rw = (float)(_matW * scale);
                             float rh = (float)(_matH * scale);
                             g.DrawRectangle(matPen, rx, ry, rw, rh);
@@ -1525,14 +1811,14 @@ namespace EzIna
                                 new Font("Arial", 7f), Brushes.RoyalBlue, rx + 2, ry + 2);
                         }
 
-                        // ── DataMatrix 셀 패턴 렌더링 ──
-                        // DM path는 스캐너 Y-up 좌표계 → Y 부호를 반전하여 화면에 매핑
+                        // ── DataMatrix 셀 패턴 렌더링 (DM 오프셋 적용) ──
+                        // DM path는 스캐너 Y-up 좌표계 → Y 부호 반전, 오프셋은 toSX/toSY 통해 적용
                         if (_dmPath != null && _dmPath.PointCount > 0)
                         {
                             using (GraphicsPath drawDM = (GraphicsPath)_dmPath.Clone())
                             {
-                                float ox = toSX(0);
-                                float oy = toSY(0);
+                                float ox = toSX(dmOX);
+                                float oy = toSY(dmOY);
                                 using (Matrix m = new Matrix(scale, 0, 0, -scale, ox, oy))
                                     drawDM.Transform(m);
                                 using (SolidBrush dmFill = new SolidBrush(Color.FromArgb(200, 30, 90, 210)))
@@ -1540,24 +1826,45 @@ namespace EzIna
                             }
                         }
 
-                        // ── 텍스트 경로 렌더링 ──
-                        // CreateVerticalTextGraphicsPath 는 screen-Y(아래+) 관례로 경로를 생성.
-                        // MakeListFromGraphicsPath(a_YDirReverse=true) 에서 Y를 반전.
-                        // 결과적으로 각인 위치는 path 좌표와 Y가 같은 방향.
-                        // 미리보기에서는:
-                        //   screen_x = toSX(path_x)
-                        //   screen_y = toSY(0) + path_y * scale  (Y 반전 없이 그대로)
-                        using (GraphicsPath drawPath = (GraphicsPath)_path.Clone())
+                        // ── 텍스트 경로 렌더링 (Font 오프셋 적용) ──
+                        // path_x = world_x(mm), path_y = -world_y
+                        // Font 오프셋은 원점 이동으로 반영: toSX(foOX), toSY(foOY)
+                        using (GraphicsPath drawPath = (GraphicsPath)activePath.Clone())
                         {
-                            float ox = toSX(0);
-                            float oy = toSY(0);
-                            // [path_x * scale + ox, path_y * scale + oy]
-                            // Matrix(m11,m12,m21,m22,dx,dy): x'=m11*x+m21*y+dx, y'=m12*x+m22*y+dy
+                            float ox = toSX(foOX);
+                            float oy = toSY(foOY);
                             using (Matrix m = new Matrix(scale, 0, 0, scale, ox, oy))
                                 drawPath.Transform(m);
 
                             using (Pen textPen = new Pen(Color.Red, 1.5f))
                                 g.DrawPath(textPen, drawPath);
+                        }
+
+                        // ── 레시피 설정 경로 외곽 박스 (빨간 점선, Font 오프셋 적용) ──
+                        // path_x = world_x, path_y = -world_y
+                        {
+                            RectangleF pb = _path.GetBounds();
+                            if (pb.Width > 0 && pb.Height > 0)
+                            {
+                                float pbLeft = toSX((double)pb.Left + foOX);
+                                float pbRight = toSX((double)pb.Right + foOX);
+                                float pbTop = toSY(-(double)pb.Top + foOY);
+                                float pbBottom = toSY(-(double)pb.Bottom + foOY);
+                                float pbW = pbRight - pbLeft;
+                                float pbH = pbBottom - pbTop;
+                                if (pbW > 0 && pbH > 0)
+                                {
+                                    using (Pen boundsPen = new Pen(Color.Red, 1.2f))
+                                    using (Font boundsFont = new Font("Arial", 7f))
+                                    {
+                                        boundsPen.DashStyle = System.Drawing.Drawing2D.DashStyle.Dash;
+                                        g.DrawRectangle(boundsPen, pbLeft, pbTop, pbW, pbH);
+                                        g.DrawString(
+                                            string.Format("Font Marking  W={0:F2}  H={1:F2}", pb.Width, pb.Height),
+                                            boundsFont, Brushes.Red, pbLeft + 2, pbBottom + 2);
+                                    }
+                                }
+                            }
                         }
 
                         // ── 눈금 라벨 ──
@@ -1578,37 +1885,21 @@ namespace EzIna
                             }
                         }
 
-                        // ── 치수 표시: DataMatrix 폭/높이 ──
-                        using (Pen dimPen = new Pen(Color.CornflowerBlue, 1f))
-                        using (Font dimFont = new Font("Consolas", 7.5f))
+                        // ── 치수 표시: DataMatrix 폭/높이 (DM 오프셋 적용) ──
+                        using (Font dimFont = new Font("Arial", 7.5f))
                         using (SolidBrush dimBrush = new SolidBrush(Color.CornflowerBlue))
                         {
-                            // 가로 치수
-                            float y0 = toSY(-_matH / 2.0) + 12;
-                            float x1 = toSX(-_matW / 2.0);
-                            float x2 = toSX(_matW / 2.0);
-                            g.DrawLine(dimPen, x1, y0, x2, y0);
-                            string wLabel = string.Format("{0:F2}mm", _matW);
-                            g.DrawString(wLabel, dimFont, dimBrush,
-                                (x1 + x2) / 2f - g.MeasureString(wLabel, dimFont).Width / 2f, y0 + 1);
-
-                            // 세로 치수
-                            float x0 = toSX(-_matW / 2.0) - 14;
-                            float yT = toSY(_matH / 2.0);
-                            float yB = toSY(-_matH / 2.0);
-                            g.DrawLine(dimPen, x0, yT, x0, yB);
-                            string hLabel = string.Format("{0:F2}mm", _matH);
-                            SizeF hs = g.MeasureString(hLabel, dimFont);
-                            g.TranslateTransform(x0 - 1, (yT + yB) / 2f + hs.Width / 2f);
-                            g.RotateTransform(-90);
-                            g.DrawString(hLabel, dimFont, dimBrush, 0, 0);
-                            g.ResetTransform();
+                            float rx = toSX(-_matW / 2.0 + dmOX);
+                            float ryB = toSY(-_matH / 2.0 + dmOY);
+                            string dmLabel = string.Format("DM  W={0:F2}  H={1:F2}", _matW, _matH);
+                            g.DrawString(dmLabel, dimFont, dimBrush, rx + 2, ryB + 2);
                         }
                     };
 
                     dlg.FormClosed += (s, fe) =>
                     {
                         _path.Dispose();
+                        _fitPath?.Dispose();
                         _dmPath?.Dispose();
                     };
                     dlg.ShowDialog(this);
