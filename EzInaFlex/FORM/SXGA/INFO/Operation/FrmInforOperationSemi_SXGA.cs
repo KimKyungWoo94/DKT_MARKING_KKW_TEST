@@ -756,15 +756,16 @@ namespace EzIna
                 matWidth, matHeight, textWidth, gap,
                 charWidth, charHeight, textCenterX);
 
+            string rcpFontName = RCP_Modify.PROCESS_FONT_NAME != null
+                ? RCP_Modify.PROCESS_FONT_NAME.GetValue<FA.DEF.eFontName>().ToString().Replace("_", "-")
+                : "OCR-B";
             GraphicsPath textPath = CreateVerticalTextGraphicsPath(
                 fontText,
                 charWidthMM: charWidth,
                 charHeightMM: charHeight,
                 charSpacingMM: charSpacing,
-                // fontName: "Consolas",
-                // bold: true,
-                fontName: "OCR-B", // KKW Font Marking 폰트 추가
-                bold: false, // KKW Font Marking 폰트 추가
+                fontName: rcpFontName,
+                bold: false,
                 offsetXMM: textCenterX);
 
             if (textPath == null || textPath.PointCount == 0)
@@ -1097,15 +1098,16 @@ namespace EzIna
                     matWidth, matHeight, textWidth, gap,
                     charWidth, charHeight, textCenterX);
 
+                string rcpFontName = RCP_Modify.PROCESS_FONT_NAME != null
+                    ? RCP_Modify.PROCESS_FONT_NAME.GetValue<FA.DEF.eFontName>().ToString().Replace("_", "-")
+                    : "OCR-B";
                 GraphicsPath textPath = CreateVerticalTextGraphicsPath(
                     text,
                     charWidthMM: charWidth,
                     charHeightMM: charHeight,
                     charSpacingMM: charSpacing,
-                    // fontName: "Consolas", // Consolas, Tahoma, Verdana, Segoe UI, Arial, Courier New
-                    // bold: true,
-                    fontName: "OCR-B", // KKW Font Marking 폰트 추가
-                    bold: false, // KKW Font Marking 폰트 추가
+                    fontName: rcpFontName,
+                    bold: false,
                     offsetXMM: textCenterX
                 );
 
@@ -1383,12 +1385,15 @@ namespace EzIna
                 FA.LOG.InfoJIG("ShowFontMarkingPreviewDialog: DM path 생성 실패 [{0}]", ex.Message);
             }
 
+            string initialFontName = RCP_Modify.PROCESS_FONT_NAME != null
+                ? RCP_Modify.PROCESS_FONT_NAME.GetValue<FA.DEF.eFontName>().ToString().Replace("_", "-")
+                : "OCR-B";
             using (GraphicsPath textPath = CreateVerticalTextGraphicsPath(
                 text,
                 charWidthMM: charWidth,
                 charHeightMM: charHeight,
                 charSpacingMM: charSpacing,
-                fontName: "OCR-B",
+                fontName: initialFontName,
                 bold: false,
                 offsetXMM: textCenterX))
             {
@@ -1605,9 +1610,14 @@ namespace EzIna
                         DropDownStyle = ComboBoxStyle.DropDownList,
                         Font = new Font("Consolas", 9f)
                     };
-                    foreach (string fn in new[] { "OCR-B", "Arial", "Consolas" })
+                    string[] fontCandidates = new[] { "OCR-B", "Arial", "Consolas" };
+                    foreach (string fn in fontCandidates)
                         cmbFont.Items.Add(fn);
-                    cmbFont.SelectedIndex = 0;
+                    string rcpFontInit = RCP_Modify.PROCESS_FONT_NAME != null
+                        ? RCP_Modify.PROCESS_FONT_NAME.GetValue<FA.DEF.eFontName>().ToString().Replace("_", "-")
+                        : "OCR-B";
+                    int rcpFontIdx = Array.IndexOf(fontCandidates, rcpFontInit);
+                    cmbFont.SelectedIndex = rcpFontIdx >= 0 ? rcpFontIdx : 0;
 
                     cmbFont.SelectedIndexChanged += (s, e) =>
                     {

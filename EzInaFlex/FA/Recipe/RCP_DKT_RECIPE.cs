@@ -932,29 +932,33 @@ namespace EzIna.FA
             PROCESS_FONT_MARKING_ENABLE = new MF.RecipeItem_DPValue(FA.DEF.eRecipeCategory.PROCESS, FA.DEF.eRcpSubCategory.M07_FONT_MARKING_PARAM.ToString(), "Font Marking Enable", 987, false, FA.DEF.eUnit.none, "")
             {
             };
+            // 폰트 이름 (OCR_B="OCR-B" / Arial / Consolas - 그리드에서 드롭다운 선택)
+            PROCESS_FONT_NAME = new MF.RecipeItem_DPValue(FA.DEF.eRecipeCategory.PROCESS, FA.DEF.eRcpSubCategory.M07_FONT_MARKING_PARAM.ToString(), "Font Name", 988, FA.DEF.eFontName.OCR_B, FA.DEF.eUnit.none, "")
+            {
+            };
             // 텍스트 영역 가로 크기 (글자 한 개의 너비 = 텍스트 블록 가로 크기, 사용자 직접 입력)
-            PROCESS_FONT_TEXT_WIDTH_MM = new MF.RecipeItem_DPValue(FA.DEF.eRecipeCategory.PROCESS, FA.DEF.eRcpSubCategory.M07_FONT_MARKING_PARAM.ToString(), "Font Text Width", 988, 2.0, FA.DEF.eUnit.mm, "")
+            PROCESS_FONT_TEXT_WIDTH_MM = new MF.RecipeItem_DPValue(FA.DEF.eRecipeCategory.PROCESS, FA.DEF.eRcpSubCategory.M07_FONT_MARKING_PARAM.ToString(), "Font Text Width", 989, 2.0, FA.DEF.eUnit.mm, "")
             {
                 fMinDelegate = () => { return 0.1; },
                 fMaxDelegate = () => { return 100.0; },
                 iFormatNumberOfZero = 2
             };
             // 데이터 매트릭스 오른쪽 끝에서 텍스트 시작까지의 간격
-            PROCESS_FONT_GAP_FROM_MATRIX_MM = new MF.RecipeItem_DPValue(FA.DEF.eRecipeCategory.PROCESS, FA.DEF.eRcpSubCategory.M07_FONT_MARKING_PARAM.ToString(), "Font Gap From Matrix", 989, 0.5, FA.DEF.eUnit.mm, "")
+            PROCESS_FONT_GAP_FROM_MATRIX_MM = new MF.RecipeItem_DPValue(FA.DEF.eRecipeCategory.PROCESS, FA.DEF.eRcpSubCategory.M07_FONT_MARKING_PARAM.ToString(), "Font Gap From Matrix", 990, 0.5, FA.DEF.eUnit.mm, "")
             {
                 fMinDelegate = () => { return 0.0; },
                 fMaxDelegate = () => { return 20.0; },
                 iFormatNumberOfZero = 2
             };
             // 세로 배치 시 글자 간 간격
-            PROCESS_FONT_CHAR_SPACING_MM = new MF.RecipeItem_DPValue(FA.DEF.eRecipeCategory.PROCESS, FA.DEF.eRcpSubCategory.M07_FONT_MARKING_PARAM.ToString(), "Font Char Spacing", 990, 0.2, FA.DEF.eUnit.mm, "")
+            PROCESS_FONT_CHAR_SPACING_MM = new MF.RecipeItem_DPValue(FA.DEF.eRecipeCategory.PROCESS, FA.DEF.eRcpSubCategory.M07_FONT_MARKING_PARAM.ToString(), "Font Char Spacing", 991, 0.2, FA.DEF.eUnit.mm, "")
             {
                 fMinDelegate = () => { return 0.0; },
                 fMaxDelegate = () => { return 10.0; },
                 iFormatNumberOfZero = 2
             };
             // 폰트 마킹 전용 스캐너 마크 속도 (DM 마킹보다 낮게 설정)
-            PROCESS_FONT_MARK_SPEED = new MF.RecipeItem_DPValue(FA.DEF.eRecipeCategory.PROCESS, FA.DEF.eRcpSubCategory.M07_FONT_MARKING_PARAM.ToString(), "Font Mark Speed", 991, 10.0, FA.DEF.eUnit.mmPerSec, "")
+            PROCESS_FONT_MARK_SPEED = new MF.RecipeItem_DPValue(FA.DEF.eRecipeCategory.PROCESS, FA.DEF.eRcpSubCategory.M07_FONT_MARKING_PARAM.ToString(), "Font Mark Speed", 992, 10.0, FA.DEF.eUnit.mmPerSec, "")
             {
                 fMinDelegate = () => { return 1.0; },
                 fMaxDelegate = () => { return 10000.0; },
@@ -963,6 +967,8 @@ namespace EzIna.FA
         }
         /// <summary>bool: 폰트 마킹 사용 여부 (false = DM 마킹만 수행)</summary>
         public static MF.RecipeItem_DPValue PROCESS_FONT_MARKING_ENABLE;//KKW Font Marking Parameter
+        /// <summary>string: 폰트 이름 (OCR-B, Arial, Consolas 등)</summary>
+        public static MF.RecipeItem_DPValue PROCESS_FONT_NAME;//KKW Font Marking Parameter
         /// <summary>double: 텍스트 영역 가로 크기 (mm) - 사용자 직접 입력</summary>
         public static MF.RecipeItem_DPValue PROCESS_FONT_TEXT_WIDTH_MM;//KKW Font Marking Parameter
         /// <summary>double: 데이터 매트릭스 오른쪽 끝 → 텍스트 시작 간격 (mm)</summary>

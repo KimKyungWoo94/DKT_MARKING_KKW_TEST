@@ -464,6 +464,16 @@ namespace EzIna.FA
             }
             return strRet;
         }
+        /// <summary>
+        /// 폰트 마킹에 사용할 폰트 이름 (OCR_B = "OCR-B")
+        /// </summary>
+        public enum eFontName
+        {
+            OCR_B,
+            Arial,
+            Consolas,
+        }
+
         public enum eMoudleName
         {
             MIN = 0,
