@@ -774,6 +774,33 @@ namespace EzIna
                 return;
             }
 
+            // ── 폰트 해치 채움 생성 (레시피 PROCESS_FONT_HATCH_* 파라미터 사용) ──
+            GraphicsPath fontFinalPath = new GraphicsPath();
+            EzCAM_Ver2.HATCH_TYPE dmfHatchType =
+                (EzCAM_Ver2.HATCH_TYPE)
+                ((int)RCP_Modify.PROCESS_FONT_HATCH_TYPE.GetValue<EzIna.DataMatrix.DM_HATCH_TYPE>());
+            if (dmfHatchType != EzCAM_Ver2.HATCH_TYPE.HATCH_TYPE_NONE)
+            {
+                using (EzCAM_Ver2.Hatch fontHatch = new EzCAM_Ver2.Hatch())
+                {
+                    fontHatch.Option.Type    = dmfHatchType;
+                    fontHatch.Option.fPitch   = RCP_Modify.PROCESS_FONT_HATCH_LinePitch.GetValue<float>();
+                    fontHatch.Option.fAngle   = RCP_Modify.PROCESS_FONT_HATCH_LineAngle.GetValue<float>();
+                    fontHatch.Option.fOffset  = RCP_Modify.PROCESS_FONT_HATCH_OffSet.GetValue<float>();
+                    fontHatch.Option.bOutline = RCP_Modify.PROCESS_FONT_HATCH_Outline_Enable.GetValue<bool>();
+                    if (!fontHatch.CreateShapeHatch(textPath, ref fontFinalPath))
+                    {
+                        FA.LOG.InfoJIG("DMFontMarkingTest: Hatch failed, outline only");
+                        fontFinalPath.AddPath(textPath, false);
+                    }
+                }
+            }
+            else
+            {
+                fontFinalPath.AddPath(textPath, false);
+            }
+            textPath.Dispose();
+
             // ================================================================
             // STEP 4: 마킹 실행
             //   4-1) DM: PROCESS_SCANNER_MARK_SPEED 로 실행
@@ -799,7 +826,7 @@ namespace EzIna
                 {
                     FA.LOG.InfoJIG("DMFontMarkingTest Timeout (DM Marking)");
                     this.InvokeIfNeeded(() => MsgBox.Error("DM Marking Timeout (15s)"));
-                    textPath.Dispose();
+                    fontFinalPath.Dispose();
                     return;
                 }
             }
@@ -812,7 +839,7 @@ namespace EzIna
             RTC5.Instance.ListReset(Scanner.ScanlabRTC5.RTC_LIST._1st);
             RTC5.Instance.ListBegin(Scanner.ScanlabRTC5.RTC_LIST._1st);
             RTC5.Instance.MakeListFromGraphicsPath(
-                textPath,
+                fontFinalPath,
                 Scanner.ScanlabRTC5.RTC_LIST._1st, false, true);
             RTC5.Instance.ListEnd();
             RTC5.Instance.ListExecute(Scanner.ScanlabRTC5.RTC_LIST._1st);
@@ -825,13 +852,13 @@ namespace EzIna
                 {
                     FA.LOG.InfoJIG("DMFontMarkingTest Timeout (Font Marking)");
                     this.InvokeIfNeeded(() => MsgBox.Error("Font Marking Timeout (15s)"));
-                    textPath.Dispose();
+                    fontFinalPath.Dispose();
                     return;
                 }
             }
             swMarkingFont.Stop();
 #endif
-            textPath.Dispose();
+            fontFinalPath.Dispose();
 
             FA.LOG.InfoJIG("DMFontMarkingTest Marking Done - DM:[{0}] Font:[{1}]",
                 TEST_MARKING_TEXT, fontText);
@@ -1117,6 +1144,33 @@ namespace EzIna
                     return;
                 }
 
+                // ── 폰트 해치 채움 생성 (레시피 PROCESS_FONT_HATCH_* 파라미터 사용) ──
+                GraphicsPath fontFinalPath = new GraphicsPath();
+                EzCAM_Ver2.HATCH_TYPE fontHatchType =
+                    (EzCAM_Ver2.HATCH_TYPE)
+                    ((int)RCP_Modify.PROCESS_FONT_HATCH_TYPE.GetValue<EzIna.DataMatrix.DM_HATCH_TYPE>());
+                if (fontHatchType != EzCAM_Ver2.HATCH_TYPE.HATCH_TYPE_NONE)
+                {
+                    using (EzCAM_Ver2.Hatch fontHatch = new EzCAM_Ver2.Hatch())
+                    {
+                        fontHatch.Option.Type    = fontHatchType;
+                        fontHatch.Option.fPitch   = RCP_Modify.PROCESS_FONT_HATCH_LinePitch.GetValue<float>();
+                        fontHatch.Option.fAngle   = RCP_Modify.PROCESS_FONT_HATCH_LineAngle.GetValue<float>();
+                        fontHatch.Option.fOffset  = RCP_Modify.PROCESS_FONT_HATCH_OffSet.GetValue<float>();
+                        fontHatch.Option.bOutline = RCP_Modify.PROCESS_FONT_HATCH_Outline_Enable.GetValue<bool>();
+                        if (!fontHatch.CreateShapeHatch(textPath, ref fontFinalPath))
+                        {
+                            FA.LOG.InfoJIG("FontMarkingTest: Hatch failed, outline only");
+                            fontFinalPath.AddPath(textPath, false);
+                        }
+                    }
+                }
+                else
+                {
+                    fontFinalPath.AddPath(textPath, false);
+                }
+                textPath.Dispose();
+
 #if SIM
                 System.Threading.Thread.Sleep(200);
 #else
@@ -1124,7 +1178,7 @@ namespace EzIna
                 RTC5.Instance.ListBegin(Scanner.ScanlabRTC5.RTC_LIST._1st);
                 // a_YDirReverse = true: .NET 폰트는 Y 아래가 + → 스캐너는 Y 위가 +
                 RTC5.Instance.MakeListFromGraphicsPath(
-                    textPath,
+                    fontFinalPath,
                     Scanner.ScanlabRTC5.RTC_LIST._1st,
                     false, true);
                 RTC5.Instance.ListEnd();
@@ -1138,11 +1192,12 @@ namespace EzIna
                     {
                         FA.LOG.InfoJIG("FontMarkingTest Timeout");
                         this.InvokeIfNeeded(() => MsgBox.Error("Font Marking Timeout (15s)"));
+                        fontFinalPath.Dispose();
                         return;
                     }
                 }
 #endif
-                textPath.Dispose();
+                fontFinalPath.Dispose();
 
                 FA.LOG.InfoJIG("FontMarkingTest Done - Text:[{0}]", text);
                 this.InvokeIfNeeded(() =>
@@ -1433,7 +1488,7 @@ namespace EzIna
 
                     Label lblNote = new Label
                     {
-                        Text = "● 녹색 배경 = PCB 실크 영역  ● 파란 채움 = DM 셀  ● 파란 점선 = DM 영역  ● 빨간 실선 = 폰트 각인 경로  ● 빨간 점선 = 경로 외곽 범위  ● 그리드 1 mm",
+                        Text = "● 녹색 배경 = PCB 실크 영역  ● 파란 채움 = DM 셀  ● 파란 점선 = DM 영역  ● 빨간 실선 = 폰트 각인 경로(해치 포함)  ● 빨간 점선 = 경로 외곽 범위  ● 그리드 1 mm",
                         Left = 10,
                         Top = 32,
                         Width = 790,
@@ -1799,10 +1854,38 @@ namespace EzIna
                         }
 
                         // ── 텍스트 경로 렌더링 (Font 오프셋 적용) ──
-                        // path_x = world_x(mm), path_y = -world_y
-                        // Font 오프셋은 원점 이동으로 반영: toSX(foOX), toSY(foOY)
-                        using (GraphicsPath drawPath = (GraphicsPath)activePath.Clone())
+                        // 해치 타입이 NONE이 아니면 해치 채움 경로를 생성해 표시
+                        // path_x = world_x(mm), path_y = -world_y (Y축 동일 방향, scale 양수)
+                        using (GraphicsPath drawPath = new GraphicsPath())
                         {
+                            EzCAM_Ver2.HATCH_TYPE previewHatchType =
+                                (EzCAM_Ver2.HATCH_TYPE)
+                                ((int)RCP_Modify.PROCESS_FONT_HATCH_TYPE
+                                    .GetValue<EzIna.DataMatrix.DM_HATCH_TYPE>());
+
+                            bool hatchApplied = false;
+                            if (previewHatchType != EzCAM_Ver2.HATCH_TYPE.HATCH_TYPE_NONE)
+                            {
+                                // 해치는 mm 좌표에서 생성해야 정확하므로 원본 경로로 계산
+                                using (EzCAM_Ver2.Hatch previewHatch = new EzCAM_Ver2.Hatch())
+                                {
+                                    previewHatch.Option.Type    = previewHatchType;
+                                    previewHatch.Option.fPitch   = RCP_Modify.PROCESS_FONT_HATCH_LinePitch.GetValue<float>();
+                                    previewHatch.Option.fAngle   = RCP_Modify.PROCESS_FONT_HATCH_LineAngle.GetValue<float>();
+                                    previewHatch.Option.fOffset  = RCP_Modify.PROCESS_FONT_HATCH_OffSet.GetValue<float>();
+                                    previewHatch.Option.bOutline = RCP_Modify.PROCESS_FONT_HATCH_Outline_Enable.GetValue<bool>();
+                                    GraphicsPath hatchedMM = new GraphicsPath();
+                                    if (previewHatch.CreateShapeHatch(activePath, ref hatchedMM))
+                                    {
+                                        drawPath.AddPath(hatchedMM, false);
+                                        hatchApplied = true;
+                                    }
+                                    hatchedMM.Dispose();
+                                }
+                            }
+                            if (!hatchApplied)
+                                drawPath.AddPath(activePath, false);
+
                             float ox = toSX(foOX);
                             float oy = toSY(foOY);
                             using (Matrix m = new Matrix(scale, 0, 0, scale, ox, oy))

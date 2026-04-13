@@ -964,6 +964,32 @@ namespace EzIna.FA
                 fMaxDelegate = () => { return 10000.0; },
                 iFormatNumberOfZero = 1
             };
+
+            // ── 폰트 해치 파라미터 (DM 해치와 독립적으로 설정) ──
+            PROCESS_FONT_HATCH_TYPE = new MF.RecipeItem_DPValue(FA.DEF.eRecipeCategory.PROCESS, FA.DEF.eRcpSubCategory.M07_FONT_MARKING_PARAM.ToString(), "Font Hatch Type", 993, EzIna.DataMatrix.DM_HATCH_TYPE.LINE, FA.DEF.eUnit.none, "")
+            {
+            };
+            PROCESS_FONT_HATCH_Outline_Enable = new MF.RecipeItem_DPValue(FA.DEF.eRecipeCategory.PROCESS, FA.DEF.eRcpSubCategory.M07_FONT_MARKING_PARAM.ToString(), "Font Hatch OutLine Enable", 994, true, FA.DEF.eUnit.none, "")
+            {
+            };
+            PROCESS_FONT_HATCH_LineAngle = new MF.RecipeItem_DPValue(FA.DEF.eRecipeCategory.PROCESS, FA.DEF.eRcpSubCategory.M07_FONT_MARKING_PARAM.ToString(), "Font Hatch Line Angle", 995, 0.0, FA.DEF.eUnit.deg, "")
+            {
+                fMinDelegate = () => { return -180.0; },
+                fMaxDelegate = () => { return 180.0; },
+                iFormatNumberOfZero = 1
+            };
+            PROCESS_FONT_HATCH_LinePitch = new MF.RecipeItem_DPValue(FA.DEF.eRecipeCategory.PROCESS, FA.DEF.eRcpSubCategory.M07_FONT_MARKING_PARAM.ToString(), "Font Hatch Line Pitch", 996, 0.01, FA.DEF.eUnit.mm, "")
+            {
+                fMinDelegate = () => { return 0.01; },
+                fMaxDelegate = () => { return 10.0; },
+                iFormatNumberOfZero = 3
+            };
+            PROCESS_FONT_HATCH_OffSet = new MF.RecipeItem_DPValue(FA.DEF.eRecipeCategory.PROCESS, FA.DEF.eRcpSubCategory.M07_FONT_MARKING_PARAM.ToString(), "Font Hatch Offset", 997, 0.0, FA.DEF.eUnit.mm, "")
+            {
+                fMinDelegate = () => { return -1.0; },
+                fMaxDelegate = () => { return 1.0; },
+                iFormatNumberOfZero = 3
+            };
         }
         /// <summary>bool: 폰트 마킹 사용 여부 (false = DM 마킹만 수행)</summary>
         public static MF.RecipeItem_DPValue PROCESS_FONT_MARKING_ENABLE;//KKW Font Marking Parameter
@@ -977,6 +1003,16 @@ namespace EzIna.FA
         public static MF.RecipeItem_DPValue PROCESS_FONT_CHAR_SPACING_MM;//KKW Font Marking Parameter
         /// <summary>double: 폰트 마킹 전용 마크 속도 (mm/s) - DM보다 낮게 설정</summary>
         public static MF.RecipeItem_DPValue PROCESS_FONT_MARK_SPEED;//KKW Font Marking Parameter
+        /// <summary>DM_HATCH_TYPE: 폰트 해치 타입 (NONE/LINE/ZIGZAG/CROSS/CONTOUR)</summary>
+        public static MF.RecipeItem_DPValue PROCESS_FONT_HATCH_TYPE;
+        /// <summary>bool: 폰트 해치 외곽선 출력 여부</summary>
+        public static MF.RecipeItem_DPValue PROCESS_FONT_HATCH_Outline_Enable;
+        /// <summary>double: 폰트 해치 라인 각도 (deg)</summary>
+        public static MF.RecipeItem_DPValue PROCESS_FONT_HATCH_LineAngle;
+        /// <summary>double: 폰트 해치 라인 간격 (mm)</summary>
+        public static MF.RecipeItem_DPValue PROCESS_FONT_HATCH_LinePitch;
+        /// <summary>double: 폰트 해치 외곽 오프셋 (mm)</summary>
+        public static MF.RecipeItem_DPValue PROCESS_FONT_HATCH_OffSet;
         #endregion Font Marking
         /// <summary>
         /// EzIna.DataMatrix.eDataMatrixSize
