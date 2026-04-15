@@ -783,10 +783,10 @@ namespace EzIna
             {
                 using (EzCAM_Ver2.Hatch fontHatch = new EzCAM_Ver2.Hatch())
                 {
-                    fontHatch.Option.Type    = dmfHatchType;
-                    fontHatch.Option.fPitch   = RCP_Modify.PROCESS_FONT_HATCH_LinePitch.GetValue<float>();
-                    fontHatch.Option.fAngle   = RCP_Modify.PROCESS_FONT_HATCH_LineAngle.GetValue<float>();
-                    fontHatch.Option.fOffset  = RCP_Modify.PROCESS_FONT_HATCH_OffSet.GetValue<float>();
+                    fontHatch.Option.Type = dmfHatchType;
+                    fontHatch.Option.fPitch = RCP_Modify.PROCESS_FONT_HATCH_LinePitch.GetValue<float>();
+                    fontHatch.Option.fAngle = RCP_Modify.PROCESS_FONT_HATCH_LineAngle.GetValue<float>();
+                    fontHatch.Option.fOffset = RCP_Modify.PROCESS_FONT_HATCH_OffSet.GetValue<float>();
                     fontHatch.Option.bOutline = RCP_Modify.PROCESS_FONT_HATCH_Outline_Enable.GetValue<bool>();
                     if (!fontHatch.CreateShapeHatch(textPath, ref fontFinalPath))
                     {
@@ -1153,10 +1153,10 @@ namespace EzIna
                 {
                     using (EzCAM_Ver2.Hatch fontHatch = new EzCAM_Ver2.Hatch())
                     {
-                        fontHatch.Option.Type    = fontHatchType;
-                        fontHatch.Option.fPitch   = RCP_Modify.PROCESS_FONT_HATCH_LinePitch.GetValue<float>();
-                        fontHatch.Option.fAngle   = RCP_Modify.PROCESS_FONT_HATCH_LineAngle.GetValue<float>();
-                        fontHatch.Option.fOffset  = RCP_Modify.PROCESS_FONT_HATCH_OffSet.GetValue<float>();
+                        fontHatch.Option.Type = fontHatchType;
+                        fontHatch.Option.fPitch = RCP_Modify.PROCESS_FONT_HATCH_LinePitch.GetValue<float>();
+                        fontHatch.Option.fAngle = RCP_Modify.PROCESS_FONT_HATCH_LineAngle.GetValue<float>();
+                        fontHatch.Option.fOffset = RCP_Modify.PROCESS_FONT_HATCH_OffSet.GetValue<float>();
                         fontHatch.Option.bOutline = RCP_Modify.PROCESS_FONT_HATCH_Outline_Enable.GetValue<bool>();
                         if (!fontHatch.CreateShapeHatch(textPath, ref fontFinalPath))
                         {
@@ -1461,7 +1461,7 @@ namespace EzIna
                 using (Form dlg = new Form())
                 {
                     dlg.Text = string.Format("Font Marking Preview  ─  [{0}]", text);
-                    dlg.Width = 820;
+                    dlg.Width = 840;
                     dlg.Height = 790;
                     dlg.FormBorderStyle = FormBorderStyle.FixedDialog;
                     dlg.StartPosition = FormStartPosition.CenterParent;
@@ -1491,7 +1491,7 @@ namespace EzIna
                         Text = "● 녹색 배경 = PCB 실크 영역  ● 파란 채움 = DM 셀  ● 파란 점선 = DM 영역  ● 빨간 실선 = 폰트 각인 경로(해치 포함)  ● 빨간 점선 = 경로 외곽 범위  ● 그리드 1 mm",
                         Left = 10,
                         Top = 32,
-                        Width = 790,
+                        Width = 840,
                         Height = 16,
                         Font = new Font("Malgun Gothic", 7.5f),
                         ForeColor = Color.SlateGray,
@@ -1869,17 +1869,18 @@ namespace EzIna
                                 // 해치는 mm 좌표에서 생성해야 정확하므로 원본 경로로 계산
                                 using (EzCAM_Ver2.Hatch previewHatch = new EzCAM_Ver2.Hatch())
                                 {
-                                    previewHatch.Option.Type    = previewHatchType;
-                                    previewHatch.Option.fPitch   = RCP_Modify.PROCESS_FONT_HATCH_LinePitch.GetValue<float>();
-                                    previewHatch.Option.fAngle   = RCP_Modify.PROCESS_FONT_HATCH_LineAngle.GetValue<float>();
-                                    previewHatch.Option.fOffset  = RCP_Modify.PROCESS_FONT_HATCH_OffSet.GetValue<float>();
+                                    previewHatch.Option.Type = previewHatchType;
+                                    previewHatch.Option.fPitch = RCP_Modify.PROCESS_FONT_HATCH_LinePitch.GetValue<float>();
+                                    previewHatch.Option.fAngle = RCP_Modify.PROCESS_FONT_HATCH_LineAngle.GetValue<float>();
+                                    previewHatch.Option.fOffset = RCP_Modify.PROCESS_FONT_HATCH_OffSet.GetValue<float>();
                                     previewHatch.Option.bOutline = RCP_Modify.PROCESS_FONT_HATCH_Outline_Enable.GetValue<bool>();
                                     GraphicsPath hatchedMM = new GraphicsPath();
-                                    if (previewHatch.CreateShapeHatch(activePath, ref hatchedMM))
-                                    {
-                                        drawPath.AddPath(hatchedMM, false);
-                                        hatchApplied = true;
-                                    }
+                                    using (GraphicsPath activeClone = (GraphicsPath)activePath.Clone())
+                                        if (previewHatch.CreateShapeHatch(activeClone, ref hatchedMM))
+                                        {
+                                            drawPath.AddPath(hatchedMM, false);
+                                            hatchApplied = true;
+                                        }
                                     hatchedMM.Dispose();
                                 }
                             }
