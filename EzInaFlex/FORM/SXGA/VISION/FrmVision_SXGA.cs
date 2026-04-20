@@ -946,7 +946,17 @@ namespace EzIna
                     }
                     if (MsgBox.Confirm("Would like to execute to Data Matrix Marking without INSP?"))
                     {
-                        Manual_DM_Marking_NO_INSP_Click();
+                        // Manual_DM_Marking_NO_INSP_Click();
+
+                        System.Threading.Tasks.Task.Run(() =>
+                        {
+                            try { Manual_DM_Marking_NO_INSP_Click(); }
+                            catch (Exception ex)
+                            {
+                                FA.LOG.InfoJIG("Manual_DM_Marking_NO_INSP Exception: {0}", ex.Message);
+                                this.InvokeIfNeeded(() => MsgBox.Error(string.Format("Marking Error:\n{0}", ex.Message)));
+                            }
+                        });
                     }
                     break;
 
@@ -958,7 +968,17 @@ namespace EzIna
                     }
                     if (MsgBox.Confirm("Would like to execute to Data Matrix INSPECTION?"))
                     {
-                        Manual_DM_Marking_INSP_Click();
+                        // Manual_DM_Marking_INSP_Click();
+
+                        System.Threading.Tasks.Task.Run(() =>
+                        {
+                            try { Manual_DM_Marking_INSP_Click(); }
+                            catch (Exception ex)
+                            {
+                                FA.LOG.InfoJIG("Manual_DM_Marking_INSP Exception: {0}", ex.Message);
+                                this.InvokeIfNeeded(() => MsgBox.Error(string.Format("INSP Error:\n{0}", ex.Message)));
+                            }
+                        });
                     }
                     break;
 

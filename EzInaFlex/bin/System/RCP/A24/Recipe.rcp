@@ -35,6 +35,17 @@ PROCESS | 909 | M07_MARKING_PARAM | Scanner Laser On Delay | 160 | usec | 000 | 
 PROCESS | 910 | M07_MARKING_PARAM | Scanner Laser Off Delay | 130 | usec | 000 | System.Double
 PROCESS | 911 | M07_MARKING_PARAM | Scanner Jump Speed | 1200 | mmPerSec | 000 | System.Double
 PROCESS | 912 | M07_MARKING_PARAM | Scanner Mark Speed | 1200 | mmPerSec | 000 | System.Double
+PROCESS | 987 | M07_FONT_MARKING_PARAM | Font Marking Enable | False | none | 000 | System.Boolean
+PROCESS | 988 | M07_FONT_MARKING_PARAM | Font Name | OCR_B | none | 000 | EzIna.FA.DEF+eFontName
+PROCESS | 989 | M07_FONT_MARKING_PARAM | Font Text Width | 2 | mm | 000 | System.Double
+PROCESS | 990 | M07_FONT_MARKING_PARAM | Font Gap From Matrix | 0.5 | mm | 000 | System.Double
+PROCESS | 991 | M07_FONT_MARKING_PARAM | Font Char Spacing | 0.2 | mm | 000 | System.Double
+PROCESS | 992 | M07_FONT_MARKING_PARAM | Font Mark Speed | 10 | mmPerSec | 000 | System.Double
+PROCESS | 993 | M07_FONT_MARKING_PARAM | Font Hatch Type | LINE | none | 000 | EzIna.DataMatrix.DM_HATCH_TYPE
+PROCESS | 994 | M07_FONT_MARKING_PARAM | Font Hatch OutLine Enable | True | none | 000 | System.Boolean
+PROCESS | 995 | M07_FONT_MARKING_PARAM | Font Hatch Line Angle | 0 | deg | 000 | System.Double
+PROCESS | 996 | M07_FONT_MARKING_PARAM | Font Hatch Line Pitch | 0.01 | mm | 000 | System.Double
+PROCESS | 997 | M07_FONT_MARKING_PARAM | Font Hatch Offset | 0 | mm | 000 | System.Double
 PROCESS | 950 | M07_DATA_MATRIX_PARAM | Data Matrix Size | DM20X20 | none | 000 | EzIna.DataMatrix.eDataMatrixSize
 PROCESS | 951 | M07_DATA_MATRIX_PARAM | Data Matrix Shape | Rectangle | none | 000 | EzIna.DataMatrix.CellShape
 PROCESS | 952 | M07_DATA_MATRIX_PARAM | Data Matrix Zero Default | Center | none | 000 | EzIna.DataMatrix.ZeroPosition

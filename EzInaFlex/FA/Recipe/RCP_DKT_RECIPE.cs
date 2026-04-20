@@ -43,7 +43,7 @@ namespace EzIna.FA
         #region TEACHING_POS
         private static void InitForCommon_Teaching()
         {
-            int iStartIDX= 101;
+            int iStartIDX = 101;
             COMMON_INIT_PROC_AREA_X_POS = new MF.RecipeItem(FA.DEF.eRecipeCategory.COMMON, FA.DEF.eRcpSubCategory.M06_TEACHING.ToString(), "Init Proc Area X Pos", iStartIDX++, 0.0, FA.DEF.eUnit.mm)
             {
                 fMinDelegate = () =>
@@ -239,7 +239,7 @@ namespace EzIna.FA
                 },
                 iFormatNumberOfZero = 3
             };
-        
+
             COMMON_GUIDE_BAR_Y_POS = new MF.RecipeItem(FA.DEF.eRecipeCategory.COMMON, FA.DEF.eRcpSubCategory.M06_TEACHING.ToString(), "Guide Bar Y Pos", iStartIDX++, 0.0, FA.DEF.eUnit.mm)
             {
                 fMinDelegate = () =>
@@ -521,6 +521,7 @@ namespace EzIna.FA
         {
             InitForProcessParam_Scanner_Laser();
             InitForProcessParam_DataMatrix();
+            InitForProcessParam_FontMarking();//KKW Font Marking Parameter
         }
         #region Scanner & Laser
         private static void InitForProcessParam_Scanner_Laser()
@@ -843,13 +844,13 @@ namespace EzIna.FA
             {
                 if (Item.FieldType == typeof(MF.RecipeItem_DPValue))
                 {
-                   
+
                     if (Item.Name.Contains("PROCESS_DATA_MAT_MARKING_OFFSET_E_X"))
                     {
                         pItem = (MF.RecipeItem_DPValue)Item.GetValue(null);
-                        strTmp = Item.Name.Replace("PROCESS_DATA_MAT_MARKING_OFFSET_E_X_","");                        
+                        strTmp = Item.Name.Replace("PROCESS_DATA_MAT_MARKING_OFFSET_E_X_", "");
                         int.TryParse(strTmp, out iOffsetNumber);
-                        strItemName = string.Format("Data Matrix Marking Offset X{0}", iOffsetNumber+1);
+                        strItemName = string.Format("Data Matrix Marking Offset X{0}", iOffsetNumber + 1);
                         pItem = new MF.RecipeItem_DPValue(FA.DEF.eRecipeCategory.PROCESS, FA.DEF.eRcpSubCategory.M07_DATA_MATRIX_PARAM.ToString(), strItemName, iItemNum++, 0.0, FA.DEF.eUnit.mm, "")
                         {
                             fMinDelegate = () =>
@@ -864,12 +865,12 @@ namespace EzIna.FA
                         };
                         Item.SetValue(Item.FieldHandle, pItem);
                     }
-                    else if(Item.Name.Contains("PROCESS_DATA_MAT_MARKING_OFFSET_E_Y"))
+                    else if (Item.Name.Contains("PROCESS_DATA_MAT_MARKING_OFFSET_E_Y"))
                     {
                         pItem = (MF.RecipeItem_DPValue)Item.GetValue(null);
                         strTmp = Item.Name.Replace("PROCESS_DATA_MAT_MARKING_OFFSET_E_Y_", "");
                         int.TryParse(strTmp, out iOffsetNumber);
-                        strItemName = string.Format("Data Matrix Marking Offset Y{0}", iOffsetNumber+1);
+                        strItemName = string.Format("Data Matrix Marking Offset Y{0}", iOffsetNumber + 1);
                         pItem = new MF.RecipeItem_DPValue(FA.DEF.eRecipeCategory.PROCESS, FA.DEF.eRcpSubCategory.M07_DATA_MATRIX_PARAM.ToString(), strItemName, iItemNum++, 0.0, FA.DEF.eUnit.mm, "")
                         {
                             fMinDelegate = () =>
@@ -924,6 +925,95 @@ namespace EzIna.FA
                 iFormatNumberOfZero = 3
             };
         }
+        #region Font Marking
+        private static void InitForProcessParam_FontMarking() //KKW Font Marking Parameter
+        {
+            // 폰트 마킹 사용 여부 (false이면 DM만 마킹)
+            PROCESS_FONT_MARKING_ENABLE = new MF.RecipeItem_DPValue(FA.DEF.eRecipeCategory.PROCESS, FA.DEF.eRcpSubCategory.M07_FONT_MARKING_PARAM.ToString(), "Font Marking Enable", 987, false, FA.DEF.eUnit.none, "")
+            {
+            };
+            // 폰트 이름 (OCR_B="OCR-B" / Arial / Consolas - 그리드에서 드롭다운 선택)
+            PROCESS_FONT_NAME = new MF.RecipeItem_DPValue(FA.DEF.eRecipeCategory.PROCESS, FA.DEF.eRcpSubCategory.M07_FONT_MARKING_PARAM.ToString(), "Font Name", 988, FA.DEF.eFontName.OCR_B, FA.DEF.eUnit.none, "")
+            {
+            };
+            // 텍스트 영역 가로 크기 (글자 한 개의 너비 = 텍스트 블록 가로 크기, 사용자 직접 입력)
+            PROCESS_FONT_TEXT_WIDTH_MM = new MF.RecipeItem_DPValue(FA.DEF.eRecipeCategory.PROCESS, FA.DEF.eRcpSubCategory.M07_FONT_MARKING_PARAM.ToString(), "Font Text Width", 989, 2.0, FA.DEF.eUnit.mm, "")
+            {
+                fMinDelegate = () => { return 0.1; },
+                fMaxDelegate = () => { return 100.0; },
+                iFormatNumberOfZero = 2
+            };
+            // 데이터 매트릭스 오른쪽 끝에서 텍스트 시작까지의 간격
+            PROCESS_FONT_GAP_FROM_MATRIX_MM = new MF.RecipeItem_DPValue(FA.DEF.eRecipeCategory.PROCESS, FA.DEF.eRcpSubCategory.M07_FONT_MARKING_PARAM.ToString(), "Font Gap From Matrix", 990, 0.5, FA.DEF.eUnit.mm, "")
+            {
+                fMinDelegate = () => { return 0.0; },
+                fMaxDelegate = () => { return 20.0; },
+                iFormatNumberOfZero = 2
+            };
+            // 세로 배치 시 글자 간 간격
+            PROCESS_FONT_CHAR_SPACING_MM = new MF.RecipeItem_DPValue(FA.DEF.eRecipeCategory.PROCESS, FA.DEF.eRcpSubCategory.M07_FONT_MARKING_PARAM.ToString(), "Font Char Spacing", 991, 0.2, FA.DEF.eUnit.mm, "")
+            {
+                fMinDelegate = () => { return 0.0; },
+                fMaxDelegate = () => { return 10.0; },
+                iFormatNumberOfZero = 2
+            };
+            // 폰트 마킹 전용 스캐너 마크 속도 (DM 마킹보다 낮게 설정)
+            PROCESS_FONT_MARK_SPEED = new MF.RecipeItem_DPValue(FA.DEF.eRecipeCategory.PROCESS, FA.DEF.eRcpSubCategory.M07_FONT_MARKING_PARAM.ToString(), "Font Mark Speed", 992, 10.0, FA.DEF.eUnit.mmPerSec, "")
+            {
+                fMinDelegate = () => { return 1.0; },
+                fMaxDelegate = () => { return 10000.0; },
+                iFormatNumberOfZero = 1
+            };
+
+            // ── 폰트 해치 파라미터 (DM 해치와 독립적으로 설정) ──
+            PROCESS_FONT_HATCH_TYPE = new MF.RecipeItem_DPValue(FA.DEF.eRecipeCategory.PROCESS, FA.DEF.eRcpSubCategory.M07_FONT_MARKING_PARAM.ToString(), "Font Hatch Type", 993, EzIna.DataMatrix.DM_HATCH_TYPE.LINE, FA.DEF.eUnit.none, "")
+            {
+            };
+            PROCESS_FONT_HATCH_Outline_Enable = new MF.RecipeItem_DPValue(FA.DEF.eRecipeCategory.PROCESS, FA.DEF.eRcpSubCategory.M07_FONT_MARKING_PARAM.ToString(), "Font Hatch OutLine Enable", 994, true, FA.DEF.eUnit.none, "")
+            {
+            };
+            PROCESS_FONT_HATCH_LineAngle = new MF.RecipeItem_DPValue(FA.DEF.eRecipeCategory.PROCESS, FA.DEF.eRcpSubCategory.M07_FONT_MARKING_PARAM.ToString(), "Font Hatch Line Angle", 995, 0.0, FA.DEF.eUnit.deg, "")
+            {
+                fMinDelegate = () => { return -180.0; },
+                fMaxDelegate = () => { return 180.0; },
+                iFormatNumberOfZero = 1
+            };
+            PROCESS_FONT_HATCH_LinePitch = new MF.RecipeItem_DPValue(FA.DEF.eRecipeCategory.PROCESS, FA.DEF.eRcpSubCategory.M07_FONT_MARKING_PARAM.ToString(), "Font Hatch Line Pitch", 996, 0.01, FA.DEF.eUnit.mm, "")
+            {
+                fMinDelegate = () => { return 0.01; },
+                fMaxDelegate = () => { return 10.0; },
+                iFormatNumberOfZero = 3
+            };
+            PROCESS_FONT_HATCH_OffSet = new MF.RecipeItem_DPValue(FA.DEF.eRecipeCategory.PROCESS, FA.DEF.eRcpSubCategory.M07_FONT_MARKING_PARAM.ToString(), "Font Hatch Offset", 997, 0.0, FA.DEF.eUnit.mm, "")
+            {
+                fMinDelegate = () => { return -1.0; },
+                fMaxDelegate = () => { return 1.0; },
+                iFormatNumberOfZero = 3
+            };
+        }
+        /// <summary>bool: 폰트 마킹 사용 여부 (false = DM 마킹만 수행)</summary>
+        public static MF.RecipeItem_DPValue PROCESS_FONT_MARKING_ENABLE;//KKW Font Marking Parameter
+        /// <summary>string: 폰트 이름 (OCR-B, Arial, Consolas 등)</summary>
+        public static MF.RecipeItem_DPValue PROCESS_FONT_NAME;//KKW Font Marking Parameter
+        /// <summary>double: 텍스트 영역 가로 크기 (mm) - 사용자 직접 입력</summary>
+        public static MF.RecipeItem_DPValue PROCESS_FONT_TEXT_WIDTH_MM;//KKW Font Marking Parameter
+        /// <summary>double: 데이터 매트릭스 오른쪽 끝 → 텍스트 시작 간격 (mm)</summary>
+        public static MF.RecipeItem_DPValue PROCESS_FONT_GAP_FROM_MATRIX_MM;//KKW Font Marking Parameter
+        /// <summary>double: 세로 배치 글자 간격 (mm)</summary>
+        public static MF.RecipeItem_DPValue PROCESS_FONT_CHAR_SPACING_MM;//KKW Font Marking Parameter
+        /// <summary>double: 폰트 마킹 전용 마크 속도 (mm/s) - DM보다 낮게 설정</summary>
+        public static MF.RecipeItem_DPValue PROCESS_FONT_MARK_SPEED;//KKW Font Marking Parameter
+        /// <summary>DM_HATCH_TYPE: 폰트 해치 타입 (NONE/LINE/ZIGZAG/CROSS/CONTOUR)</summary>
+        public static MF.RecipeItem_DPValue PROCESS_FONT_HATCH_TYPE;
+        /// <summary>bool: 폰트 해치 외곽선 출력 여부</summary>
+        public static MF.RecipeItem_DPValue PROCESS_FONT_HATCH_Outline_Enable;
+        /// <summary>double: 폰트 해치 라인 각도 (deg)</summary>
+        public static MF.RecipeItem_DPValue PROCESS_FONT_HATCH_LineAngle;
+        /// <summary>double: 폰트 해치 라인 간격 (mm)</summary>
+        public static MF.RecipeItem_DPValue PROCESS_FONT_HATCH_LinePitch;
+        /// <summary>double: 폰트 해치 외곽 오프셋 (mm)</summary>
+        public static MF.RecipeItem_DPValue PROCESS_FONT_HATCH_OffSet;
+        #endregion Font Marking
         /// <summary>
         /// EzIna.DataMatrix.eDataMatrixSize
         /// </summary>
@@ -1077,7 +1167,7 @@ namespace EzIna.FA
 
         private static void InitForVision()
         {
-            int iStartIDX= 700;
+            int iStartIDX = 700;
             Matcher_Minimum_Scale = new MF.RecipeItem(FA.DEF.eRecipeCategory.VISION, FA.DEF.eRcpSubCategory.M08_VISION_PARAM.ToString(), "Match Minimum Scale", iStartIDX++, 0.8, FA.DEF.eUnit.percent)
             {
                 fMinDelegate = () =>
@@ -1278,7 +1368,7 @@ namespace EzIna.FA
 #if SIM
                     return 4080;
 #else
-										return FA.VISION.FINE_CAM.GetImageWidth();
+                    return FA.VISION.FINE_CAM.GetImageWidth();
 #endif
                 },
             };
@@ -1294,7 +1384,7 @@ namespace EzIna.FA
                     return 3000;
 
 #else
-										return FA.VISION.FINE_CAM.GetImageHeight();
+                    return FA.VISION.FINE_CAM.GetImageHeight();
 #endif
                 },
             };
@@ -1321,7 +1411,7 @@ namespace EzIna.FA
 #if SIM
                     return 4080;
 #else
-										return FA.VISION.FINE_CAM.GetImageWidth();
+                    return FA.VISION.FINE_CAM.GetImageWidth();
 #endif
                 },
                 SetButtonFunc = () =>
@@ -1351,7 +1441,7 @@ namespace EzIna.FA
 #if SIM
                     return 3000;
 #else
-										return FA.VISION.FINE_CAM.GetImageHeight();
+                    return FA.VISION.FINE_CAM.GetImageHeight();
 #endif
                 },
                 SetButtonFunc = () =>
@@ -1381,7 +1471,7 @@ namespace EzIna.FA
 #if SIM
                     return 4080 - JIGCode_ROI_POS_X.GetValue<int>();
 #else
-										return FA.VISION.FINE_CAM.GetImageWidth()-JIGCode_ROI_POS_X.GetValue<int>();
+                    return FA.VISION.FINE_CAM.GetImageWidth() - JIGCode_ROI_POS_X.GetValue<int>();
 #endif
                 },
                 SetButtonFunc = () =>
@@ -1411,7 +1501,7 @@ namespace EzIna.FA
 #if SIM
                     return 3000 - JIGCode_ROI_POS_Y.GetValue<int>();
 #else
-										return FA.VISION.FINE_CAM.GetImageHeight()-JIGCode_ROI_POS_Y.GetValue<int>();
+                    return FA.VISION.FINE_CAM.GetImageHeight() - JIGCode_ROI_POS_Y.GetValue<int>();
 #endif
                 },
                 SetButtonFunc = () =>
