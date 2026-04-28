@@ -101,6 +101,10 @@ namespace EzIna
             this.Width = FA.DEF.SXGA_WIDTH;
             this.Height = FA.DEF.SXGA_HEIGHT;
 
+            // KKW Ctrl+Shift+D → LocalDuplicateManager 간이 테스트 폼 (개발용)
+            this.KeyPreview = true;
+            this.KeyDown += FrmMain_KeyDown_DebugTools;
+
 
 
             foreach (ToolStripMenuItem Items in menuStrip_FrmMain.Items)
@@ -227,7 +231,7 @@ namespace EzIna
 
 
 
-            AddMainForm(FRM.FrmInforRecipeMain, false);          
+            AddMainForm(FRM.FrmInforRecipeMain, false);
             AddMainForm(FRM.FrmInforManualVision, false);
 
             AddMainForm(FRM.FrmInforSetupInitialProcess, false);
@@ -565,39 +569,39 @@ namespace EzIna
             ucRoundedPanel_Axis4.ForeColor = Color.White;
             ucRoundedPanel_Axis5.ForeColor = Color.White;
 #if !SIM
-						if (RTC5.Instance.GetListStatus_Load(Scanner.ScanlabRTC5.RTC_LIST._1st))
-						{
-								lbl_TaskStatus_01.BackColor = Color.White;
-						}
-						else if (RTC5.Instance.GetListStatus_READY(Scanner.ScanlabRTC5.RTC_LIST._1st))
-						{
-								lbl_TaskStatus_01.BackColor = Color.Orange;
-						}
-						else if (RTC5.Instance.GetListStatus_BUSY(Scanner.ScanlabRTC5.RTC_LIST._1st))
-						{
-								lbl_TaskStatus_01.BackColor = Color.Green;
-						}
-						else
-						{
-								lbl_TaskStatus_01.BackColor = Color.Red;
-						}
+            if (RTC5.Instance.GetListStatus_Load(Scanner.ScanlabRTC5.RTC_LIST._1st))
+            {
+                lbl_TaskStatus_01.BackColor = Color.White;
+            }
+            else if (RTC5.Instance.GetListStatus_READY(Scanner.ScanlabRTC5.RTC_LIST._1st))
+            {
+                lbl_TaskStatus_01.BackColor = Color.Orange;
+            }
+            else if (RTC5.Instance.GetListStatus_BUSY(Scanner.ScanlabRTC5.RTC_LIST._1st))
+            {
+                lbl_TaskStatus_01.BackColor = Color.Green;
+            }
+            else
+            {
+                lbl_TaskStatus_01.BackColor = Color.Red;
+            }
 
-						if (RTC5.Instance.GetListStatus_Load(Scanner.ScanlabRTC5.RTC_LIST._2nd))
-						{
-								lbl_TaskStatus_02.BackColor = Color.White;
-						}
-						else if (RTC5.Instance.GetListStatus_READY(Scanner.ScanlabRTC5.RTC_LIST._2nd))
-						{
-								lbl_TaskStatus_02.BackColor = Color.Orange;
-						}
-						else if (RTC5.Instance.GetListStatus_BUSY(Scanner.ScanlabRTC5.RTC_LIST._2nd))
-						{
-								lbl_TaskStatus_02.BackColor = Color.Green;
-						}
-						else
-						{
-								lbl_TaskStatus_02.BackColor = Color.Red;
-						}
+            if (RTC5.Instance.GetListStatus_Load(Scanner.ScanlabRTC5.RTC_LIST._2nd))
+            {
+                lbl_TaskStatus_02.BackColor = Color.White;
+            }
+            else if (RTC5.Instance.GetListStatus_READY(Scanner.ScanlabRTC5.RTC_LIST._2nd))
+            {
+                lbl_TaskStatus_02.BackColor = Color.Orange;
+            }
+            else if (RTC5.Instance.GetListStatus_BUSY(Scanner.ScanlabRTC5.RTC_LIST._2nd))
+            {
+                lbl_TaskStatus_02.BackColor = Color.Green;
+            }
+            else
+            {
+                lbl_TaskStatus_02.BackColor = Color.Red;
+            }
 #endif
 
             lbl_Initialized.ForeColor = FA.MGR.RunMgr?.IsInitialized == true ? Color.LimeGreen : Color.Red;
@@ -607,6 +611,17 @@ namespace EzIna
             // lbl_TaskStatus_03.BackColor = EzIna.Motion.CMotionA3200.GetTaskState_Enum(3) == TaskState.Error ? FA.DEF.A3200TaskAlarmIsOccuredColor : FA.DEF.A3200TaskAlarmIsNotOccuredColor;
             // lbl_TaskStatus_04.BackColor = EzIna.Motion.CMotionA3200.GetTaskState_Enum(4) == TaskState.Error ? FA.DEF.A3200TaskAlarmIsOccuredColor : FA.DEF.A3200TaskAlarmIsNotOccuredColor;
             m_Timer.Start();
+        }
+
+        // ── KKW Ctrl+Shift+D : LocalDuplicateManager 간이 테스트 폼 (개발용) ──
+        private void FrmMain_KeyDown_DebugTools(object sender, KeyEventArgs e)
+        {
+            if (e.Control && e.Shift && e.KeyCode == Keys.D)
+            {
+                e.SuppressKeyPress = true;
+                using (var frm = new FrmDuplicateTest())
+                    frm.ShowDialog(this);
+            }
         }
     }
 }
